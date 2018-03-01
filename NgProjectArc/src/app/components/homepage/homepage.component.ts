@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -8,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
 
   constructor() { }
-
+  
+  imgFileName1:string = "assets/images/pet1.jpg";
+  imgFileName2:string = "assets/images/pet2.jpg";
+  imgFileName3:string = "assets/images/pet3.jpg";
+  imgFileName4:string = "assets/images/pet4.jpg";
+   
   ngOnInit() {
   }
 

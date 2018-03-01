@@ -9,6 +9,7 @@ export class AnimalProfileComponent implements OnInit {
 
   constructor() { }
 
+  imgFileName1:string = "assets/images/pet1.jpg";
   ngOnInit() {
   }
 

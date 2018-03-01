@@ -1,12 +1,12 @@
-<form *ngIf="!show" class="form-registerUser animated fadeIn" method="post">
+<form class="form-registerUser" action="registerUser" method="post">
   <!--<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
   <h1 class="h1 mb-1 font-weight-bold">Register</h1>
   <label for="fullname" class="sr-only">Name</label>
-  <input #fullname type="text" name="fullname" id="fullName" class="form-control" placeholder="Full name" required minlength="1" autofocus>
+  <input type="text" name="fullname" id="fullName" class="form-control" placeholder="Full name" required autofocus>
   <label for="inputEmail" class="sr-only">Email address</label>
-  <input #email type="email" name="username" id="inputEmail" class="form-control" placeholder="Your email" required minlength="1">
+  <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Your email" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
-  <input #password type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required minlength="1">
+  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
   <!--   commented out the remember me checkbox for future functionality.
               <div class="checkbox mb-3">
                   <label>
@@ -15,8 +15,8 @@
               </div>
               -->
   <div id="register-buttons">
-    <button (click)="register(fullname.value, email.value, password.value)" (keyup.enter)="register(fullname.value, email.value, password.value)" class="btn btn-lg btn-primary btn-block" id="register-button" type="submit">Register</button>
-    <button (click)="hide()" class="btn btn-lg btn-primary btn-block" id="cancel-button">Cancel</button>
+    <button class="btn btn-lg btn-primary btn-block" id="register-button" type="submit">Register</button>
+    <button class="btn btn-lg btn-primary btn-block" id="cancel-button" type="submit">Cancel</button>
   </div>
   <p class="mt-3 mb-3 text-muted">ARC &copy; 2018-2019</p>
 </form>
