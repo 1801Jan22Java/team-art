@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ng-project-arc App', () => {
+describe('project-arc App', () => {
   let page: AppPage;
 
   beforeEach(() => {
