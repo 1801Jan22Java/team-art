@@ -1,3 +1,57 @@
-<p>
-  adoption-form works!
-</p>
+<div>
+    <form class="form-adoptionForm" action="adoptAnimal" method="post">
+        <!--<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
+        <h1 class="h1 mb-1 font-weight-bold">Adoption Form</h1>
+        <p class="mt-1 mb-1">Register for free</p>
+        <label for="name" class="sr-only">Animal's Name</label>
+        <div class="form-group">
+            <input type="text" name="animalname"  class="form-control" placeholder="Applicant's Name"  >
+        </div>
+        <label for="name" class="sr-only">Applicant's Name</label>
+        <div class="form-group">
+            <input type="text" name="username"  class="form-control" placeholder="user Name"  >
+        </div>
+        <label for="address" class="sr-only">Address</label>
+        <div class="form-group">
+            <input type="text" name="address" id="address" class="form-control" placeholder="Address" >
+        </div>
+        <label for="profession" class="sr-only">Profession</label>
+        <div class="form-group">
+            <input type="text" name="profession" id="profession" class="form-control" placeholder="Profession"  >
+        </div>
+        <label for="phone" class="sr-only">Phone Number</label>
+        <div class="form-group">
+            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" placeholder="Phone Number">
+        </div>
+        <div id="housing-types-container">
+            <fieldset class="form-group" id="housing-types">
+                <legend>Housing Type</legend>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked> Apartment
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> Single Home
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3"> Townhome
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option4"> Condo
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+        <div id="adoptionForm-btns">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block">Cancel</button>
+        </div>
+
+    </form>
+</div>

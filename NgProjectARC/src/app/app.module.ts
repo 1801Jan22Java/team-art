@@ -23,6 +23,9 @@ import { RegisterAnimalFormComponent } from './components/register-animal-form/r
 import { UpdateAnimalProfileComponent } from './components/update-animal-profile/update-animal-profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import {ApplicationService} from './service/application.service';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -48,9 +51,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApplicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

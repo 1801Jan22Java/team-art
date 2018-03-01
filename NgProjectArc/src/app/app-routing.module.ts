@@ -7,6 +7,12 @@ import { ManagelistOfAnimalsComponent } from './components/managelist-of-animals
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { ManageVisitorFormsComponent } from './components/manage-visitor-forms/manage-visitor-forms.component';
 import { ManageAdoptionFormsComponent } from './components/manage-adoption-forms/manage-adoption-forms.component';
+import { AnimalProfileComponent} from './components/animal-profile/animal-profile.component';
+import { AdoptionFormComponent } from './components/adoption-form/adoption-form.component';
+import { VisitorFormComponent } from './components/visitor-form/visitor-form.component';
+import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
+import { RegisterAnimalFormComponent } from './components/register-animal-form/register-animal-form.component';
+import { UpdateAnimalProfileComponent } from './components/update-animal-profile/update-animal-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
@@ -17,6 +23,12 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'visits', component: ManageVisitorFormsComponent },
   { path: 'animalList', component: ManagelistOfAnimalsComponent },
+  { path: 'animalProfile', component : AnimalProfileComponent},
+  { path: 'adoptionForm', component: AdoptionFormComponent},
+  { path: 'visitorForm', component : VisitorFormComponent},
+  { path: 'updateAnimalProfile', component : UpdateAnimalProfileComponent},
+  { path: 'updateUserProfile', component : UpdateUserProfileComponent},
+  { path: 'registerAnimalForm', component : RegisterAnimalFormComponent}
 ];
 
 @NgModule({
