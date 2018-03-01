@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
+  email: String = '';
+  password: String = '';
+  show = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  login(email, password) {
+    this.email = email;
+    this.password = password;
+  }
+
+  hide() {
+    this.show = false;
+  }
 }
