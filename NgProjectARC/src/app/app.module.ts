@@ -21,6 +21,7 @@ import { ManageVisitorFormsComponent } from './components/manage-visitor-forms/m
 import { ManagelistOfAnimalsComponent } from './components/managelist-of-animals/managelist-of-animals.component';
 import { RegisterAnimalFormComponent } from './components/register-animal-form/register-animal-form.component';
 import { UpdateAnimalProfileComponent } from './components/update-animal-profile/update-animal-profile.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UpdateAnimalProfileComponent } from './components/update-animal-profile
     ManageVisitorFormsComponent,
     ManagelistOfAnimalsComponent,
     RegisterAnimalFormComponent,
-    UpdateAnimalProfileComponent
+    UpdateAnimalProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
