@@ -25,6 +25,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import {ApplicationService} from './service/application.service';
 import {HttpClientModule} from '@angular/common/http';
+import { ApproveDenyAdoptionComponent } from './components/approve-deny-adoption/approve-deny-adoption.component';
+import { ConfigService } from './service/config.service';
+import { ConfigComponent } from './components/config/config.component';
 
 
 @NgModule({
@@ -47,14 +50,16 @@ import {HttpClientModule} from '@angular/common/http';
     ManagelistOfAnimalsComponent,
     RegisterAnimalFormComponent,
     UpdateAnimalProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    ApproveDenyAdoptionComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ApplicationService],
+  providers: [ApplicationService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

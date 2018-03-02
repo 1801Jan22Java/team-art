@@ -13,6 +13,7 @@ import { VisitorFormComponent } from './components/visitor-form/visitor-form.com
 import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
 import { RegisterAnimalFormComponent } from './components/register-animal-form/register-animal-form.component';
 import { UpdateAnimalProfileComponent } from './components/update-animal-profile/update-animal-profile.component';
+import { ApproveDenyAdoptionComponent } from './components/approve-deny-adoption/approve-deny-adoption.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'userProfile', component: UserProfileComponent },
   { path: 'adoptionForms', component: ManageAdoptionFormsComponent },
+  { path: 'viewAdoptionForm', component: ApproveDenyAdoptionComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'visits', component: ManageVisitorFormsComponent },
   { path: 'animalList', component: ManagelistOfAnimalsComponent },

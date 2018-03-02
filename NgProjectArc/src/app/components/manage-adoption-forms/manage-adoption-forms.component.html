@@ -1,8 +1,45 @@
-<p>
-  manage-adoption-forms works!
-</p>
-<h2>Application list</h2>
+<div id="adoption-forms">
+  <h1>Adoption Forms</h1>
+  <div class="sort">
+    <button class="btn btn-lg btn-primary btn-block">Approved</button>
+    <button class="btn btn-lg btn-primary btn-block">Denied</button>
+    <button class="btn btn-lg btn-primary btn-block">Pending</button>
+  </div>
+  <div class="table-responsive-xl">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Applicant</th>
+          <th scope="col">Animal</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <a routerLink="/viewAdoptionForm"><th scope="row">1</th></a>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>Pending</td>
+            <td>5/13/2018</td>
+          </tr>
+        <tr>
+            <a routerLink="/viewAdoptionForm"><th scope="row">2</th></a>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>Approve</td>
+          <td>7/18/2018</td>
+        </tr>
+        <tr>
+            <a routerLink="/viewAdoptionForm"><th scope="row">3</th></a>
+          <td>Larry</td>
+          <td>Bird</td>
+          <td>Denied</td>
+          <td>5/13/2018</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<!-- <ul *ngFor="let appl of applications">
-  <li>{{appl.phone}} / {{appl.housetype}}</li>
-</ul>  -->
