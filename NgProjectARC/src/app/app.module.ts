@@ -28,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ApproveDenyAdoptionComponent } from './components/approve-deny-adoption/approve-deny-adoption.component';
 import { ConfigService } from './service/config.service';
 import { ConfigComponent } from './components/config/config.component';
+import { AdoptionFormsService } from './service/adoption-forms.service';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { ConfigComponent } from './components/config/config.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ApplicationService, ConfigService],
+  providers: [ApplicationService, ConfigService, AdoptionFormsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

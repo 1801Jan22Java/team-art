@@ -1,9 +1,9 @@
 <div id="adoption-forms">
   <h1>Adoption Forms</h1>
   <div class="sort">
-    <button class="btn btn-lg btn-primary btn-block">Approved</button>
-    <button class="btn btn-lg btn-primary btn-block">Denied</button>
-    <button class="btn btn-lg btn-primary btn-block">Pending</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Approved')">Approved</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Denied')">Denied</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Pending')">Pending</button>
   </div>
   <div class="table-responsive-xl">
     <table class="table">
@@ -17,6 +17,24 @@
         </tr>
       </thead>
       <tbody>
+        <!--
+          <tr *ngFor="let form of adoptionForms; let i = index | async">
+            <td>{{i+1}}</td>
+            <td *ngFor="let col of columns">
+              {{form[col]}}
+            </td>
+          </tr>
+        -->
+        <!--
+          <ng-container *ngFor="let form of adoptionForms; let i = index | async">
+          <tr *ngIf="show && (sort === form.status || sort === '')">
+            <td><a (click)="showForm(form)">{{i+1}}</a></td>
+            <td *ngFor="let col of columns">
+              form[col]
+            </td>
+          </tr>
+          </ng-container>
+        -->
           <tr>
               <a routerLink="/viewAdoptionForm"><th scope="row">1</th></a>
             <td>Mark</td>

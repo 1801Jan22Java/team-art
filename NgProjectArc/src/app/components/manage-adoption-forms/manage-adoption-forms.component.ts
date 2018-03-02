@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplicationService } from '../../service/application.service';
+import { AdoptionFormsService } from '../../service/adoption-forms.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-manage-adoption-forms',
@@ -8,17 +9,39 @@ import { ApplicationService } from '../../service/application.service';
 })
 export class ManageAdoptionFormsComponent implements OnInit {
 
-  public applications = [];
-  constructor(private applicationService : ApplicationService) { }
+  adoptionForms: AdoptionFormsList[];
+  columns = [];
+  show = true;
+  sort = '';
+
+  constructor(private adoptionFormsService: AdoptionFormsService) { }
 
   ngOnInit() {
-    this.applicationService.getApplication().subscribe(data => this.applications = data);
+    this.adoptionFormsService.getAdoptionForms().subscribe(data => this.adoptionForms = data);
+    this.adoptionFormsService.getColumns();
+
   }
 
+  toggleRow() {
+    this.show = !this.show;
+  }
+
+  sortRows(type) {
+    this.sort = type;
+  }
+  showForm(form) {
+    
+  }
 }
 
-export interface ApplicationList {
-  applicationId : number,
-  phone : string,
-  housetype : string
+export interface AdoptionFormsList {
+  applicationId: number;
+  animalName: string;
+  applicantName: string;
+  address: string;
+  profession: string;
+  phoneNumber: number;
+  housingType: string;
+  date: string;
+  status: string;
 }

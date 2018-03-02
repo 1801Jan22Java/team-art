@@ -4,14 +4,18 @@ import { AdoptionFormsList } from '../components/manage-adoption-forms/manage-ad
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class ApplicationService {
-
+export class AdoptionFormsService {
   private _url = 'http://localhost:8084/emp/AplcList.json';
   constructor(private http: HttpClient) { }
 
-  getApplication(): Observable<AdoptionFormsList[]> {
+  getAdoptionForms(): Observable<AdoptionFormsList[]> {
     // console.log(this.http.get(this._url));
     return this.http.get<AdoptionFormsList[]>(this._url);
   }
 
+  // the names have to match the field names of your
+  // domain objects in Java
+  getColumns(): string[] {
+    return ['user.name', 'animal.name', 'appStatus', 'appDate'];
+  }
 }

@@ -8,16 +8,18 @@ import { Config, ConfigService } from '../../service/config.service';
 })
 export class ConfigComponent implements OnInit {
 
+  error: any;
+  headers: string[];
   config: Config;
   constructor(private configService: ConfigService) { }
 
-  ngOnInit() {
-  }
+
   showConfig() {
     this.configService.getConfig()
-      .subscribe(data => this.config = {
-          adoptionFormsURL: data['adoptionFormsURL']
-      });
+      .subscribe(
+        data => this.config = { ...data }, // success path
+        error => this.error = error // error path
+      );
   }
 
   showConfigResponse() {
@@ -32,5 +34,8 @@ export class ConfigComponent implements OnInit {
         // access the body directly, which is typed as `Config`.
         this.config = { ... resp.body };
       });
+  }
+
+  ngOnInit() {
   }
 }

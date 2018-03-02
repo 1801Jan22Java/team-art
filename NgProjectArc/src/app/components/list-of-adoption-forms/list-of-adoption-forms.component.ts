@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdoptionFormsService } from '../../service/adoption-forms.service';
 
 @Component({
   selector: 'app-list-of-adoption-forms',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOfAdoptionFormsComponent implements OnInit {
 
-  constructor() { }
+  public adoptionForms = [];
+
+  constructor(private adoptionFormsService: AdoptionFormsService) { }
 
   ngOnInit() {
   }
-
+}
+export interface AdoptionFormsList {
+  applicationId: number;
+  animalName: string;
+  applicantName: string;
+  address: string;
+  profession: string;
+  phoneNumber: number;
+  housingType: string;
 }
