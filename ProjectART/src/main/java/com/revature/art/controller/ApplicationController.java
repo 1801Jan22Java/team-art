@@ -15,22 +15,42 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.revature.art.HomeController;
 import com.revature.art.domain.Application;
 import com.revature.art.domain.User;
+import com.revature.art.service.AnimalService;
 import com.revature.art.service.ApplicationService;
+import com.revature.art.service.ImageService;
+import com.revature.art.service.MeetupService;
+import com.revature.art.service.UserService;
 
 @Controller
 @CrossOrigin(origins = "*")
+@RequestMapping("/api/application") // can't change url
 public class ApplicationController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
 
 	@Autowired
-	ApplicationService animalService;
-	
+	ApplicationService applicationService;
+	@Autowired
+	AnimalService animalService;
+	@Autowired
+	ImageService imageService;
+	@Autowired
+	MeetupService meetupService;
+	@Autowired
+	UserService userService;
+
+	// Eric
+
+	// Evan
+
+	// James
+
+	// Gin
 	@RequestMapping("/api/applicationList")
-	public @ResponseBody List<Application> getApplications(){
-		List<Application> list = animalService.getAdpAplcList();
+	public @ResponseBody List<Application> getApplications() {
+		List<Application> list = applicationService.getAdpAplcList();
 		logger.info(list.toString());
 		return list;
 	}
-	
+
 }

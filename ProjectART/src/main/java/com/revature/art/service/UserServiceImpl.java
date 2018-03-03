@@ -40,6 +40,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User getUserInfo(User user) {
 		// 1. check if exist user Id
+		
+		// 2. check if it's right password.
 		List<User> user1= userDao.getUserByEmail(user.getEmail());
 		if (user1.size() == 0) {
 			logger.debug("user doesn't exist. wrong ID!");
