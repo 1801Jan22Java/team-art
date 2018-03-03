@@ -6,24 +6,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.art.HomeController;
 import com.revature.art.domain.Application;
-import com.revature.art.service.MngAdpAplcService;
+import com.revature.art.domain.User;
+import com.revature.art.service.ApplicationService;
 
 @Controller
-public class EmpMngAdpAplcController {
+@CrossOrigin(origins = "*")
+public class ApplicationController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	MngAdpAplcService mngAdpAplcService;
+	ApplicationService animalService;
 	
-	@RequestMapping("/emp/AplcList")
+	@RequestMapping("/api/applicationList")
 	public @ResponseBody List<Application> getApplications(){
-		List<Application> list = mngAdpAplcService.getAdpAplcList();
+		List<Application> list = animalService.getAdpAplcList();
 		logger.info(list.toString());
 		return list;
 	}

@@ -13,7 +13,7 @@ import com.revature.art.dao.UserDao;
 import com.revature.art.domain.Application;
 
 @Service
-public class MngAdpAplcServiceImpl implements MngAdpAplcService {
+public class ApplicationServiceImpl implements ApplicationService {
 
 	@Autowired
 	private AnimalDao animalDao;
