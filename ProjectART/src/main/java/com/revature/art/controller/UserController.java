@@ -15,22 +15,42 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.revature.art.HomeController;
 import com.revature.art.domain.User;
 import com.revature.art.service.ApplicationService;
+import com.revature.art.service.UserService;
 
  
 @Controller
 @CrossOrigin(origins = "*")
+@RequestMapping("/api/user")
 public class UserController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	ApplicationService animalService;
+	@Autowired
+	UserService userService;
 	
-	@PostMapping("/api/user/login")
+	@PostMapping("/login")
 	public String login(@RequestBody User user ) {
-		System.out.println("did you get here?");
-		System.out.println("I got user Info: " + user.toString());
+	 
+		logger.debug("login: userInfo: " + user.toString());
+		
+		// check if exist email and right password 
+		user = userService.getUserInfo(user);
+		
+		if (user.getName() == null || user.getName().equals("")) {
+			logger.debug("return error!");
+		} else {
+		 
+		}
 		return "success";
+	}
+	@PostMapping("/register")
+	public @ResponseBody User registerUser(@RequestBody User user ) {
+		logger.debug("registerUser: userInfo: " + user.toString());
+		int userId = userService.addUserInfo(user);
+		user.setUserID(userId);
+		return user;
 	}
 	
 }

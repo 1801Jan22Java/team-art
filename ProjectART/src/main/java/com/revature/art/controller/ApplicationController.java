@@ -21,7 +21,7 @@ import com.revature.art.service.ApplicationService;
 @CrossOrigin(origins = "*")
 public class ApplicationController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
 
 	@Autowired
 	ApplicationService animalService;

@@ -11,7 +11,7 @@ import com.revature.art.service.ApplicationService;
 @Controller
 public class AnimalController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AnimalController.class);
 
 	@Autowired
 	ApplicationService animalService;
