@@ -22,7 +22,7 @@ export class RegisterUserFormComponent implements OnInit {
   }
 
   registerUser(data) {
-    this.userService.sendUserInfo(this.API_URL + "/register", data);
+    this.userService.sendUserInfo(this.API_URL + "/register", data).subscribe();
     alert("congratulation! Now you are registered. please log in.");
     this.router.navigate(['/login']);
   }
