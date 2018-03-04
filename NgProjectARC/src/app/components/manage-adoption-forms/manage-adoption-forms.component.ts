@@ -52,14 +52,14 @@ export class ManageAdoptionFormsComponent implements OnInit {
 
 export interface AdoptionFormsList {
   applicationID: number;
+  address: string;
+  phone: string;
+  profession: string;
+  date: string;
+  housetype: string;
+  appStatus: string;
   animal: Animal;
   user: User;
-  address: string;
-  profession: string;
-  phone: number;
-  housetype: string;
-  date: string;
-  appStatus: string;
 }
 
 export interface ApplicationList {
