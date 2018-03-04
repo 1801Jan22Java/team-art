@@ -46,19 +46,12 @@ public class UserController {
 
 	// Gin
 	@PostMapping("/login")
-	public String login(@RequestBody User user) {
-
+	public @ResponseBody User  login(@RequestBody User user) {
 		logger.debug("login: userInfo: " + user.toString());
-
 		// check if exist email and right password
-		user = userService.getUserInfo(user);
-
-		if (user.getName() == null || user.getName().equals("")) {
-			logger.debug("return error!");
-		} else {
-
-		}
-		return "success";
+		user = userService.getUserInfo(user);		// return empty User if not exist or wrong password.
+		logger.debug("user info:" + user.toString());
+		return user;
 	}
 
 	@PostMapping("/register")

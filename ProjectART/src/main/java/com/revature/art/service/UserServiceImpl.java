@@ -45,11 +45,15 @@ public class UserServiceImpl implements UserService{
 		List<User> user1= userDao.getUserByEmail(user.getEmail());
 		if (user1.size() == 0) {
 			logger.debug("user doesn't exist. wrong ID!");
+			user = new User();
 		} else {
 			 List<User> user2 = userDao.ifRightPassword(user);
 			 if (user2.size() > 0) {
 				 logger.debug("right password.");
 				 user = user2.get(0);
+			 } else {
+				 logger.debug("wrong password!");
+				 user = new User();
 			 }
 		}
 		return user;
