@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm, FormGroup, FormControl, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 
-// service 
+// Gin's!
 import {UserService} from '../../service/user.service';
 
 @Component({
