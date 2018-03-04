@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm, FormGroup, FormControl, Validators} from '@angular/forms';
-import { Router } from "@angular/router";
+import {Router} from "@angular/router";
 
-// service 
+// Gin's!
 import {UserService} from '../../service/user.service';
 
 @Component({
@@ -16,13 +16,13 @@ export class RegisterUserFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-   private router: Router) {}
+    private router: Router) {}
 
   ngOnInit() {
   }
 
   registerUser(data) {
-    this.userService.sendUserInfo(this.API_URL + "/register", data);
+    this.userService.sendUserInfo(this.API_URL + "/register", data).subscribe();
     alert("congratulation! Now you are registered. please log in.");
     this.router.navigate(['/login']);
   }
@@ -30,7 +30,7 @@ export class RegisterUserFormComponent implements OnInit {
 
 
 export interface User {
-  id : number,
+  id: number,
   email: string,
   name: string,
   usertype: number,
