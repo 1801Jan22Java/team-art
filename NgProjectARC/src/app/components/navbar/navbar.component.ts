@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-//Gins'!!!!!!! 
+// Gins'!!!!!!!
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

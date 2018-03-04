@@ -27,7 +27,7 @@ import {ApplicationService} from './service/application.service';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MeetupService } from './service/meetup.service';
 import { AnimalService } from './service/animal.service';
 import { ImageService } from './service/image.service';

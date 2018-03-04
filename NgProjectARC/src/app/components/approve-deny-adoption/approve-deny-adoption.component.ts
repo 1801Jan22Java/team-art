@@ -6,15 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-//Erics'!!!!!!! 
+// Erics'!!!!!!!
 @Component({
   selector: 'app-approve-deny-adoption',
   templateUrl: './approve-deny-adoption.component.html',
   styleUrls: ['./approve-deny-adoption.component.css']
 })
 export class ApproveDenyAdoptionComponent implements OnInit {
-  private _url = 'http://localhost:8084/api/AplcList.json';
-  applicationId: number;
+  private _url = 'http://localhost:8080/api/application/updateApplication.json';
+  applicationId: string;
   animalName: string;
   applicantName: string;
   address: string;
@@ -24,7 +24,6 @@ export class ApproveDenyAdoptionComponent implements OnInit {
   status: string;
   date: string;
   show = false;
-  action = '';
 
   constructor(private http: HttpClient) { }
 
@@ -33,17 +32,17 @@ export class ApproveDenyAdoptionComponent implements OnInit {
   }
 
   approve() {
-    this.action = 'Approved';
+    this.status = 'Approved';
   }
 
   deny() {
-    this.action = 'Denied';
+    this.status = 'Denied';
   }
 
   onSubmit(data) {
    this.http.post(this._url, {
      applicationId: this.applicationId,
-     action: this.action,
+     action: this.status,
    })
      .subscribe(
        res => {
@@ -54,7 +53,6 @@ export class ApproveDenyAdoptionComponent implements OnInit {
        }
      );
  }
+
   ngOnInit() {}
 }
-
- 
