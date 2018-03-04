@@ -11,6 +11,7 @@ import com.revature.art.dao.FileDao;
 import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
 
+// Don't move source code written by someone else. just call in your controller
 @Service
 public class ImageServiceImpl implements ImageService {
 
@@ -26,4 +27,12 @@ private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.cla
 	private MeetupDao meetupDao;
 	@Autowired
 	private UserDao userDao;
+	// Eric
+
+	// Evan
+
+	// James
+
+	// Gin
+	
 }

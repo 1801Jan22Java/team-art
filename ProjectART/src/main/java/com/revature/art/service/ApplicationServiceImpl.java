@@ -15,6 +15,8 @@ import com.revature.art.domain.Application;
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
+	// Don't move source code written by someone else. just call in your controller
+	// method if you want to use it.
 	@Autowired
 	private AnimalDao animalDao;
 	@Autowired
@@ -25,24 +27,25 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private MeetupDao meetupDao;
 	@Autowired
 	private UserDao userDao;
-	
+
 	// Eric
-	//written by Gin but was commented out when I pulled
-	@Override
-	public List<Application> getAdpAplcList() {
-
-		List<Application> apps = applicationDao.getAll();
-		return apps;
-	}
-
 	@Override
 	public Application updateApplication(Application a) {
 		Application app = applicationDao.getById(a.getApplicationID());
-		if(a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
+		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
 			app.setAppStatus(a.getAppStatus());
-		
+
 		return app;
 	}
-	
- 
+
+	// Evan
+
+	// James
+
+	// Gin
+	@Override
+	public List<Application> getAdpAplcList() {
+		List<Application> apps = applicationDao.getAll();
+		return apps;
+	}
 }

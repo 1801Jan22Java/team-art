@@ -9,6 +9,7 @@ import com.revature.art.dao.FileDao;
 import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
 
+// Don't move source code written by someone else. just call in your controller method if you want to use it.
 @Service
 public class AnimalServiceImpl implements AnimalService {
 
@@ -23,8 +24,16 @@ public class AnimalServiceImpl implements AnimalService {
 	@Autowired
 	private UserDao userDao;
 	
+	
 	@Override
 	public void testMethod() {
-		
+
+		// Eric
+
+		// Evan
+
+		// James
+
+		// Gin
 	}
 }

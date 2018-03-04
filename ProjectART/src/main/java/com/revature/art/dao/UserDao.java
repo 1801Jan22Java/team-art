@@ -11,7 +11,7 @@ public interface UserDao {
 	public void delete(User u);
 	public void merge(User u);
 	public void saveOrUpdate(User u);
-
+	
 	public List<User>  getUserByEmail(String email);
 	public List<User> ifRightPassword(User user);
 }
