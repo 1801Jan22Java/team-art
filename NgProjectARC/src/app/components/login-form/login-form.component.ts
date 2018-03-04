@@ -1,6 +1,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {Router} from "@angular/router";
 
 //Gin'!!!!!!! 
 import {UserService} from '../../service/user.service';
@@ -15,12 +16,13 @@ import {ApplicationService} from '../../service/application.service';
 export class LoginFormComponent implements OnInit {
 
   public applications = [];
-  public user = {};
+  public user: string = '';
   private API_URL: string = "http://localhost:8080/api/user";
 
   constructor(
     private userService: UserService,
-    private applicationService: ApplicationService) {}
+    private applicationService: ApplicationService,
+    private router: Router) {}
 
   ngOnInit() {
   }
@@ -32,10 +34,36 @@ export class LoginFormComponent implements OnInit {
     // alert("Entered Email ID is " + data.email);
     this.userService.sendUserInfo(this.API_URL + "/login", data)
       .subscribe(data => {
-        this.user = data.headers.get('_body');
-        console.log('data', JSON.parse(data.text()).userID);
+        this.user = data.text();
+
+        let name: string = JSON.parse(data.text()).name;
+        if (name == null) {
+          alert('The email does not exist or wrong password. please try again.');
+          window.location.reload();
+        } else {
+          alert('welcome! ' + JSON.parse(data.text()).name);
+          this.router.navigate(['/homepage']);
+        }
+
+        /* 
+         userObservable = new Subject<{first: string, last: string}>();
+  first = ['John', 'Mike', 'Mary', 'Bob'];
+  firstIndex = 0;
+  last = ['Smith', 'Novotny', 'Angular'];
+  lastIndex = 0;
+
+  nextUser() {
+    let first = this.first[this.firstIndex++];
+    if (this.firstIndex >= this.first.length) this.firstIndex = 0;
+    let last = this.last[this.lastIndex++];
+    if (this.lastIndex >= this.last.length) this.lastIndex = 0;
+    this.userObservable.next({first, last});
+  }
+         
+         */
       });
   }
+
 }
 
 export interface ApplicationList {

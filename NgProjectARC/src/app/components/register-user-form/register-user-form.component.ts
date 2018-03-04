@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm, FormGroup, FormControl, Validators} from '@angular/forms';
-import { Router } from "@angular/router";
+import {Router} from "@angular/router";
 
 // service 
 import {UserService} from '../../service/user.service';
@@ -16,7 +16,7 @@ export class RegisterUserFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-   private router: Router) {}
+    private router: Router) {}
 
   ngOnInit() {
   }
@@ -30,7 +30,7 @@ export class RegisterUserFormComponent implements OnInit {
 
 
 export interface User {
-  id : number,
+  id: number,
   email: string,
   name: string,
   usertype: number,
