@@ -3,6 +3,8 @@ package com.revature.art.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.revature.art.domain.User;
@@ -22,12 +24,18 @@ public class UserDaoImpl implements UserDao{
 	public User getById(int id) {
 		Session s = HibernateUtil.getSession();
 		User u = (User) s.get(User.class, id);
+		s.close();
 		return u;
 	}
 
 	@Override
 	public int add(User u) {
-		return (Integer) HibernateUtil.getSession().save(u);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		int userId = (Integer) s.save(u);
+		tx.commit();
+		s.close();
+		return userId;
 	}
 
 	@Override
@@ -44,4 +52,24 @@ public class UserDaoImpl implements UserDao{
 	public void saveOrUpdate(User u) {
 		HibernateUtil.getSession().saveOrUpdate(u);
 	}
+	
+	@Override
+	public List<User>  getUserByEmail(String email) {
+		Session s = HibernateUtil.getSession();
+		List<User> list = (List<User>) s.createCriteria(User.class).add(Restrictions.eq("email", email)).list();
+		s.close();
+		return list;
+	}
+	
+	@Override
+	public List<User> ifRightPassword(User user) {
+		Session s = HibernateUtil.getSession();
+		List<User> list = s.createCriteria(User.class) 
+		.add(Restrictions.eq("email", user.getEmail()))
+		.add(Restrictions.eq("password", user.getPassword())).list();
+		s.close();
+		return list;
+	}
 }
+	
+

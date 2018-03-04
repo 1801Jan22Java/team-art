@@ -26,11 +26,12 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private UserDao userDao;
 	
+	/*
 	@Override
 	public List<Application> getAdpAplcList() {
 
 		List<Application> apps = applicationDao.getAll();
 		return apps;
 	}
-
+*/
 }
