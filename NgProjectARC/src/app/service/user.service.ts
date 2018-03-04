@@ -24,8 +24,7 @@ export class UserService {
   });
   sendUserInfo(url, data) {
     // alert("Entered Email ID is " + data.email);
-    this.http.post(
-      url,  JSON.stringify(data),  {headers: this.headers}).subscribe()
+    return this.http.post(url,  JSON.stringify(data),  {headers: this.headers})
   }
   
   
