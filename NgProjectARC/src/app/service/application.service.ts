@@ -29,11 +29,9 @@ export class ApplicationService {
   }
 
   // Gin
-  /*
   private _url: string = "http://localhost:8080/api/applicationList.json";
   getApplication(): Observable<ApplicationList[]>{
     //console.log(this.http.get(this._url));
     return this.http.get<ApplicationList[]>(this._url);
   }
-  */
 }
