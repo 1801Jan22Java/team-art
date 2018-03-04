@@ -8,14 +8,14 @@ public interface ApplicationService {
 
 	// Eric
 	//written by Gin but was commented out when I pulled
-	//please don't move any code written by others.. if want to use, just call in your controller..
-	List<Application> getAdpAplcList();	
+	// dont move code written by someone... call the service in other controller or copy and make your own.
+	List<Application> getAdpAplcList();
+	Application updateApplication(Application a);
 	
-	Application updateApplication(Application a);	
 	// Evan
 
 	// James
 
 	// Gin
-	 
+	//List<Application> getAdpAplcList();
 }

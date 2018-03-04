@@ -26,5 +26,23 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private UserDao userDao;
 	
-	 
+	// Eric
+	//written by Gin but was commented out when I pulled
+	@Override
+	public List<Application> getAdpAplcList() {
+
+		List<Application> apps = applicationDao.getAll();
+		return apps;
+	}
+
+	@Override
+	public Application updateApplication(Application a) {
+		Application app = applicationDao.getById(a.getApplicationID());
+		if(a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
+			app.setAppStatus(a.getAppStatus());
+		
+		return app;
+	}
+	
+ 
 }
