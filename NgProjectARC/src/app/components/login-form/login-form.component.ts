@@ -1,7 +1,7 @@
-
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from "@angular/router";
+ 
 
 //Gin'!!!!!!! 
 import {UserService} from '../../service/user.service';
@@ -15,10 +15,14 @@ import {ApplicationService} from '../../service/application.service';
 
 export class LoginFormComponent implements OnInit {
 
-  public applications = [];
-  public user: string = '';
-  private API_URL: string = "http://localhost:8080/api/user";
 
+  public applications = [];
+  public user = {};
+  private API_URL: string = "http://localhost:8080/api/user";
+  
+   
+   
+  
   constructor(
     private userService: UserService,
     private applicationService: ApplicationService,
@@ -30,11 +34,12 @@ export class LoginFormComponent implements OnInit {
   getApplications() {
     this.applicationService.getApplication().subscribe(data => this.applications = data);
   }
+  
   login(data) {
     // alert("Entered Email ID is " + data.email);
     this.userService.sendUserInfo(this.API_URL + "/login", data)
       .subscribe(data => {
-        this.user = data.text();
+        this.user = JSON.parse(data.text());      // JSON to {} . 
 
         let name: string = JSON.parse(data.text()).name;
         if (name == null) {
@@ -42,6 +47,7 @@ export class LoginFormComponent implements OnInit {
           window.location.reload();
         } else {
           alert('welcome! ' + JSON.parse(data.text()).name);
+          
           this.router.navigate(['/homepage']);
         }
       });

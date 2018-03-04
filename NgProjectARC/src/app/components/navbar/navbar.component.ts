@@ -1,3 +1,5 @@
+import { UserService } from '../../service/user.service';
+import { LoginFormComponent } from '../login-form/login-form.component';
 import { Component, OnInit } from '@angular/core';
 
 //Gins'!!!!!!! 
@@ -8,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  
+  message : string;
+  constructor(
+    private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.currentMessage.subscribe(message => {
+      this.message = message;
+      console.log("username:"+message);
+    })
   }
 
+  receiveMessage(){
+    
+  }
 }
