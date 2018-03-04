@@ -13,5 +13,5 @@ public interface ApplicationService {
 	// James
 
 	// Gin
-	List<Application> getAdpAplcList();
+ 
 }
