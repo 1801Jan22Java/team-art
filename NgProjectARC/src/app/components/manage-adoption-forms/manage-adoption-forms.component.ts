@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from '../../service/application.service';
 import { ApproveDenyAdoptionComponent } from '../approve-deny-adoption/approve-deny-adoption.component';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../../models/user';
+import { Animal } from '../../models/animal';
 
 // Eric 's!!!!!!!
 @Component({
