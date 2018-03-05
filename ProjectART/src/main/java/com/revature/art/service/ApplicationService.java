@@ -12,7 +12,7 @@ public interface ApplicationService {
 	List<Application> getAdpAplcList();
  
 	// Evan
-
+	List<Application> getAdpAplcListById(int userId);
 	// James
 
 	// Gin

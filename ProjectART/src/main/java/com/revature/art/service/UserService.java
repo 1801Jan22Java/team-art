@@ -6,7 +6,7 @@ public interface UserService {
 	// Eric
 
 	// Evan
-
+	User getUserById(int userId);
 	// James
 
 	// Gin

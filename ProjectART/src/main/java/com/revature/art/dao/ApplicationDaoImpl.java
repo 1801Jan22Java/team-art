@@ -2,6 +2,7 @@ package com.revature.art.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,15 @@ public class ApplicationDaoImpl implements ApplicationDao{
 		Session s = HibernateUtil.getSession();
 		List<Application> a = s.createQuery("from Application").list();
 		s.close();
+		return a;
+	}
+	
+	@Override
+	public List<Application> getByUserId(int userId){
+		Session s = HibernateUtil.getSession();
+		Query q = s.createQuery("from Application app where app.user = :userId");
+		q.setParameter(":userId", userId);
+		List<Application> a = q.list();
 		return a;
 	}
 

@@ -42,7 +42,13 @@ public class ApplicationController {
 	// Eric
 
 	// Evan
-
+	@RequestMapping("/applicationListById")
+	public @ResponseBody List<Application> getAdpAplcListById(@RequestBody int userId) {
+		logger.debug("getInfo: userId: " + userId);
+		List<Application> list = applicationService.getAdpAplcListById(userId);
+		logger.debug("application list: " + list.toString());
+		return list;
+	}
 	// James
 
 	// Gin

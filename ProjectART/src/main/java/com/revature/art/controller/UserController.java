@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,9 +40,15 @@ public class UserController {
 	UserService userService;
 
 	// Eric
-
+	
 	// Evan
-
+	@RequestMapping("/getInfo")
+	public @ResponseBody User getInfo(@RequestBody int userId) {
+		logger.debug("getInfo: userId: " + userId);
+		User user = userService.getUserById(userId);
+		logger.debug("user info:" + user.toString());
+		return user;
+	}
 	// James
 
 	// Gin
