@@ -18,12 +18,10 @@ export class ApplicationService {
   // James
 
   // Eric
-  getColumns(): string[] {
-    return ['user.name', 'animal.name', 'appStatus', 'appDate'];
-  }
 
   private _url2: string = 'http://localhost:8080/api/application/applicationList.json';
   getApplications(): Observable<AdoptionFormsList[]> {
+    console.log("hello");
     console.log(this.http.get(this._url2));
     return this.http.get<AdoptionFormsList[]>(this._url2);
   }

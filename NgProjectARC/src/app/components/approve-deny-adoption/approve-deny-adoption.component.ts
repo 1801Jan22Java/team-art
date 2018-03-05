@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ManageAdoptionFormsComponent } from '../manage-adoption-forms/manage-adoption-forms.component';
+import { Application } from '../../models/application';
 
 // Erics'!!!!!!!
 @Component({
@@ -14,35 +16,29 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ApproveDenyAdoptionComponent implements OnInit {
   private _url = 'http://localhost:8080/api/application/updateApplication.json';
-  applicationId: string;
-  animalName: string;
-  applicantName: string;
-  address: string;
-  profession: string;
-  phoneNumber: number;
-  housingType: string;
-  status: string;
-  date: string;
+  currApplication: Application;
   show = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private application: ManageAdoptionFormsComponent) { 
+    this.currApplication = application.currentApp;
+  }
 
   hide() {
     this.show = false;
   }
 
   approve() {
-    this.status = 'Approved';
+    this.currApplication.appStatus = 'Approved';
   }
 
   deny() {
-    this.status = 'Denied';
+    this.currApplication.appStatus = 'Denied';
   }
 
   onSubmit(data) {
    this.http.post(this._url, {
-     applicationId: this.applicationId,
-     action: this.status,
+     applicationId: this.currApplication.applicationID,
+     action: this.currApplication.appStatus,
    })
      .subscribe(
        res => {

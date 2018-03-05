@@ -4,6 +4,7 @@ import { ApproveDenyAdoptionComponent } from '../approve-deny-adoption/approve-d
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
 import { Animal } from '../../models/animal';
+import { Application } from '../../models/application';
 
 // Eric 's!!!!!!!
 @Component({
@@ -14,17 +15,17 @@ import { Animal } from '../../models/animal';
 export class ManageAdoptionFormsComponent implements OnInit {
 
   public applications = [];
-  adoptionForms: AdoptionFormsList[];
-  columns = [];
+  adoptionForms: AdoptionFormsList[] = [];
+  columns: string[];
   show = true;
   sortBy = '';
-
-  constructor(private applicationService: ApplicationService, /*private adoptionForm: ApproveDenyAdoptionComponent*/) {
+  currentApp: Application;
+  constructor(private applicationService: ApplicationService) {
   }
 
   ngOnInit() {
-    this.applicationService.getApplications().subscribe(data => this.applications = data);
-    this.applicationService.getColumns();
+    this.applicationService.getApplications().subscribe(data => this.adoptionForms = data);
+    console.log(this.adoptionForms);
   }
 
   toggleRow() {
@@ -34,8 +35,11 @@ export class ManageAdoptionFormsComponent implements OnInit {
   sortRows(type) {
     this.sortBy = type;
   }
-  /*
+  
   showForm(form) {
+    if(form != undefined)
+      this.currentApp = form;
+    /*
     this.adoptionForm.applicationId = form.applicationId;
     this.adoptionForm.animalName = form.animalName;
     this.adoptionForm.applicantName = form.applicantName;
@@ -46,8 +50,8 @@ export class ManageAdoptionFormsComponent implements OnInit {
     this.adoptionForm.status = form.status;
     this.adoptionForm.date = form.date;
     this.adoptionForm.show = true;
+    */
   }
-  */
 }
 
 export interface AdoptionFormsList {
@@ -55,7 +59,7 @@ export interface AdoptionFormsList {
   address: string;
   phone: string;
   profession: string;
-  date: string;
+  date: Date;
   housetype: string;
   appStatus: string;
   animal: Animal;

@@ -1,44 +1,44 @@
-<!-- <div *ngIf="show" id="adoptionForm-container">
-    <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit(adoptionForm.value)" class="form-manageAdoptionForm" method="post">
+<div *ngIf="show" id="adoptionForm-container">
+    <form class="form-manageAdoptionForm" method="post">
         <h1 class="h1 mb-1 font-weight-bold">Adoption Form</h1>
         <p class="mt-1 mb-1">Register for free</p>
         <label for="name" class="sr-only">Name</label>
         <div class="form-group">
-            <input type="text" name="applicantName" [(ngModel)]="applicantName" placeholder="applicantName" id="name" class="form-control"  disabled>
+            <input type="text" name="applicantName" placeholder="applicantName" id="name" class="form-control"  disabled>
         </div>
         <label for="address" class="sr-only">Address</label>
         <div class="form-group">
-            <input type="text" name="address"  [(ngModel)]="address" placeholder="address" id="address" class="form-control" disabled>
+            <input type="text" name="address"  placeholder="address" id="address" class="form-control" disabled>
         </div>
         <label for="profession" class="sr-only">Profession</label>
         <div class="form-group">
-            <input type="text" name="profession" [(ngModel)]="profession" placeholder="profession" id="profession" class="form-control" disabled>
+            <input type="text" name="profession" placeholder="profession" id="profession" class="form-control" disabled>
         </div>
         <label for="phone" class="sr-only">Phone Number</label>
         <div class="form-group">
-            <input type="number" step=1 name="phoneNumber" [(ngModel)]="phoneNumber" placeholder="phoneNumber" id="phoneNumber" class="form-control" disabled>
+            <input type="number" step=1 name="phoneNumber"  placeholder="phoneNumber" id="phoneNumber" class="form-control" disabled>
         </div>
         <div id="housing-types-container">
             <fieldset class="form-group" id="housing-types">
                 <legend>Housing Type</legend>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="housingType" [(ngModel)]="housingType" id="optionsRadios1" value="Apartment" disabled> Apartment
+                        <input type="radio" class="form-check-input" name="housingType"  id="optionsRadios1" value="Apartment" disabled> Apartment
                     </label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="housingType" [(ngModel)]="housingType" id="optionsRadios2" value="Single Home" disabled> Single Home
+                        <input type="radio" class="form-check-input" name="housingType" id="optionsRadios2" value="Single Home" disabled> Single Home
                     </label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="housingType" [(ngModel)]="housingType" id="optionsRadios3" value="Townhome" disabled> Townhome
+                        <input type="radio" class="form-check-input" name="housingType"  id="optionsRadios3" value="Townhome" disabled> Townhome
                     </label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="housingType" [(ngModel)]="housingType" id="optionsRadios4" value="Condo" disabled> Condo
+                        <input type="radio" class="form-check-input" name="housingType"  id="optionsRadios4" value="Condo" disabled> Condo
                     </label>
                 </div>
             </fieldset>
@@ -49,4 +49,4 @@
             <button (click)="hide()" class="btn btn-lg btn-primary btn-block">Cancel</button>
         </div>
     </form>
-</div> -->
+</div>
