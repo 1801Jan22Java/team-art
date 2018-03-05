@@ -20,7 +20,7 @@ export class ApproveDenyAdoptionComponent implements OnInit {
   show = false;
 
   constructor(private http: HttpClient, private application: ManageAdoptionFormsComponent) { 
-    this.currApplication = application.currentApp;
+    this.currApplication = application.selectedApp;
   }
 
   hide() {
@@ -45,7 +45,8 @@ export class ApproveDenyAdoptionComponent implements OnInit {
          console.log(res);
        },
        err => {
-         console.log('Error occured');
+        console.log("Error occurred");
+         console.log(err);
        }
      );
  }

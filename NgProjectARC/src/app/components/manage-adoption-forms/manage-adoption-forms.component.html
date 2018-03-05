@@ -19,9 +19,9 @@
         </tr>
       </thead>
       <tbody>
-          <ng-container *ngFor="let application of applications; let i = index">
-          <tr *ngIf="show && (sortBy === form.status || sortBy === '' )">
-            <td><a (click)="showForm(form)" href="#adoptionForm-container">{{i+1}}</a></td>
+          <ng-container *ngFor="let application of adoptionForms; let i = index">
+          <tr *ngIf="show && (sortBy === application.appStatus || sortBy === '' )">
+            <td><a (click)="showForm(application)" href="#adoptionForm-container">{{i+1}}</a></td>
             <td>{{application.applicantName}}</td>
             <td>{{application.animalName}}</td>
             <td>{{application.status}}</td>
