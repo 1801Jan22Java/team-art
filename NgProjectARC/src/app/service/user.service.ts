@@ -10,17 +10,18 @@ export class UserService {
 
 
   //Evan
- 
- 
+
+
   // James
- 
- 
+
+
   // Eric
- 
- 
+
+
   // Gin
   // log in
   private API_URL: string = "http://localhost:8080/api/user";
+  public userID: number = 0;
   headers = new Headers({
     'Content-type': 'application/json'
   });
@@ -30,10 +31,15 @@ export class UserService {
   }
 
   //share data in components
-  private messageSource = new BehaviorSubject<string>("default msg");
+  shareUserInfo(data) {
+    console.log('user service got user info!' + data);
+    this.userID = JSON.parse(data).userID;  
+    this.changeMessage(this.userID);
+  }
+  private messageSource = new BehaviorSubject<number>(this.userID);
   currentMessage = this.messageSource.asObservable();
 
-  changeMessage(message: string) {
+  changeMessage(message: number) {
     this.messageSource.next(message);
   }
 

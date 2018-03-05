@@ -47,7 +47,8 @@ export class LoginFormComponent implements OnInit {
           window.location.reload();
         } else {
           alert('welcome! ' + JSON.parse(data.text()).name);
-          
+          // get data. so it should send data to service.
+          this.userService.shareUserInfo(data.text());
           this.router.navigate(['/homepage']);
         }
       });

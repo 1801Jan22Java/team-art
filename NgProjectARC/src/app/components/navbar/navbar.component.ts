@@ -1,6 +1,6 @@
-import { UserService } from '../../service/user.service';
-import { LoginFormComponent } from '../login-form/login-form.component';
-import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../service/user.service';
+import {LoginFormComponent} from '../login-form/login-form.component';
+import {Component, OnInit} from '@angular/core';
 
 //Gins'!!!!!!! 
 @Component({
@@ -10,19 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  
-  message : string;
+
+  userID: number;
+  isLogin: boolean = false;
+
   constructor(
-    private userService: UserService) { }
+    private userService: UserService) {}
 
   ngOnInit() {
+    
+    // initial userID
+    console.log(" if login?:" + this.isLogin); 
+    
+    // watch if it's logged-in user or not.
     this.userService.currentMessage.subscribe(message => {
-      this.message = message;
-      console.log("username:"+message);
+      this.userID = message;     
+      if (this.userID){
+        this.isLogin = true; 
+      }
+      console.log(" if login? :" + this.isLogin); 
+      
     })
+    
   }
 
-  receiveMessage(){
-    
+  receiveMessage() {
+
   }
 }
