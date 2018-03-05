@@ -14,7 +14,6 @@ import { Application } from '../../models/application';
 })
 export class ManageAdoptionFormsComponent implements OnInit {
 
-  public applications: any;
   adoptionForms: Application[];
   columns: string[];
   show = true;
@@ -24,24 +23,25 @@ export class ManageAdoptionFormsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.applicationService.getApplications().subscribe((data: Application[]) => this.adoptionForms = data,
-      error => console.log("Error: "+error));
-    console.log(this.adoptionForms);
+    this.applicationService.getApplications().subscribe(data => {
+      this.adoptionForms = data;
+      error => console.log("Error: "+error)
+    });
   }
 
   toggleRow() {
     this.show = !this.show;
-    
   }
 
   sortRows(type) {
     this.sortBy = type;
-    console.log(this.sortBy);
+    console.log(this.adoptionForms);
   }
 
   showForm(form) {
-    if(form != undefined)
-      this.selectedApp = form;
+    console.log(form);
+    this.selectedApp = form;
+    this.show = false;
     /*
     this.adoptionForm.applicationId = form.applicationId;
     this.adoptionForm.animalName = form.animalName;

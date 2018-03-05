@@ -20,6 +20,7 @@ export class ApplicationService {
 
   // Eric
 
+  
   private _url2: string = 'http://localhost:8080/api/application/applicationList.json';
   getApplications(): Observable<Application[]> {
     console.log(this.http.get(this._url2));

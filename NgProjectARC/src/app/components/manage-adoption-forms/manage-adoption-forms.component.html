@@ -20,11 +20,11 @@
       </thead>
       <tbody>
           <ng-container *ngFor="let application of adoptionForms; let i = index">
-          <tr *ngIf="show && (sortBy === application.appStatus || sortBy === '' )">
-            <td><a (click)="showForm(application)" href="#adoptionForm-container">{{i+1}}</a></td>
-            <td>{{application.applicantName}}</td>
-            <td>{{application.animalName}}</td>
-            <td>{{application.status}}</td>
+          <tr *ngIf="show && (sortBy === application.appStatus || sortBy === 'All' ||   sortBy === '')">
+            <td><a (click)="showForm(application)">{{i+1}}</a></td>
+            <td>{{application.user.name}}</td>
+            <td>{{application.animal.name}}</td>
+            <td>{{application.appStatus}}</td>
             <td>{{application.date}}</td>
           </tr>
           </ng-container>
