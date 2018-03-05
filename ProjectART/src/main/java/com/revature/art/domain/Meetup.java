@@ -6,6 +6,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+/*
+********  Can't change!!! **********
+meetupDate - 
+meetupStatus - 
+*/
 @Entity
 @Table(name="MEETUP")
 public class Meetup implements Serializable{

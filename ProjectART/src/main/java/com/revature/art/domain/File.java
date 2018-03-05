@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/*
+********  Can't change!!! **********
+filename - aaa.jpg
+*/
 @Entity
 @Table(name="FILES")
 public class File implements Serializable{

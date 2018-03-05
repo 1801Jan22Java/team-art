@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/*
+ ********  Can't change!!! **********
+usertype - 0 (normal user) /  1 (employee)
+*/
 @Entity
 @Table(name="USERS")
 public class User implements Serializable{

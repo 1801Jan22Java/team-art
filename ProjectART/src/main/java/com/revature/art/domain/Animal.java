@@ -1,9 +1,16 @@
+
 package com.revature.art.domain;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
-
+/* 
+can't change !!! 
+ maturity -  infant / young / adult / mature /
+ gender - 
+ adoptStatus -
+ species - 
+*/
 @Entity
 @Table(name="ANIMALS")
 public class Animal implements Serializable{
@@ -13,8 +20,8 @@ public class Animal implements Serializable{
 	
 	public Animal(String name, String maturity, String gender, String adoptStatus, String species) {
 		super();
-		this.name = name;
-		this.maturity = maturity;
+		this.name = name;									
+		this.maturity = maturity;								
 		this.gender = gender;
 		this.adoptStatus = adoptStatus;
 		this.species = species;
