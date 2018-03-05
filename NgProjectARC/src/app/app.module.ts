@@ -63,7 +63,8 @@ import { ImageService } from './service/image.service';
     HttpModule,    // to user HttpClient
     FormsModule
   ],
-  providers: [ApplicationService, UserService, MeetupService, AnimalService, ImageService, LoginGuard],
+  providers: [ApplicationService, UserService, MeetupService, AnimalService, ImageService, LoginGuard,
+  NavbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
