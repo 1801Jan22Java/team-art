@@ -8,11 +8,13 @@ public interface ApplicationService {
 
 	// Eric
 	Application updateApplication(Application a);
-
+	//written by Gin but was commented out when I pulled
+	List<Application> getAdpAplcList();
+ 
 	// Evan
 
 	// James
 
 	// Gin
-	List<Application> getAdpAplcList();
+	//List<Application> getAdpAplcList();
 }

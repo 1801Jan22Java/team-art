@@ -27,16 +27,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private MeetupDao meetupDao;
 	@Autowired
 	private UserDao userDao;
-
+ 
 	// Eric
-	@Override
-	public Application updateApplication(Application a) {
-		Application app = applicationDao.getById(a.getApplicationID());
-		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
-			app.setAppStatus(a.getAppStatus());
-
-		return app;
-	}
 
 	// Evan
 
@@ -44,8 +36,18 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	// Gin
 	@Override
+	public Application updateApplication(Application a) {
+		Application app = applicationDao.getById(a.getApplicationID());
+		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
+			app.setAppStatus(a.getAppStatus());
+		
+		return app;
+	}
+
+	@Override
 	public List<Application> getAdpAplcList() {
 		List<Application> apps = applicationDao.getAll();
 		return apps;
 	}
+
 }

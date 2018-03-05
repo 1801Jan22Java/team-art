@@ -1,5 +1,7 @@
 package com.revature.art.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +10,8 @@ import com.revature.art.dao.ApplicationDao;
 import com.revature.art.dao.FileDao;
 import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
+import com.revature.art.domain.Animal;
 
-// Don't move source code written by someone else. just call in your controller method if you want to use it.
 @Service
 public class AnimalServiceImpl implements AnimalService {
 
@@ -24,16 +26,14 @@ public class AnimalServiceImpl implements AnimalService {
 	@Autowired
 	private UserDao userDao;
 	
-	
 	@Override
 	public void testMethod() {
+		
+	}
 
-		// Eric
-
-		// Evan
-
-		// James
-
-		// Gin
+	@Override
+	public List<Animal> getAllAnimals() {
+		List<Animal> animals = animalDao.getAll();
+		return animals;
 	}
 }

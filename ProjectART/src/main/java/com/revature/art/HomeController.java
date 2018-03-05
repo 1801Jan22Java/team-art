@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +34,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	Map<String, User> users = new HashMap<String, User>();
+Map<String, User> users = new HashMap<String, User>();
 	
 	@PostConstruct
 	public void initIt() throws Exception {
@@ -91,5 +90,6 @@ public class HomeController {
 		tests.add( new Test("Test4", 40));
 		return tests;
 	}
+	
 	
 }

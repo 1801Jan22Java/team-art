@@ -15,7 +15,6 @@ import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
 import com.revature.art.domain.User;
 
-//Don't move source code written by someone else. just call in your controller
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -32,13 +31,6 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 	
-	// Eric
-
-	// Evan
-
-	// James
-	
-	//Gin
 	@Override
 	public int addUserInfo(User user) {
 		int userId = userDao.add(user);
@@ -53,15 +45,11 @@ public class UserServiceImpl implements UserService{
 		List<User> user1= userDao.getUserByEmail(user.getEmail());
 		if (user1.size() == 0) {
 			logger.debug("user doesn't exist. wrong ID!");
-			user = new User();
 		} else {
 			 List<User> user2 = userDao.ifRightPassword(user);
 			 if (user2.size() > 0) {
 				 logger.debug("right password.");
 				 user = user2.get(0);
-			 } else {
-				 logger.debug("wrong password!");
-				 user = new User();
 			 }
 		}
 		return user;
