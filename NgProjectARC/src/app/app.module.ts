@@ -23,6 +23,7 @@ import { RegisterAnimalFormComponent } from './components/register-animal-form/r
 import { UpdateAnimalProfileComponent } from './components/update-animal-profile/update-animal-profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ApproveDenyAdoptionComponent } from './components/approve-deny-adoption/approve-deny-adoption.component';
+import { LoginGuard } from './components/login-form/login.guard';
 import {ApplicationService} from './service/application.service';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
@@ -31,7 +32,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MeetupService } from './service/meetup.service';
 import { AnimalService } from './service/animal.service';
 import { ImageService } from './service/image.service';
-
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ import { ImageService } from './service/image.service';
     HttpModule,    // to user HttpClient
     FormsModule
   ],
-  providers: [ApplicationService, UserService, MeetupService, AnimalService, ImageService],
+  providers: [ApplicationService, UserService, MeetupService, AnimalService, ImageService, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

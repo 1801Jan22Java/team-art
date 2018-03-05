@@ -44,11 +44,19 @@ export class LoginFormComponent implements OnInit {
         let name: string = JSON.parse(data.text()).name;
         if (name == null) {
           alert('The email does not exist or wrong password. please try again.');
-          window.location.reload();
+           
+           this.router.navigate(['/login']);
+          //window.location.reload();
         } else {
-          alert('welcome! ' + JSON.parse(data.text()).name);
+          
+          // success to login.
+          alert('welcome! ' + JSON.parse(data.text()).name);        
+          
+          // save userinfo in session
+          localStorage.setItem( 'userID', JSON.parse(data.text()).userID);  
+          
           // get data. so it should send data to service.
-          this.userService.shareUserInfo(data.text());
+          this.userService.shareUserInfo(data.text());      // share userID
           this.router.navigate(['/homepage']);
         }
       });

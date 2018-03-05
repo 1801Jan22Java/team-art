@@ -32,8 +32,8 @@ export class UserService {
 
   //share data in components
   shareUserInfo(data) {
-    console.log('user service got user info!' + data);
-    this.userID = JSON.parse(data).userID;  
+    //console.log('user service got user info!' + data);
+    this.userID = JSON.parse(data).userID;
     this.changeMessage(this.userID);
   }
   private messageSource = new BehaviorSubject<number>(this.userID);
@@ -42,5 +42,11 @@ export class UserService {
   changeMessage(message: number) {
     this.messageSource.next(message);
   }
-
+  
+  // get data in session.
+  checkSession() {
+    if (localStorage.getItem('userID')) {
+      console.log('userId:' + localStorage.getItem('userID'));
+    }
+  }
 }
