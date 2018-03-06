@@ -1,12 +1,17 @@
 package com.revature.art.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.art.domain.Meetup;
 import com.revature.art.service.AnimalService;
 import com.revature.art.service.ApplicationService;
 import com.revature.art.service.ImageService;
@@ -34,7 +39,13 @@ public class MeetupController {
 	// Eric
 	
 	// Evan
-	
+	@RequestMapping("/meetupListById")
+	public @ResponseBody List<Meetup> getMeetupListById(@RequestBody int userId) {
+		logger.debug("getInfo: userId: " + userId);
+		List<Meetup> list = meetupService.getMeetupListByUserId(userId);
+		logger.debug("meetup list: " + list.toString());
+		return list;
+	}
 	// James
 	
 	//Gin 

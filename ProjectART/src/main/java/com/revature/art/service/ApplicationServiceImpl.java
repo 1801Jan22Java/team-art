@@ -32,7 +32,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	// Evan
 	@Override
-	public List<Application> getAdpAplcListById(int userId) {
+	public List<Application> getAdpAplcListByUserId(int userId) {
 		List<Application> apps = applicationDao.getByUserId(userId);
 		return apps;
 	}

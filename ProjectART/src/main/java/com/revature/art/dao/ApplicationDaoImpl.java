@@ -23,7 +23,7 @@ public class ApplicationDaoImpl implements ApplicationDao{
 	@Override
 	public List<Application> getByUserId(int userId){
 		Session s = HibernateUtil.getSession();
-		Query q = s.createQuery("from Application app where app.user = :userId");
+		Query q = s.createQuery("from Application app where app.user.userID = :userId");
 		q.setParameter(":userId", userId);
 		List<Application> a = q.list();
 		return a;

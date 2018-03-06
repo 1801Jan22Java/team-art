@@ -45,7 +45,7 @@ public class ApplicationController {
 	@RequestMapping("/applicationListById")
 	public @ResponseBody List<Application> getAdpAplcListById(@RequestBody int userId) {
 		logger.debug("getInfo: userId: " + userId);
-		List<Application> list = applicationService.getAdpAplcListById(userId);
+		List<Application> list = applicationService.getAdpAplcListByUserId(userId);
 		logger.debug("application list: " + list.toString());
 		return list;
 	}
