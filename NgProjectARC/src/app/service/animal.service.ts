@@ -21,8 +21,11 @@ export class AnimalService {
   
   // Eric
   
-  
   // Gin
+  private animalWithImg : string = "http://localhost:8080/api/animal/animalsWithFile.json";
+  getAnimalWithImgs(): Observable<FileList[]>{
+    return this.http.get<FileList[]>(this.animalWithImg);
+  }
   
   
 }

@@ -1,4 +1,5 @@
 <!-- Animal Status -->
+<br/><br/><br/>
 <div class="row">
   <div class="alert alert-success">
     <strong>Status</strong>
@@ -24,9 +25,15 @@
 <!-- Pet List Gallery -->
 <div class="row"> 
 
-  <div class="gallery">
+ <div class="gallery" *ngFor="let animal of animalWithImgs">
+<!--  [routerLink]="['/product-details', product.id]" -->
+    <a routerLink="/animalProfile/{{animal.animal.animalID}}"><img src="http://localhost:8080/resources/image/{{animal.filename}}"></a>
+    <div class="desc"> [{{animal.animal.adoptStatus}}] {{animal.animal.name}} / <br/> {{animal.animal.maturity}} / {{animal.animal.gender}}</div>
+  </div>
+  
+<!--   <div class="gallery">
     <a routerLink="/animalProfile"><img src="{{imgFileName1}}"></a>
-    <div class="desc">Ralph / Young <br/> Dog / Boy</div>
+    <div class="desc"> [available] Ralph / <br/> Young / Boy</div>
   </div>
   <div class="gallery">
     <a target="_blank"><img src="{{imgFileName2}}"></a>
@@ -39,40 +46,8 @@
   <div class="gallery">
     <a target="_blank"><img src="{{imgFileName4}}"></a>
     <div class="desc">Chichi / Young <br/> Cat </div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName1}}"></a>
-    <div class="desc">Ralph / Young <br/> Dog / Boy</div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName2}}"></a>
-    <div class="desc">Mimi / Young <br/> Dog / Girl </div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName3}}"></a>
-    <div class="desc">Mimi / Young <br/> Dog </div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName4}}"></a>
-    <div class="desc">Chichi / Young <br/> Cat </div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName1}}"></a>
-    <div class="desc">Ralph / Young <br/> Dog / Boy</div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName2}}"></a>
-    <div class="desc">Mimi / Young <br/> Dog / Girl </div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName3}}"></a>
-    <div class="desc">Mimi / Young <br/> Dog </div>
-  </div>
-  <div class="gallery">
-    <a target="_blank"><img src="{{imgFileName4}}"></a>
-    <div class="desc">Chichi / Young <br/> Cat </div>
-  </div>
- 
+  </div> -->
+  
   
 </div>
 

@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'visits', component: ManageVisitorFormsComponent },
   { path: 'animalList', component: ManagelistOfAnimalsComponent },
-  { path: 'animalProfile', component : AnimalProfileComponent},
+  { path: 'animalProfile/:animalID', component : AnimalProfileComponent},
   { path: 'adoptionForm', component: AdoptionFormComponent},
   { path: 'visitorForm', component : VisitorFormComponent},
   { path: 'updateAnimalProfile', component : UpdateAnimalProfileComponent},
@@ -37,6 +37,10 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule]
 })
 export class AppRoutingModule { }
+
+//export const APP_ROUTES_PROVIDER = [
+//  provideRouter(routes)
+//]

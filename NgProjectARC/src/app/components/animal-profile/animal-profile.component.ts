@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-//James'!!!!!!! 
+import { ActivatedRoute } from '@angular/router';
+//Gin's'!!!!!!! 
 @Component({
   selector: 'app-animal-profile',
   templateUrl: './animal-profile.component.html',
@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnimalProfileComponent implements OnInit {
 
-  constructor() { }
+  animalID : number;
+  constructor(private activatedRoute : ActivatedRoute) { 
+      this.animalID = +activatedRoute.snapshot.params['animalID'];
+  }
 
   imgFileName1:string = "assets/images/pet1.jpg";
   ngOnInit() {

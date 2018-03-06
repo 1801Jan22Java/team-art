@@ -56,6 +56,7 @@ export class NavbarComponent implements OnInit {
     alert('we will miss you! see you soon again!');
     localStorage.removeItem('userID');
     this.isLogin = false;
+    this.router.navigate(['/homepage']);
   }
 
 }
