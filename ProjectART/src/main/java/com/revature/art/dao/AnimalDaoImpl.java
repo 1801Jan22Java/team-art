@@ -52,6 +52,12 @@ public class AnimalDaoImpl implements AnimalDao{
 
 	@Override
 	public void saveOrUpdate(Animal animal) {
-		HibernateUtil.getSession().saveOrUpdate(animal);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		s.saveOrUpdate(animal);
+		tx.commit();
+		//s.flush();
+		s.close();
+		System.out.println(animal.toString());
 	}
 }

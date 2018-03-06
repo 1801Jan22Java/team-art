@@ -56,8 +56,14 @@ public class AnimalController {
 	public @ResponseBody int addAnimal(@RequestBody Animal animal){
 		int animalID = animalService.addAnimal(animal);
 		logger.info(animal.toString());
-		logger.debug(animal.toString());
 		return animalID;
 	}
+	
+	@PostMapping("/updateAnimal")
+	public @ResponseBody void updateAnimal(@RequestBody Animal animal){
+		animalService.updateAnimal(animal);
+		logger.info(animal.toString());
+	}
+	
 	// Gin
 }
