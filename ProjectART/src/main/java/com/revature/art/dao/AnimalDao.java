@@ -21,4 +21,5 @@ public interface AnimalDao {
 
 	// Gin
 	public int addAnimal(Animal a);
+	public Animal getAnimalByAnimalID(int animalID);
 }

@@ -46,8 +46,9 @@ public class AnimalServiceImpl implements AnimalService {
 	}
 	
 	//Gin
+	// get multiple animals with a image 
 	@Override
-	public List<File> getAllAnimalNFileNStatus() {
+	public List<File> getAnimalsWithFile() {
 		List<Animal> animals = animalDao.getAll();
 		List<File> list = new ArrayList<File>();
 		for (Animal a : animals) {
@@ -59,5 +60,15 @@ public class AnimalServiceImpl implements AnimalService {
 		return list;
 	}
 	
+	//get an animal with multiple images
+	@Override
+	public HashMap<String,Object> getAnimalWithFilesByAnimalID(int animalID) {
+		Animal a = animalDao.getAnimalByAnimalID(animalID);
+		List<File> imgFiles = fileDao.getFileByAnimalId(a);
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("animal", a);
+		map.put("files", imgFiles);
+		return map;
+	}
 	 
 }

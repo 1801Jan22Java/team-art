@@ -15,6 +15,6 @@ public interface AnimalService {
 	public List<Animal> getAllAnimals();
 	
 	// Gin
-	public List<File> getAllAnimalNFileNStatus();
-	
+	public List<File> getAnimalsWithFile();
+	public HashMap<String,Object> getAnimalWithFilesByAnimalID(int animalID);
 }

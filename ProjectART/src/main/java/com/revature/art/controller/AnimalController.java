@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.art.HomeController;
@@ -56,10 +57,16 @@ public class AnimalController {
 	
 	// Gin
 	@RequestMapping(value="/animalsWithFile", method=RequestMethod.GET)
-	public @ResponseBody List<File> getAnimalsForVisitors(){
-		//List<HashMap<String, Object>>list = new ArrayList<HashMap<String, Object>>();
-		List<File> list = animalService.getAllAnimalNFileNStatus();
+	public @ResponseBody List<File> getAnimalsWithFile(){
+		List<File> list = animalService.getAnimalsWithFile();
 		return list;
+	}
+	
+	@RequestMapping(value="/animalWithFiles", method=RequestMethod.GET)
+	public @ResponseBody HashMap<String,Object> getAnimalWithFiles(@RequestParam("animalID") int animalID){
+		
+		HashMap<String,Object> map = animalService.getAnimalWithFilesByAnimalID(animalID);
+		return map;
 	}
 
 }
