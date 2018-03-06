@@ -103,6 +103,13 @@ public class Application {
 		this.profession = profession;
 	}
 
+	public Timestamp getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(Timestamp appDate) {
+		this.appDate = appDate;
+	}
 
 	public String getHousetype() {
 		return housetype;
