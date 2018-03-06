@@ -38,5 +38,12 @@ export class AnimalProfileComponent implements OnInit {
       //console.log("files?"+data.files);
     });
   }
+  
+  showImage(index){
+    console.log('you clicked me! ' + index);
+    let imgFile :string = this.files[index].filename;
+    this.htmlText = "<img src='http://localhost:8080/resources/image/"+ imgFile 
+        +"' height='80%' width='auto'>";
+  }
 
 }

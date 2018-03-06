@@ -15,7 +15,7 @@
 <br />
 <div class="row">
 	<span *ngFor="let file of files; let i = index">
-	<button type="button" class="btn btn-default btn-sm">Img {{i+1}}</button>
+	<button (click)="showImage(i)"  type="button" class="btn btn-default btn-sm">Img {{i+1}}</button>
 	&nbsp;
 	</span>
 </div>
