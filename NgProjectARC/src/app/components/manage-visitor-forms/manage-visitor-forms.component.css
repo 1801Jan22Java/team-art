@@ -1,0 +1,34 @@
+#meetup-container{
+    margin-top: 100px;
+}
+
+.sort{
+    margin: 15px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+.sort button{
+    width: auto;
+}
+.allBtn{
+    margin-top: 8px;
+}
+#meetup-forms{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 5px;
+}
+
+.approveDenyButtons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.approveDenyButtons .btn{
+    margin-top: 8px;
+    border-radius: 0%;
+    border-width: 5px;
+    border-color: black
+}

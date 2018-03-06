@@ -1,3 +1,44 @@
-<p>
-  manage-visitor-forms works!
-</p>
+<div id="meetup-container">
+  <h1>Meetups</h1>
+  <div class="sort">
+    <button class="btn btn-lg btn-primary btn-block allBtn" (click)="sortRows('All')">All</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Approved')">Approved</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Denied')">Denied</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Pending')">Pending</button>
+  </div>
+
+  <div id="meetup-forms">
+
+    <div class="table-responsive-xl">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Animal</th>
+            <th scope="col">Visitor</th>
+            <th scope="col">Status</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let application of meetupForms; let i = index">
+            <tr *ngIf="sortBy === application.meetupStatus || sortBy === 'All' || sortBy === ''">
+              <td>{{application.animal.name}}</td>
+              <td>{{application.user.name}}</td>
+              <td>{{application.meetupStatus}}</td>
+              <td>{{application.meetupDate | date:'shortTime'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <form (ngSubmit)="onSubmit(application)" class="approveDenyButtons">
+      <div *ngFor="let application of meetupForms">
+          <button (click)="approve()" class="btn btn-lg btn-primary btn-block form-control" type="submit" value="Approved">Approve</button>
+          <button (click)="deny()" class="btn btn-lg btn-primary btn-block form-control" type="submit" value="Denied">Deny</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

@@ -19,6 +19,10 @@ h1{
     padding-bottom: 5px;
 }
 
+.rowNum{
+    font-weight: bold;
+}
+
 #housing-types{
     display: grid;
     grid-template-rows: auto;
@@ -60,15 +64,22 @@ legend{
     width: 100%;
     justify-self: center;
 }
-
+@media(max-width: 500px){
+    h1{
+        text-align: center;
+    }
+    .sort{
+        grid-gap: 5px;
+    }
+}
 @media(max-width: 370px){
     .form-manageAdoptionForm{
-        margin: 75px auto;
+        margin: 20px auto;
         width: 275px;
         padding: 30px;
     }
     h1{
-        font-size: 1.25em !important;
+        font-size: 30px !important;
     }
     .form-control{
         width: 100%;
@@ -78,10 +89,16 @@ legend{
         width: 50%;
     }
     #adoptionForm-btns{
-        display:block;   
+        display:block; 
     }
     .btn{
         margin-bottom: 8px !important;
         font-size: 14px;
+    }
+    .sort{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 5px auto;
+        width: 100%;
     }
 }
