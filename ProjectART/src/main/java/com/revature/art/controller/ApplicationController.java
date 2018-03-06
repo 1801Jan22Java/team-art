@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.art.HomeController;
 import com.revature.art.domain.Application;
-import com.revature.art.domain.User;
 import com.revature.art.service.AnimalService;
 import com.revature.art.service.ApplicationService;
 import com.revature.art.service.ImageService;

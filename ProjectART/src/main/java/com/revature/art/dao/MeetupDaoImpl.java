@@ -24,7 +24,7 @@ public class MeetupDaoImpl implements MeetupDao{
 	public List<Meetup> getByUserId(int userId) {
 		Session s = HibernateUtil.getSession();
 		Query q = s.createQuery("from Meetup meet where meet.user.userID = :userId");
-		q.setParameter(":userId", userId);
+		q.setParameter("userId", userId);
 		List<Meetup> a = q.list();
 		return a;
 	}
