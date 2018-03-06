@@ -36,4 +36,10 @@ public class AnimalServiceImpl implements AnimalService {
 		List<Animal> animals = animalDao.getAll();
 		return animals;
 	}
+
+	@Override
+	public int addAnimal(Animal animal) {
+		int animalID = animalDao.add(animal);
+		return animalID;
+	}
 }
