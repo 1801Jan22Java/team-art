@@ -12,18 +12,13 @@ export class HomepageComponent implements OnInit {
   public animalWithImgs = [];
   constructor(
     private animalService: AnimalService) { }
-  
-  imgFileName1:string = "assets/images/pet1.jpg";
-  imgFileName2:string = "assets/images/pet2.jpg";
-  imgFileName3:string = "assets/images/pet3.jpg";
-  imgFileName4:string = "assets/images/pet4.jpg";
-   
+     
   ngOnInit() {
     this.getAnimals();
   }
 
   getAnimals(){
-    this.animalService.getAnimalWithImgs().subscribe(data => this.animalWithImgs = data);
+    this.animalService.getAnimalsWithImg().subscribe(data => this.animalWithImgs = data);
   }
 }
 
@@ -40,11 +35,3 @@ export interface Animal {
   adoptStatus: string;
   species: string;
 }
-
-/* 
- sealSearch(term: string): Observable<DeiInstance[]> {
-      return this.http.get(this.sealUrl + term)
-           .map(response => response.json() as DeiInstance[])
-           .catch(this.handleError);
- }
-*/
