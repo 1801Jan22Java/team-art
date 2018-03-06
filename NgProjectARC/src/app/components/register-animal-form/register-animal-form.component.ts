@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Router} from "@angular/router";
 import { AnimalList } from '../managelist-of-animals/managelist-of-animals.component';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import {ManagelistOfAnimalsComponent } from '../managelist-of-animals/managelist-of-animals.component'
 //James'!!!!!!! 
 @Component({
   selector: 'app-register-animal-form',
@@ -25,7 +27,8 @@ export class RegisterAnimalFormComponent implements OnInit {
   private _url: string = "http://localhost:8080/api/animal/addAnimal";
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient,
+    private router: Router) {
 
     this.rForm = fb.group({
       'pname' : [null, Validators.required],
@@ -38,6 +41,7 @@ export class RegisterAnimalFormComponent implements OnInit {
   
 
   ngOnInit() {
+    
   }
 
   addPost(post) {
@@ -72,6 +76,9 @@ export class RegisterAnimalFormComponent implements OnInit {
 
     }
     
-  
+  Cancel(){
+    console.log("yay")
+    this.router.navigate(['/animalList']);
+  }
 
 }

@@ -7,11 +7,16 @@ import { AnimalService } from '../../service/animal.service';
   templateUrl: './managelist-of-animals.component.html',
   styleUrls: ['./managelist-of-animals.component.css']
 })
-export class ManagelistOfAnimalsComponent implements OnInit {
+export class ManagelistOfAnimalsComponent implements OnInit{
   //public animals: AnimalList[] = [];
+
+
  public animals :any = [];
  public myData :AnimalList[] = [];
  public maxSize :number;
+ public upani :Animal;
+ public upString :any;
+ public Happy() {console.log("yay")};
   // public animal2: AnimalList[] = [];
 
   constructor(private animalService: AnimalService) { }
@@ -95,8 +100,12 @@ export class ManagelistOfAnimalsComponent implements OnInit {
     for (let i = 0; i < this.maxSize; i++){
       let tr = document.createElement("tr");
       tr.id = "tr" + i;
-      let th = document.createElement("th");
-      th.scope = "row";
+      let th = document.createElement("a");
+      th.className = "nav-link";
+      th.href= "/updateAnimalProfile";
+      //th.scope = "row";
+      th.id = "a" + i;
+      //th.setAttribute("onclick", "Cool()");
       th.innerHTML = "" + animals[i].animalID;
       let td1 = document.createElement("td");
       td1.innerHTML = animals[i].name;
@@ -118,6 +127,8 @@ export class ManagelistOfAnimalsComponent implements OnInit {
       bodyHTML.appendChild(tr);
 
       //animals[4].adoptStatus = "Pending";
+
+    
 
     }
 
@@ -188,6 +199,17 @@ export class ManagelistOfAnimalsComponent implements OnInit {
 
   }
 
+  goToUpdate(){
+    /*
+      console.log(th);
+      this.upString = document.getElementById(th);
+      this.upani.animalId = this.upString.innerHTML;
+      console.log(this.upani.animalId);
+      */
+  }
+
+
+
 }
 
 export interface AnimalList {
@@ -196,5 +218,6 @@ export interface AnimalList {
 	maturity: string;
 	gender: string;
 	adoptStatus: string;
-	species: string;
+  species: string;
+  
 }

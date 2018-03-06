@@ -19,7 +19,6 @@
                 <option>Cat</option>
                 <option>Octopus</option>
                 <option>Rabbit</option>
-                <option>Bird</option>
                 <option>Fish</option>
                 <option>Horse</option>
                 <option>Lizard</option>
@@ -52,7 +51,7 @@
         </div>
         <div id="registerAnimal-btns">
             <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" [disabled]="!rForm.valid">Submit</button>
-            <button class="btn btn-lg btn-primary btn-block" type="button">Cancel</button>
+            <button class="btn btn-lg btn-primary btn-block" type="button" id="cancel" (click)="Cancel()">Cancel</button>
         </div>
     </form>
 </div>
