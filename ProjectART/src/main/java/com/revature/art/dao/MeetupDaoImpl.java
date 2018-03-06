@@ -3,6 +3,7 @@ package com.revature.art.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.revature.art.domain.Meetup;
@@ -27,21 +28,56 @@ public class MeetupDaoImpl implements MeetupDao{
 
 	@Override
 	public int add(Meetup m) {
-		return (Integer) HibernateUtil.getSession().save(m);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		int id = (Integer) HibernateUtil.getSession().save(m);
+		tx.commit();
+		s.close();
+		return id;
 	}
 
 	@Override
 	public void delete(Meetup m) {
-		HibernateUtil.getSession().delete(m);
+		Session s = HibernateUtil.getSession();
+		try
+		{
+			Transaction tx = s.beginTransaction();
+			HibernateUtil.getSession().delete(m);
+			tx.commit();
+		}
+		finally 
+		{
+			s.close();
+		}
 	}
 
 	@Override
 	public void merge(Meetup m) {
-		HibernateUtil.getSession().merge(m);
+		Session s = HibernateUtil.getSession();
+		try
+		{
+			Transaction tx = s.beginTransaction();
+			HibernateUtil.getSession().merge(m);
+			tx.commit();
+		}
+		finally 
+		{
+			s.close();
+		}
 	}
 
 	@Override
 	public void saveOrUpdate(Meetup m) {
-		HibernateUtil.getSession().saveOrUpdate(m);
+		Session s = HibernateUtil.getSession();
+		try
+		{
+			Transaction tx = s.beginTransaction();
+			s.saveOrUpdate(m);
+			tx.commit();
+		}
+		finally 
+		{
+			s.close();
+		}
 	}
 }
