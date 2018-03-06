@@ -8,8 +8,8 @@ import javax.persistence.*;
 
 /*
 ********  Can't change!!! **********
-meetupDate - 
-meetupStatus - 
+meetupDate -  MM/DD/YYYY
+meetupStatus -  Pending / Approved / Denied
 */
 @Entity
 @Table(name="MEETUP")

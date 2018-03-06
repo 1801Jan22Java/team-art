@@ -53,11 +53,6 @@ public class HomeController {
 	
 Map<String, User> users = new HashMap<String, User>();
 	
-	@GetMapping("/createData")
-	public void createData () {
-		animalDao.add(new Animal("ralph", ));
-	}
-	
 	@PostConstruct
 	public void initIt() throws Exception {
 		User user1 = new User(1, "user1@gmail.com", "1234", "user1");

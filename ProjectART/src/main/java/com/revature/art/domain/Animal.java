@@ -6,10 +6,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 /* 
 can't change !!! 
- maturity -  infant / young / adult / mature /
- gender - 
- adoptStatus -
- species - 
+ maturity -  Infant / Young / Adult / Mature /
+ gender -	 Male  /   Female  
+ adoptStatus -   Pending  /  Adopted /  Available   
+ species -  Dog / Cat / Fish / Rabbit / Octopus /  Lizard  / Turtle  / Horse / Other
 */
 @Entity
 @Table(name="ANIMALS")

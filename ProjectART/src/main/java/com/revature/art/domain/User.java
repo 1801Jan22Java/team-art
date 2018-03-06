@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /*
  ********  Can't change!!! **********
-usertype - 0 (normal user) /  1 (employee)
+usertype - 0 (normal registered user) /  1 (employee)
 */
 @Entity
 @Table(name="USERS")

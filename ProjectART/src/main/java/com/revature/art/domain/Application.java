@@ -10,7 +10,7 @@ import javax.persistence.*;
 ********  Can't change!!! **********
 address - Reston, VA (city, state only!)
 phone -  123-123-1234  (format)
-appDate - 
+appDate - MM/DD/YYYY
 housetype - singlehome, apartment, condo, townhome 
  */
 @Entity

@@ -1,5 +1,7 @@
 package com.revature.art.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,12 +9,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.art.HomeController;
 import com.revature.art.domain.Animal;
 import com.revature.art.domain.Application;
+import com.revature.art.domain.File;
 import com.revature.art.service.AnimalService;
 import com.revature.art.service.ApplicationService;
 import com.revature.art.service.ImageService;
@@ -48,5 +53,13 @@ public class AnimalController {
 		System.out.println("success!");
 		return list;
 	}
+	
 	// Gin
+	@RequestMapping(value="/animalsWithFile", method=RequestMethod.GET)
+	public @ResponseBody List<File> getAnimalsForVisitors(){
+		//List<HashMap<String, Object>>list = new ArrayList<HashMap<String, Object>>();
+		List<File> list = animalService.getAllAnimalNFileNStatus();
+		return list;
+	}
+
 }

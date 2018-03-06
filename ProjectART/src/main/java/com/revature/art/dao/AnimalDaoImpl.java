@@ -3,6 +3,7 @@ package com.revature.art.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.revature.art.util.HibernateUtil;
@@ -44,5 +45,22 @@ public class AnimalDaoImpl implements AnimalDao{
 	@Override
 	public void saveOrUpdate(Animal animal) {
 		HibernateUtil.getSession().saveOrUpdate(animal);
+	}
+	
+	// Eric
+
+	// Evan
+
+	// James
+
+	// Gin
+	@Override
+	public int addAnimal(Animal a) {
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		int animalID = (Integer) s.save(a);
+		tx.commit();
+		s.close();
+		return animalID;
 	}
 }

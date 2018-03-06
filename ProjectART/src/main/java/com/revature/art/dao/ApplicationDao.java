@@ -11,4 +11,14 @@ public interface ApplicationDao {
 	public void delete(Application a);
 	public void merge(Application a);
 	public void saveOrUpdate(Application a);
+	
+	// Eric
+
+	// Evan
+
+	// James
+
+	// Gin
+	public int addApplication(Application a);
+	public int checkIfApplicationExistOnAnimal(int AnimalID);
 }

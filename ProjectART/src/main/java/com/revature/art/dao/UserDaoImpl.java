@@ -52,7 +52,13 @@ public class UserDaoImpl implements UserDao{
 	public void saveOrUpdate(User u) {
 		HibernateUtil.getSession().saveOrUpdate(u);
 	}
+	// Eric
+
+	// Evan
+
+	// James
 	
+	// Gin
 	@Override
 	public List<User>  getUserByEmail(String email) {
 		Session s = HibernateUtil.getSession();

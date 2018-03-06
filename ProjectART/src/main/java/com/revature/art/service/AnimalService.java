@@ -1,8 +1,10 @@
 package com.revature.art.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.revature.art.domain.Animal;
+import com.revature.art.domain.File;
 public interface AnimalService {
 
 	// Eric
@@ -11,6 +13,8 @@ public interface AnimalService {
 
 	// James
 	public List<Animal> getAllAnimals();
+	
 	// Gin
-	void testMethod();
+	public List<File> getAllAnimalNFileNStatus();
+	
 }
