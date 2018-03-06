@@ -49,23 +49,8 @@ export class ApproveDenyAdoptionComponent implements OnInit {
 
   onSubmit() {
     this.applicationService.approveDenyApplication(this.currApplication);
-    /*
-    this.http.post(this._url, {
-     applicationId: this.currApplication.applicationID,
-     action: this.currApplication.appStatus,
-   })
-     .subscribe(
-       res => {
-         console.log(res);
-       },
-       err => {
-        console.log("Error occurred");
-         console.log(err);
-       }
-     );
-     */
      this.hide();
- }
+  }
 
   ngOnInit() {}
 }

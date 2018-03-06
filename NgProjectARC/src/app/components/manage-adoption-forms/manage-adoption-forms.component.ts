@@ -17,7 +17,6 @@ import { DatePipe } from '@angular/common';
 export class ManageAdoptionFormsComponent implements OnInit {
 
   adoptionForms: Application[]; 
-  dates: string[];
   show = true;
   manageForm = false;
   sortBy = '';
