@@ -9,7 +9,7 @@
 
   <div id="meetup-forms">
 
-    <div class="table-responsive-xl">
+    <div class="table-responsive-lg table-striped">
       <table class="table">
         <thead>
           <tr>
@@ -25,19 +25,21 @@
               <td>{{application.animal.name}}</td>
               <td>{{application.user.name}}</td>
               <td>{{application.meetupStatus}}</td>
-              <td>{{application.meetupDate | date:'shortTime'}}</td>
+              <td id="time-col">{{application.meetupDate | date:'shortTime'}}</td>
             </tr>
           </ng-container>
         </tbody>
       </table>
     </div>
-
-    <form (ngSubmit)="onSubmit(application)" class="approveDenyButtons">
-      <div *ngFor="let application of meetupForms">
-          <button (click)="approve()" class="btn btn-lg btn-primary btn-block form-control" type="submit" value="Approved">Approve</button>
-          <button (click)="deny()" class="btn btn-lg btn-primary btn-block form-control" type="submit" value="Denied">Deny</button>
-      </div>
-    </form>
+    <div class="colm-2">
+      <h2>Resolve</h2>
+        <div *ngFor="let application of meetupForms">
+          <form (ngSubmit)="onSubmit(application)" class="approveDenyButtons" *ngIf="sortBy === application.meetupStatus || sortBy === 'All' || sortBy === ''">
+            <button (click)="approve(application)" class="btn btn-lg btn-primary btn-block form-control submit" type="submit" value="Approved">Approve</button>
+            <button (click)="deny(application)" class="btn btn-lg btn-primary btn-block form-control denied" type="submit" value="Denied">Deny</button>
+          </form>
+        </div>
+    </div>
 
   </div>
 

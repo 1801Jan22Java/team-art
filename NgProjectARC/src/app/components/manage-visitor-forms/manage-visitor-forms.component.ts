@@ -33,11 +33,17 @@ export class ManageVisitorFormsComponent implements OnInit {
     });
   }
 
-  approve() {
+  sortRows(type) {
+    this.sortBy = type;
+  }
+
+  approve(form) {
+    this.selectedForm = form;
     this.selectedForm.meetupStatus = 'Approved';
   }
 
-  deny() {
+  deny(form) {
+    this.selectedForm = form;
     this.selectedForm.meetupStatus = 'Denied';
   }
 
@@ -45,5 +51,4 @@ export class ManageVisitorFormsComponent implements OnInit {
     this.selectedForm = form;
     this.meetupService.approveDenyMeetup(form);
   }
-
 }
