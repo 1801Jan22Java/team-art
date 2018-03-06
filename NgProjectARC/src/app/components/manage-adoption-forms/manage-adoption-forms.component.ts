@@ -6,6 +6,8 @@ import { User } from '../../models/user';
 import { Animal } from '../../models/animal';
 import { Application } from '../../models/application';
 
+import { DatePipe } from '@angular/common';
+
 // Eric 's!!!!!!!
 @Component({
   selector: 'app-manage-adoption-forms',
@@ -14,9 +16,10 @@ import { Application } from '../../models/application';
 })
 export class ManageAdoptionFormsComponent implements OnInit {
 
-  adoptionForms: Application[];
-  columns: string[];
+  adoptionForms: Application[]; 
+  dates: string[];
   show = true;
+  manageForm = false;
   sortBy = '';
   selectedApp: Application;
   constructor(private applicationService: ApplicationService) {
@@ -25,7 +28,8 @@ export class ManageAdoptionFormsComponent implements OnInit {
   ngOnInit() {
     this.applicationService.getApplications().subscribe(data => {
       this.adoptionForms = data;
-      error => console.log("Error: "+error)
+      console.log(data);
+      error => console.log("Error: "+error);
     });
   }
 
@@ -35,13 +39,12 @@ export class ManageAdoptionFormsComponent implements OnInit {
 
   sortRows(type) {
     this.sortBy = type;
-    console.log(this.adoptionForms);
   }
 
   showForm(form) {
-    console.log(form);
+    this.manageForm = false;
     this.selectedApp = form;
-    this.show = false;
+    this.manageForm = true;
     /*
     this.adoptionForm.applicationId = form.applicationId;
     this.adoptionForm.animalName = form.animalName;
