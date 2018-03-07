@@ -1,7 +1,7 @@
 <div id="user-profile-container">
   <div class="row" *ngIf="!show">
       <div class="row spacer">
-          <a role="button" (click)="showUpdateForm()" class="btn btn-primary">Update MyInfo</a>
+          <a role="button" (click)="showUpdateForm()" id="update-button" class="btn btn-primary">Update Profile Info</a>
         </div>
     <div class="alert alert-primary" style="width:100%;">
       <strong>User Information </strong>
@@ -28,7 +28,7 @@
   <br/>
   <div class="row">
     <div class="alert alert-primary" style="width:100%;">
-      <strong> {{userInfo.name}}'s Adoption History </strong>
+      <strong> Your Adoption History </strong>
     </div>
     <table class="table">
       <thead>
@@ -48,7 +48,7 @@
   <br/>
   <div class="row">
     <div class="alert alert-primary" style="width:100%;">
-      <strong> Shelter Visit Meeting Schedule </strong>
+      <strong> Shelter Meetup Schedule </strong>
     </div>
     <table class="table">
       <thead>

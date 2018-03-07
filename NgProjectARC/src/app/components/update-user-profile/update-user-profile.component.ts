@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { UserService } from '../../service/user.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 
 //Evans'!!!!!!! 
@@ -15,39 +13,42 @@ export class UpdateUserProfileComponent implements OnInit {
 
   user: User;
 
-  updateUser: FormGroup;
-  userID: number;                     // A property for our submitted form
-  usertype: number;
-  name: string;
-  email: string;
-  password: string;
-
-  constructor(private userProfile: UserProfileComponent, private userService: UserService, private fb: FormBuilder) {
-    this.user = this.userProfile.userInfo;
-
-    this.updateUser = fb.group({
-      'name' : [this.user.name, Validators.minLength(1)],
-      'email' : [this.user.email, Validators.minLength(1)],
-      'password' : [this.user.password, Validators.minLength(1)],
-      'userID' : [this.user.userID],
-      'usertype' : [this.user.usertype]
-    });
+  constructor(private userProfile: UserProfileComponent, private userService: UserService) {
 }
 
 ngOnInit() {
-  this.user = this.userProfile.userInfo;
+  this.userService.getInfo(43).subscribe(data => {
+    this.user = data;
+  });
+}
+
+updateName(event: any) {
+  if(event !== "") {
+    this.user.name = event.target.value;
+  }
+    
+}
+updateEmail(event: any) {
+  if(event !== "") {
+    this.user.email = event.target.value;
+  }
+    
+}
+updatePassword(event: any) {
+  if(event !== "") {
+    this.user.password = event.target.value;
+  }
 }
 
 toggle(){
   this.userProfile.show = false;
 }
 
-onSubmit(data){
-  this.user.name = data.name;
-  this.user.email = data.email;
-  this.user.password = data.password;
-  console.log(this.user.password);
-  this.userService.updateUserInfo(this.user);
-  //this.toggle();
+onSubmit(){
+  this.userProfile.userInfo.name = this.user.name;
+  this.userProfile.userInfo.email = this.user.email;
+  this.userProfile.userInfo.password = this.user.password;
+  this.userService.updateInfo(this.user);
+  this.toggle();
 }
 }

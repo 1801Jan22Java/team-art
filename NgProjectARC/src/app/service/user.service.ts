@@ -17,23 +17,14 @@ export class UserService {
     return this.httpClient.post<User>(this.GETINFO_URL, usrID);
   }
 
-  private UPDATEINFO_URL: string = "http://localhost:8080/api/user/updateUserInfo";
-  updateUserInfo(data) {
-    this.httpClient.post(this.UPDATEINFO_URL, data).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
   // James
 
 
   // Eric
-
+  private ROOT_URL: string = 'http://localhost:8080/api/user';
+  updateInfo(userData) {
+    this.http.post(this.ROOT_URL + '/updateInfo.json', JSON.stringify(userData), {headers: this.headers}).subscribe();
+  }
 
   // Gin
   // log in

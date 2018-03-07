@@ -26,7 +26,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.userService.getInfo(43).subscribe(data => {
       this.userInfo = data;
-      console.log(data);
     });
     this.applicationService.getInfo(43).subscribe(data => this.applications = data);
     this.meetupService.getInfo(43).subscribe(data => this.meetups = data);

@@ -5,3 +5,8 @@
 .spacer{
     margin-bottom: 20px;
 }
+
+#update-button{
+    margin-left: 15px;
+    color:white;
+}

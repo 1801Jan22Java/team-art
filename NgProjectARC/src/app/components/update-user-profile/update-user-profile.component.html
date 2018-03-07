@@ -1,29 +1,23 @@
-<div id="container" *ngIf="userProfile.show">
-  <div class="row">
-    <div class="alert alert-primary" style="width:100%;">
-      <strong>Update User Information </strong>
-    </div>
-    <form [formGroup]="updateUser" (ngSubmit)="onSubmit(updateUser.value)" class="form-registerUser">
-      <div class="for-group">
-        <label for="name">Name</label>
-        <input type="text" name="name" class="form-control" placeholder="{{userProfile.userInfo.name}}" formControlName="name" required
-          autofocus>
-
-        <label for="email">Email address</label>
-        <input type="text" name="email" class="form-control" placeholder="{{userProfile.userInfo.email}}" formControlName="email" required>
-
-        <label for="password">Password</label>
-        <input type="text" name="password" class="form-control" placeholder="{{userProfile.userInfo.password}}" formControlName="password"
-          required>
-
-        <input type="hidden" name="usertype" formControlName="usertype">
-        <input type="hidden" name="userID" formControlName="userID">
+<div id="updateUser-container" *ngIf="userProfile.show">
+  <form class="form-updateUser" #updateUser="ngForm" (ngSubmit)="onSubmit()">
+      <h1 class="h1 mb-1 font-weight-bold">Update Profile</h1>
+      <label for="fullname" class="sr-only">Name</label>
+      <div class="form-group">
+          <input type="text" name="fullname" id="fullName" class="form-control" placeholder="{{this.user.name}}" value="{{this.user.name}}" (keyup)="updateName($event)" required autofocus>
       </div>
-
-      <div id="register-buttons">
-        <button class="btn btn-lg btn-primary btn-block" id="register-button" input type="submit" value="Register" [disabled]="!updateUser.valid">Submit Change</button>
-        <button (click)="toggle()" class="btn btn-lg btn-primary btn-block" id="cancel-button">Cancel</button>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <div class="form-group">
+          <input type="email" name="username" id="inputEmail" class="form-control" placeholder="{{this.user.email}}" value="{{this.user.email}}" (keyup)="updateEmail($event)" required>
+      </div>                
+      <label for="inputPassword" class="sr-only">Password</label>
+      <div class="form-group">
+          <input type="password" name="password" id="inputPassword" class="form-control"  value="{{this.user.password}}" (keyup)="updatePassword($event)" required>
       </div>
-    </form>
-  </div>
+      <input type="hidden" name="usertype" value="{{usertype}}">
+      <input type="hidden" name="userID"  value="{{userID}}">
+      <div id="updateUser-btns">
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Submit Changes</button>
+              <button (click)="toggle()" class="btn btn-lg btn-primary btn-block">Cancel</button>
+      </div>
+  </form>
 </div>
