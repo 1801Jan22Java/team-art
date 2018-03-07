@@ -66,11 +66,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateInfo(User user) {
 		User u = userDao.getById(user.getUserID());
-		if(!user.getEmail().equals("") && !u.getEmail().equals(user.getEmail().trim()))
+		if(!user.getEmail().equals("") && user.getEmail().length() < 50 && !u.getEmail().equals(user.getEmail().trim()))
 			u.setEmail(user.getEmail().trim());
-		if(!user.getName().equals("") && !u.getName().equals(user.getName().trim()))
+		if(!user.getName().equals("") && user.getName().length() < 35 && !u.getName().equals(user.getName().trim()))
 			u.setName(user.getName().trim());
-		if(!user.getPassword().equals("") && !u.getPassword().equals(user.getPassword().trim()))
+		if(!user.getPassword().equals("") && user.getPassword().length() < 25 && !u.getPassword().equals(user.getPassword().trim()))
 			u.setPassword(user.getPassword().trim());
 		userDao.saveOrUpdate(user);
 	}
