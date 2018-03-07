@@ -8,14 +8,17 @@ import "rxjs/Rx";
 @Injectable()
 export class MeetupService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-   //Evan
-  
-  
+  //Evan
+  private GETINFO_URL: string = "http://localhost:8080/api/meetup/meetupListById";
+  getInfo(usrID: number): Observable<Meetup[]> {
+    return this.httpClient.post<Meetup[]>(this.GETINFO_URL, usrID);
+  }
+
   // James
-  
-  
+
+
   // Eric
   private ROOT_URL: string = 'http://localhost:8080/api/meetup';
 
@@ -40,8 +43,7 @@ export class MeetupService {
       }
     );
   }
-  
   // Gin
-  
-  
+
+
 }
