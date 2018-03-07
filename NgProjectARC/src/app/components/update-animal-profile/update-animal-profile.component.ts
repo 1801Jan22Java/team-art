@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AnimalList} from '../managelist-of-animals/managelist-of-animals.component';
 import {ManagelistOfAnimalsComponent } from '../managelist-of-animals/managelist-of-animals.component'
+import {File} from '../../models/file';
 //James'!!!!!!! 
 @Component({
   selector: 'app-update-animal-profile',
@@ -30,11 +31,17 @@ export class UpdateAnimalProfileComponent implements OnInit {
   image4: string = "";
   animal: AnimalList;
   headers: HttpHeaders;
+  aniData: number = 0;
+  fileName: string = "";
+  naming: any;
+  tempAnimal: AnimalList;
+  ourFile: File;
   
   @ViewChild('image1') image: ElementRef;
   //animal: Observable<AnimalList>;
   private _url: string = "http://localhost:8080/api/animal/updateAnimal";
   private url_: string = "http://localhost:8080/api/image/physicalImage";
+  private _url_ : string = "http://localhost:8080/api/image/mapToAnimal";
 
 
   constructor(private fb: FormBuilder, private http: HttpClient,
@@ -98,27 +105,21 @@ export class UpdateAnimalProfileComponent implements OnInit {
   
     addImages(iPost){
       this.image1 = iPost.image1;
-      this.image2 = iPost.image2;
-      this.image3 = iPost.image3;
-      this.image4 = iPost.image4;
-      let fileBrowser = this.image.nativeElement;
-      console.log(fileBrowser.files[0]);
-    if (fileBrowser.files && fileBrowser.files[0]) {
       const formData = new FormData();
+      let fileBrowser = this.image.nativeElement;
+    if (fileBrowser.files && fileBrowser.files[0]) {
       formData.append("file", fileBrowser.files[0]);
-      
-      //formData.append("file"), fileBrowser.
-      /*this.headers = new HttpHeaders({
-        'Content-Type': 'multipart/form-data'
-       });*/
-       //'multipart/form-data'
       /*
-     let fileList: FileList = iPost.target.files;
-      if(fileList.length > 0) {
-          let file: File = fileList[0];
-          let formData:FormData = new FormData();
-          formData.append('uploadFile', file, file.name); */
-          //{headers: this.headers}
+      if (fileBrowser.files[1])
+        formData.append("File", fileBrowser.files[1]);
+        if (fileBrowser.files[2])
+        formData.append("File", fileBrowser.files[2]);
+        if (fileBrowser.files[3])
+        formData.append("File", fileBrowser.files[3]);
+        */
+     // formData.append("aniID", "63");
+      
+     
       let httpSend = this.http.post(this.url_, formData ).subscribe(
         res => {
           console.log(res);
@@ -131,6 +132,35 @@ export class UpdateAnimalProfileComponent implements OnInit {
       console.log("cool");
     }
     console.log(fileBrowser.files[0]);
+
+    this.aniData = 63;
+    this.naming = fileBrowser.files[0].name;
+    this.tempAnimal = {
+      animalID: this.aniData,
+      name: null,
+      maturity: null,
+      gender: null,
+      adoptStatus: null,
+      species: null
+    };
+    //this.naming = document.getElementById("image1");
+    //console.log(this.naming);
+    this.ourFile = {
+        fileID: null,
+        filename: this.naming,
+        animal: this.tempAnimal
+    };
+
+    let httpSend = this.http.post(this._url_, this.ourFile ).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+       console.log("Error occurred");
+        console.log(err);
+      }
+    );
+  
   }
 
 }

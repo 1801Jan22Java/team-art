@@ -49,7 +49,7 @@
     <form [formGroup]="iForm" (ngSubmit)="addImages(iForm.value)" enctype="multipart/form-data" name="file" >
     <div class="form-group">
             <legend>Profile Images</legend>
-            <span class="input-group-addon">
+            <span class="input-group-addon" id="im1">
             <input type="file" class="form-control-file" #image1 placeholder="image1" name="file" id="image1" accept="image/*">
             </span>
             <span class="input-group-addon">
