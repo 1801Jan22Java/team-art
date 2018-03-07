@@ -130,3 +130,8 @@ ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.prop
 *.MF
 *.properties
 *.xml
+ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
+ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
+*.properties
+ProjectART/src/main/resources/hibernate.cfg.xml
+ProjectART/target/classes/hibernate.cfg.xml
