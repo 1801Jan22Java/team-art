@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'userProfile', component: UserProfileComponent },
   { path: 'adoptionForms', component: ManageAdoptionFormsComponent, canActivate: [LoginGuard]  },
+  { path: 'visitorForms', component: ManageVisitorFormsComponent }, 
   { path: 'calendar', component: CalendarComponent },
   { path: 'visits', component: ManageVisitorFormsComponent },
   { path: 'animalList', component: ManagelistOfAnimalsComponent },

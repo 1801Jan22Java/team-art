@@ -6,7 +6,10 @@
     <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Denied')">Denied</button>
     <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Pending')">Pending</button>
   </div>
-  <app-approve-deny-adoption></app-approve-deny-adoption>
+  <ng-container *ngIf="manageForm">
+    <app-approve-deny-adoption></app-approve-deny-adoption>
+  </ng-container>
+  
   <div class="table-responsive-xl">
     <table class="table">
       <thead>
@@ -20,12 +23,12 @@
       </thead>
       <tbody>
           <ng-container *ngFor="let application of adoptionForms; let i = index">
-          <tr *ngIf="show && (sortBy === application.appStatus || sortBy === '' )">
-            <td><a (click)="showForm(application)" href="#adoptionForm-container">{{i+1}}</a></td>
-            <td>{{application.applicantName}}</td>
-            <td>{{application.animalName}}</td>
-            <td>{{application.status}}</td>
-            <td>{{application.date}}</td>
+          <tr *ngIf="show && (sortBy === application.appStatus || sortBy === 'All' || sortBy === '')">
+            <td><a (click)="showForm(application)" class="rowNum">{{i+1}}</a></td>
+            <td>{{application.user.name}}</td>
+            <td>{{application.animal.name}}</td>
+            <td>{{application.appStatus}}</td>
+            <td>{{application.appDate | date:'MM/dd/yyyy'}}</td>
           </tr>
           </ng-container>
       </tbody>

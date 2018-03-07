@@ -61,7 +61,8 @@ import { ImageService } from './service/image.service';
     AppRoutingModule,
     HttpClientModule,
     HttpModule,    // to user HttpClient
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ApplicationService, UserService, MeetupService, AnimalService, ImageService, LoginGuard,
   NavbarComponent],

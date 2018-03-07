@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Application } from '../models/application';
 import { ApplicationList, AdoptionFormsList } from '../components/manage-adoption-forms/manage-adoption-forms.component';
@@ -19,11 +19,28 @@ export class ApplicationService {
   // James
 
   // Eric
+  private ROOT_URL: string = 'http://localhost:8080/api/application';
 
-  private _url2: string = 'http://localhost:8080/api/application/applicationList.json';
   getApplications(): Observable<Application[]> {
-    console.log(this.http.get(this._url2));
-    return this.http.get<Application[]>(this._url2);
+    return this.http.get<Application[]>(this.ROOT_URL + '/applicationList.json');
+  }
+
+  // method for employees to approve or deny an application
+  // the mapping for the approveDeny method in the controller is appended to the root url created above.
+  //and the second argument is the data object provided by a method calling this service method
+  // from approve-deny-adoption.ts
+  headers = new HttpHeaders({
+    'Content-type': 'application/json'
+  });
+  approveDenyApplication(buttonDecision) {
+    this.http.post(this.ROOT_URL + '/approveDeny.json', JSON.stringify(buttonDecision), {headers: this.headers}).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+       console.log(err);
+      }
+    );
   }
 
   // Gin
