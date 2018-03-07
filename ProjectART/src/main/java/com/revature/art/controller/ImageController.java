@@ -2,6 +2,8 @@ package com.revature.art.controller;
 
 import java.nio.file.Files;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import com.revature.art.service.ApplicationService;
 import com.revature.art.service.ImageService;
 import com.revature.art.service.MeetupService;
 import com.revature.art.service.UserService;
+
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -54,9 +57,9 @@ public class ImageController {
 		return imageID;
 	}
 	//, headers = "'Content-Type': 'multipart/form-data'"
-
+	//@RequestParam (value="file") MultipartFile file
 	@PostMapping(value = "/physicalImage")
-	public @ResponseBody String physicalFile(@RequestParam (value="file")  MultipartFile file) {
+	public @ResponseBody String physicalFile(@RequestParam (value="file") MultipartFile file) {
 		System.out.println("wootwoot");
 		return "";
 	}

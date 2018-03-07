@@ -2,6 +2,8 @@ package com.revature.art.dao;
 
 import java.util.List;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
