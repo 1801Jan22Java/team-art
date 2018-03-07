@@ -1,5 +1,7 @@
 package com.revature.art.service;
 
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import com.revature.art.dao.ApplicationDao;
 import com.revature.art.dao.FileDao;
 import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
+import com.revature.art.domain.Animal;
 import com.revature.art.domain.Application;
+import com.revature.art.domain.User;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -29,6 +33,18 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private UserDao userDao;
  
 	// Eric
+	@Override
+	public Application updateApplication(Application a) {
+		Application app = applicationDao.getById(a.getApplicationID());
+		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
+			app.setAppStatus(a.getAppStatus());
+		return app;
+	}
+	@Override
+	public List<Application> getAdpAplcList() {
+		List<Application> apps = applicationDao.getAll();
+		return apps;
+	}
 
 	// Evan
 
@@ -36,18 +52,25 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	// Gin
 	@Override
-	public Application updateApplication(Application a) {
-		Application app = applicationDao.getById(a.getApplicationID());
-		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
-			app.setAppStatus(a.getAppStatus());
-		
-		return app;
-	}
-
-	@Override
-	public List<Application> getAdpAplcList() {
-		List<Application> apps = applicationDao.getAll();
-		return apps;
+	public String addAdoptionApplication(HashMap<String, Object> application) {
+		Application ap = new Application();
+		ap.setProfession((String)application.get("profession"));
+		ap.setHousetype((String)application.get("housetype"));
+		ap.setAddress((String)application.get("address"));
+		ap.setPhone((String)application.get("phone"));
+		ap.setAppStatus("Pending");  			// default value when application is submitted.
+		ap.setLocalDateTime(new Timestamp(System.currentTimeMillis()));
+		 
+		Animal a = animalDao.getById(Integer.parseInt((String)application.get("animalID")));
+		ap.setAnimal(a);
+		User u = userDao.getById((Integer)application.get("userID"));
+		ap.setUser(u);
+		try {
+			applicationDao.addApplication(ap);
+			return "Success!";
+		} catch (Exception e) {
+			return "Fail!";
+		}
 	}
 
 }

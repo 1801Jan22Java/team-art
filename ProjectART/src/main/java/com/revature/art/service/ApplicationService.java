@@ -1,5 +1,6 @@
 package com.revature.art.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.revature.art.domain.Application;
@@ -16,5 +17,5 @@ public interface ApplicationService {
 	// James
 
 	// Gin
-	//List<Application> getAdpAplcList();
+	String addAdoptionApplication(HashMap<String, Object> application);
 }

@@ -26,6 +26,7 @@ public class AnimalDaoImpl implements AnimalDao{
 	public Animal getById(int id) {
 		Session s = HibernateUtil.getSession();
 		Animal animal = (Animal) s.get(Animal.class, id);
+		s.close();
 		return animal;
 	}
 
