@@ -7,6 +7,7 @@ public interface UserService {
 
 	// Evan
 	User getUserById(int userId);
+	void updateUserInfo(User user);
 	// James
 
 	// Gin
