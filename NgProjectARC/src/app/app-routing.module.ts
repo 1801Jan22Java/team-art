@@ -9,6 +9,7 @@ import { ManageVisitorFormsComponent } from './components/manage-visitor-forms/m
 import { ManageAdoptionFormsComponent } from './components/manage-adoption-forms/manage-adoption-forms.component';
 import { AnimalProfileComponent} from './components/animal-profile/animal-profile.component';
 import { AdoptionFormComponent } from './components/adoption-form/adoption-form.component';
+import { LoginGuard } from './components/login-form/login.guard';
 import { VisitorFormComponent } from './components/visitor-form/visitor-form.component';
 import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
 import { RegisterAnimalFormComponent } from './components/register-animal-form/register-animal-form.component';
@@ -17,14 +18,14 @@ import { RegisterUserFormComponent, } from './components/register-user-form/regi
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
   { path: 'homepage', component: HomepageComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'userProfile', component: UserProfileComponent },
-  { path: 'adoptionForms', component: ManageAdoptionFormsComponent },
-  { path: 'visitorForms', component: ManageVisitorFormsComponent },
+  { path: 'adoptionForms', component: ManageAdoptionFormsComponent, canActivate: [LoginGuard]  },
+  { path: 'visitorForms', component: ManageVisitorFormsComponent }, 
   { path: 'calendar', component: CalendarComponent },
   { path: 'visits', component: ManageVisitorFormsComponent },
   { path: 'animalList', component: ManagelistOfAnimalsComponent },
-  { path: 'animalProfile', component : AnimalProfileComponent},
+  { path: 'animalProfile/:animalID', component : AnimalProfileComponent},
   { path: 'adoptionForm', component: AdoptionFormComponent},
   { path: 'visitorForm', component : VisitorFormComponent},
   { path: 'updateAnimalProfile', component : UpdateAnimalProfileComponent},
@@ -37,6 +38,10 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule]
 })
 export class AppRoutingModule { }
+
+//export const APP_ROUTES_PROVIDER = [
+//  provideRouter(routes)
+//]

@@ -22,6 +22,8 @@ export class UserService {
   // log in
   private API_URL: string = "http://localhost:8080/api/user";
   public userID: number = 0;
+  isLogin: boolean = false;
+  
   headers = new Headers({
     'Content-type': 'application/json'
   });
@@ -29,18 +31,9 @@ export class UserService {
     // alert("Entered Email ID is " + data.email);
     return this.http.post(url, JSON.stringify(data), {headers: this.headers})
   }
+ 
+//  private messageSource = new BehaviorSubject<number>(this.userID);
+//  currentMessage = this.messageSource.asObservable();
 
-  //share data in components
-  shareUserInfo(data) {
-    console.log('user service got user info!' + data);
-    this.userID = JSON.parse(data).userID;  
-    this.changeMessage(this.userID);
-  }
-  private messageSource = new BehaviorSubject<number>(this.userID);
-  currentMessage = this.messageSource.asObservable();
-
-  changeMessage(message: number) {
-    this.messageSource.next(message);
-  }
-
+  
 }

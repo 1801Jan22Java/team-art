@@ -1,35 +1,52 @@
+<br />
+<br />
+<br />
 <div class="row">
-  <!--show only if registered user and animal is still available. -->
-  <a class="btn btn-primary" role="button" routerLink="/visitorForm">Schedule Meeting</a>&nbsp;
-  
-  <!-- show only one of them -->
-  <a class="btn btn-primary" role="button" routerLink="/adoptionForm">Adopt Me!</a>&nbsp;
-  <!-- <button type="button" class="btn btn-primary" disabled>Adopted</button>
+	<br />
+	<!--show only if registered user and animal is still available. -->
+	<a class="btn btn-primary" role="button" routerLink="/visitorForm">Schedule Meeting</a>&nbsp;
+
+	<!-- show only one of them -->
+	<a class="btn btn-primary" role="button" routerLink="/adoptionForm">Adopt Me!</a>&nbsp;
+	<!-- <button type="button" class="btn btn-primary" disabled>Adopted</button>
   <button type="button" class="btn btn-primary" disabled>Pending</button> -->
 </div>
 
-<br/>
-
+<br />
 <div class="row">
-  <button type="button" class="btn btn-default btn-sm">IMG1</button>&nbsp;
-  <button type="button" class="btn btn-default btn-sm">IMG2</button>&nbsp;
-  <button type="button" class="btn btn-default btn-sm">IMG3</button>&nbsp;
-  <button type="button" class="btn btn-default btn-sm">IMG4</button>&nbsp;
+	<span *ngFor="let file of files; let i = index">
+	<button (click)="showImage(i)"  type="button" class="btn btn-default btn-sm">Img {{i+1}}</button>
+	&nbsp;
+	</span>
 </div>
-<br/>
+<br />
 
-<div class="row">
-  <img src="{{imgFileName1}}" height="80%" width="auto">
+<div class="row" [innerHtml]="htmlText">
+	<!-- <img src='http://localhost:8080/resources/image/{{initFilename}}' height='80%' width='auto'> -->
 </div>
+<br>
+<div class="row">
+	<table class="table-dark table-striped" style="width:50%;" >
+		<tbody>
+			<tr>
+				<td style="width:30%;">Name</td>
+				<td style="width:70%;">{{animal.name}}</td>
+			</tr>
+			<tr>
+				<td>Spacies</td>
+				<td>{{animal.species}}</td>
+			</tr>
+			<tr>
+				<td>Age</td>
+				<td>{{animal.maturity}}</td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td>{{animal.gender}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+<br />
 
-<div class="row">
-  <ul class="list-group">
-    <li class="list-group-item">Name : Ralph</li>
-    <li class="list-group-item">Species : Dog </li>
-    <li class="list-group-item">Gender : Male</li>
-    <li class="list-group-item">Age : young</li>
-  </ul>
-</div>
-<br/><br/>
- 
- 

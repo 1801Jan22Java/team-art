@@ -1,6 +1,7 @@
+import { AnimalService } from '../../service/animal.service';
 import { Component, OnInit, Input } from '@angular/core';
 
-//James'!!!!!!! 
+//Gin!!!!
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -8,14 +9,29 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
-  
-  imgFileName1:string = "assets/images/pet1.jpg";
-  imgFileName2:string = "assets/images/pet2.jpg";
-  imgFileName3:string = "assets/images/pet3.jpg";
-  imgFileName4:string = "assets/images/pet4.jpg";
-   
+  public animalWithImgs = [];
+  constructor(
+    private animalService: AnimalService) { }
+     
   ngOnInit() {
+    this.getAnimals();
   }
 
+  getAnimals(){
+    this.animalService.getAnimalsWithImg().subscribe(data => this.animalWithImgs = data);
+  }
+}
+
+export interface FileList {
+  filename: string;
+  animal: Animal;
+  filelID: number;
+}
+export interface Animal {
+  animalID: number;
+  name: string;
+  maturity: string;
+  gender: string;
+  adoptStatus: string;
+  species: string;
 }
