@@ -14,7 +14,10 @@ export class ApplicationService {
 
 
  // Evan
-
+ private GETINFO_URL: string = "http://localhost:8080/api/application/applicationListById";
+ getInfo(usrID: number): Observable<Application[]> {
+   return this.http.post<Application[]>(this.GETINFO_URL, usrID);
+ }
 
   // James
 
