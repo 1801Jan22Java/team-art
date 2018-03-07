@@ -40,17 +40,30 @@
                 </label>
             </div>
         </fieldset>
-        <div class="form-group">
-            <legend>Profile Images</legend>
-            <input type="file" class="form-control-file">
-            <input type="file" class="form-control-file">
-            <input type="file" class="form-control-file">
-            <input type="file" class="form-control-file">
-            <small class="form-text text-muted">These images will be displayed on the animals profile.</small>
-        </div>
         <div id="updateAnimal-btns">
             <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" [disabled]="!rForm.valid">Submit</button>
             <button class="btn btn-lg btn-primary btn-block" type="button" id="cancel" (click)="Cancel()">Cancel</button>
         </div>
+    </form>
+    <!-- enctype="multipart/form-data" (ngSubmit)="addImages(iForm.value)"-->
+    <form [formGroup]="iForm" (ngSubmit)="addImages(iForm.value)" enctype="multipart/form-data" name="file" >
+    <div class="form-group">
+            <legend>Profile Images</legend>
+            <span class="input-group-addon">
+            <input type="file" class="form-control-file" #image1 placeholder="image1" name="file" id="image1" accept="image/*">
+            </span>
+            <span class="input-group-addon">
+            <input type="file" class="form-control-file" #image2 placeholder="image2" name="file" id="image2" accept="image/*">
+            </span>
+            <span class="input-group-addon">
+            <input type="file" class="form-control-file" #image3 name="file" placeholder="image3" id="image3" accept="image/*">
+            </span>
+            <span class="input-group-addon">
+            <input type="file" class="form-control-file" #image4 name="file" placeholder="image4" id="image4" accept="image/*">
+            </span>
+            <!-- <input type="file" class="form-control-file"> -->
+            <small class="form-text text-muted">These images will be displayed on the animals profile.</small>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" >Add Images</button>
     </form>
 </div>
