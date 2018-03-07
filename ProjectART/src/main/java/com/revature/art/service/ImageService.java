@@ -1,5 +1,7 @@
 package com.revature.art.service;
 
+import com.revature.art.domain.File;
+
 public interface ImageService {
 
 	// Eric
@@ -7,6 +9,6 @@ public interface ImageService {
 	// Evan
 
 	// James
-
+	public int addFile(File file);
 	// Gin
 }

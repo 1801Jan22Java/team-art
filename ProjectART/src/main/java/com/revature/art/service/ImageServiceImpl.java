@@ -10,6 +10,7 @@ import com.revature.art.dao.ApplicationDao;
 import com.revature.art.dao.FileDao;
 import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
+import com.revature.art.domain.File;
 
 // Don't move source code written by someone else. just call in your controller
 @Service
@@ -32,7 +33,11 @@ private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.cla
 	// Evan
 
 	// James
-
+	@Override
+	public int addFile(File file) {
+		int imageID = fileDao.add(file);
+	return imageID;
+	}
 	// Gin
 	
 }
