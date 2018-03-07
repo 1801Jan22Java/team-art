@@ -50,7 +50,17 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void saveOrUpdate(User u) {
-		HibernateUtil.getSession().saveOrUpdate(u);
+		Session s = HibernateUtil.getSession();
+		try
+		{
+			Transaction tx = s.beginTransaction();
+			s.saveOrUpdate(u);
+			tx.commit();
+		}
+		finally
+		{
+			s.close();
+		}
 	}
 	
 	@Override

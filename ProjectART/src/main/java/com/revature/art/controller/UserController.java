@@ -5,14 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature.art.HomeController;
 import com.revature.art.domain.User;
 import com.revature.art.service.AnimalService;
 import com.revature.art.service.ApplicationService;
@@ -39,8 +37,20 @@ public class UserController {
 	UserService userService;
 
 	// Eric
-
+	@PostMapping("/updateInfo")
+	public @ResponseBody void updateInfo(@RequestBody User user){
+		userService.updateInfo(user);
+		logger.info(user.toString());
+	}
+	
 	// Evan
+	@RequestMapping(value="/getInfo", method=RequestMethod.POST)
+	public @ResponseBody User getInfo(@RequestBody int userId) {
+		logger.debug("getInfo: userId: 	" + userId);
+		User user = userService.getUserById(userId);
+		logger.debug("user info:" + user.toString());
+		return user;
+	}
 
 	// James
 

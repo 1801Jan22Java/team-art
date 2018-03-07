@@ -50,7 +50,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return applicationDao.getById(app.getApplicationID());
 	}
 	// Evan
-
+	@Override
+	public List<Application> getAdpAplcListByUserId(int userId) {
+		List<Application> apps = applicationDao.getByUserId(userId);
+		return apps;
+	}
 	// James
 
 	// Gin
@@ -68,5 +72,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 		List<Application> apps = applicationDao.getAll();
 		return apps;
 	}
+
+
 
 }
