@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,8 @@ export class UpdateAnimalProfileComponent implements OnInit {
   image3: string = "";
   image4: string = "";
   animal: AnimalList;
+  headers: HttpHeaders;
+  
   @ViewChild('image1') image: ElementRef;
   //animal: Observable<AnimalList>;
   private _url: string = "http://localhost:8080/api/animal/updateAnimal";
@@ -104,17 +106,20 @@ export class UpdateAnimalProfileComponent implements OnInit {
     if (fileBrowser.files && fileBrowser.files[0]) {
       const formData = new FormData();
       formData.append("file", fileBrowser.files[0]);
+      
       //formData.append("file"), fileBrowser.
-      let headers = new Headers();
-     headers.append('Content-Type', 'multipart/form-data');
-     
+      /*this.headers = new HttpHeaders({
+        'Content-Type': 'multipart/form-data'
+       });*/
+       //'multipart/form-data'
       /*
      let fileList: FileList = iPost.target.files;
       if(fileList.length > 0) {
           let file: File = fileList[0];
           let formData:FormData = new FormData();
           formData.append('uploadFile', file, file.name); */
-      let httpSend = this.http.post(this.url_, fileBrowser.files[0]).subscribe(
+          //{headers: this.headers}
+      let httpSend = this.http.post(this.url_, formData ).subscribe(
         res => {
           console.log(res);
         },
@@ -125,6 +130,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
       );
       console.log("cool");
     }
+    console.log(fileBrowser.files[0]);
   }
 
 }
