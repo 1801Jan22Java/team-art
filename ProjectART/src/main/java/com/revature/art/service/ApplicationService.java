@@ -7,7 +7,7 @@ import com.revature.art.domain.Application;
 public interface ApplicationService {
 
 	// Eric
-	Application approveDenyApplication(Application a);
+	Application updateApplication(Application a);
 	//written by Gin but was commented out when I pulled
 	List<Application> getAdpAplcList();
  

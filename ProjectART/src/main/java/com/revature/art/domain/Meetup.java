@@ -49,7 +49,12 @@ public class Meetup implements Serializable{
 	@Column(name = "MEETUP_STATUS")
 	private String meetupStatus;
 
-	
+	@Override
+	public String toString() {
+		return "Meetup [meetupID=" + meetupID + ", meetupDate=" + meetupDate + ", animal=" + animal + ", user=" + user
+				+ ", meetupStatus=" + meetupStatus + "]";
+	}
+
 	public int getMeetupID() {
 		return meetupID;
 	}
@@ -88,12 +93,6 @@ public class Meetup implements Serializable{
 
 	public void setMeetupStatus(String meetupStatus) {
 		this.meetupStatus = meetupStatus;
-	}
-
-	@Override
-	public String toString() {
-		return "Meetup [meetupID=" + meetupID + ", meetupDate=" + meetupDate + ", animal=" + animal + ", user=" + user
-				+ ", meetupStatus=" + meetupStatus + "]";
 	}
 	
 	
