@@ -13,7 +13,7 @@ export class UpdateUserProfileComponent implements OnInit {
 
   user: User;
 
-  constructor(private userProfile: UserProfileComponent, private userService: UserService) {
+  constructor(public userProfile: UserProfileComponent, private userService: UserService) {
 }
 
 ngOnInit() {

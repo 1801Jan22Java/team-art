@@ -23,7 +23,7 @@ export class MeetupService {
   private ROOT_URL: string = 'http://localhost:8080/api/meetup';
 
   getMeetups(): Observable<Meetup[]> {
-    return this.http.get<Meetup[]>(this.ROOT_URL + '/meetupList.json');
+    return this.httpClient.get<Meetup[]>(this.ROOT_URL + '/meetupList.json');
   }
 
   // method for employees to approve or deny a visitor form
@@ -34,7 +34,7 @@ export class MeetupService {
     'Content-type': 'application/json'
   });
   approveDenyMeetup(buttonDecision) {
-    this.http.post(this.ROOT_URL + '/approveDeny.json', JSON.stringify(buttonDecision), {headers: this.headers}).subscribe(
+    this.httpClient.post(this.ROOT_URL + '/approveDeny.json', JSON.stringify(buttonDecision), {headers: this.headers}).subscribe(
       res => {
         console.log(res);
       },
