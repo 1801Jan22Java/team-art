@@ -47,4 +47,10 @@ public class AnimalServiceImpl implements AnimalService {
 	public void updateAnimal(Animal animal) {
 		animalDao.saveOrUpdate(animal);
 	}
+
+	@Override
+	public Animal getAnimalByID(int animalID) {
+		Animal animal = animalDao.getById(animalID);
+		return animal;
+	}
 }
