@@ -54,6 +54,48 @@ public class Meetup implements Serializable{
 		return "Meetup [meetupID=" + meetupID + ", meetupDate=" + meetupDate + ", animal=" + animal + ", user=" + user
 				+ ", meetupStatus=" + meetupStatus + "]";
 	}
+
+
+	public int getMeetupID() {
+		return meetupID;
+	}
+
+	public void setMeetupID(int meetupID) {
+		this.meetupID = meetupID;
+	}
+
+	public Timestamp getMeetupDate() {
+		return meetupDate;
+	}
+
+	public void setMeetupDate(Timestamp meetupDate) {
+		this.meetupDate = meetupDate;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getMeetupStatus() {
+		return meetupStatus;
+	}
+
+	public void setMeetupStatus(String meetupStatus) {
+		this.meetupStatus = meetupStatus;
+	}
+
 	
 	
 }
