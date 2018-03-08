@@ -13,22 +13,33 @@ import { Application } from '../../models/application';
 })
 export class UserProfileComponent implements OnInit {
 
+  public userID: number;
   public userInfo: User;
   public meetups: Meetup[];
   public applications: Application[];
   show = false;
 
   constructor(private userService: UserService, private meetupService: MeetupService,
-    private applicationService: ApplicationService) { }
+    private applicationService: ApplicationService) { 
+  
+  
+  }
 
 
   //+localStorage.getItem('userID')
   ngOnInit() {
-    this.userService.getInfo(43).subscribe(data => {
+    this.userID = +localStorage.getItem('userID');
+    this.userService.getInfo(this.userID).subscribe(data => {
       this.userInfo = data;
+      console.log( data);
     });
-    this.applicationService.getInfo(43).subscribe(data => this.applications = data);
-    this.meetupService.getInfo(43).subscribe(data => this.meetups = data);
+    this.applicationService.getInfo(this.userID).subscribe(data => {
+      this.applications = data;
+      console.log(data);
+    });
+    console.log('does it reach here?');
+    this.meetupService.getInfo(this.userID).subscribe(data => 
+      {this.meetups = data;  console.log(data)});
   }
 
   showUpdateForm(){

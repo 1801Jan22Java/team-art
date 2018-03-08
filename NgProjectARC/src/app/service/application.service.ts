@@ -9,7 +9,8 @@ import "rxjs/Rx";
 @Injectable()
 export class ApplicationService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+   			private http2 : Http) { }
 
 
 
@@ -52,4 +53,9 @@ export class ApplicationService {
     //console.log(this.http.get(this._url));
     return this.http.get<ApplicationList[]>(this._url);
   }
+  
+    sendAdoptApplication(url, data){
+    return this.http.post(url,  JSON.stringify(data), {headers: this.headers});
+  }
+  
 }

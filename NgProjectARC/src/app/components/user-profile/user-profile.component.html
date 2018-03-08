@@ -39,7 +39,7 @@
       <tbody>
         <tr *ngFor="let application of applications">
           <td>{{application.animal.name}}</td>
-          <td>{{application.appDate | date:'MM/dd/yyyy'}}</td>
+         <td>{{application.appDate | date:'MM/dd/yyyy'}}</td> 
           <td>{{application.appStatus}}</td>
         </tr>
       </tbody>
@@ -59,7 +59,7 @@
       <tbody>
         <tr *ngFor="let meetup of meetups">
           <td>{{meetup.animal.name}}</td>
-          <td>{{meetup.meetupDate | date:'short'}}</td>
+          <td>{{meetup.meetupDate | date:'short'}}</td> 
           <td>{{meetup.meetupStatus}}</td>
         </tr>
       </tbody>

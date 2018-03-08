@@ -10,7 +10,7 @@
     <app-approve-deny-adoption></app-approve-deny-adoption>
   </ng-container>
   
-  <div class="table-responsive-xl">
+  <div class="table-responsive-xl table-hover">
     <table class="table">
       <thead>
         <tr>
@@ -24,11 +24,11 @@
       <tbody>
           <ng-container *ngFor="let application of adoptionForms; let i = index">
           <tr *ngIf="show && (sortBy === application.appStatus || sortBy === 'All' || sortBy === '')">
-            <td><a (click)="showForm(application)" class="rowNum">{{i+1}}</a></td>
+            <td style="cursor: pointer;"><a (click)="showForm(application)" class="rowNum">{{i+1}}</a></td>
             <td>{{application.user.name}}</td>
             <td>{{application.animal.name}}</td>
             <td>{{application.appStatus}}</td>
-            <td>{{application.appDate | date:'MM/dd/yyyy'}}</td>
+           <!-- <td>{{application.appDate | date:'MM/dd/yyyy'}}</td>  -->
           </tr>
           </ng-container>
       </tbody>

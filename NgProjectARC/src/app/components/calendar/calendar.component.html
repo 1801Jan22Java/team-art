@@ -1,3 +1,40 @@
-<p>
-  calendar works!
-</p>
+<br />
+<br />
+<br />
+<br />
+
+<div class="row">
+	<div class="alert alert-primary" style="width: 100%; text-align: center;">
+		<strong>Visitors' Schedule Calendar</strong>
+	</div>
+</div>
+
+<div class="row">
+	<table class="table table-hover table-bordered" style="text-align: center;">
+ 
+		<thead style="width: 100%; " class="table-info">
+			<th style="width: 60%;">
+				<h2>{{sMonth}}  /  {{sYear}} </h2>
+			</th>
+			<th >
+				<button (click)="movePrev()" class="btn btn-dark btn-lg">Prev</button>
+				<button (click)="moveNext()" class="btn btn-dark btn-lg">Next</button>
+			</th>
+		</thead>
+		<tbody  >
+		
+		 <tr>
+		 	<td > Date </td>
+		 	<td >Number of Visitors</td>
+		 </tr>
+		 <!-- MeetUp - day/ totalVisitor -->
+		 
+		 <tr *ngFor="let meetup of meetups " >
+		 	<td><b>{{sDate}}-{{meetup.day}}</b></td> 
+		 	<td><a routerLink="/visits/{{sDate}}-{{meetup.day}}" role="button" class="btn btn-success">
+		 		{{meetup.totalVisitor}}</a>
+		 	</td>
+		 </tr>
+		</tbody>
+	</table>
+</div>

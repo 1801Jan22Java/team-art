@@ -7,7 +7,7 @@
         </div>
         <div class="form-group">
            <select class="form-control" formControlName = "mat" name="maturity"  >
-                <option>Infant</option>
+                <option selected="selected">Infant</option>
                 <option>Young</option>
                 <option>Adult</option>                 
                 <option>Mature</option>
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <select class="form-control" formControlName = "spec" name="pettype"  >
-                <option>Dog</option>
+                <option selected="selected">Dog</option>
                 <option>Cat</option>
                 <option>Octopus</option>
                 <option>Rabbit</option>
@@ -66,4 +66,7 @@
             </div>
             <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" >Add Images</button>
         </form>
+        
+        <input type="file" (change)="onFileSelected($event)">
+        <button type="button" >upload</button>
 </div>

@@ -12,12 +12,13 @@ import { User } from '../../models/user';
 export class UpdateUserProfileComponent implements OnInit {
 
   user: User;
-
+  public userID: number;
   constructor(public userProfile: UserProfileComponent, private userService: UserService) {
 }
 
 ngOnInit() {
-  this.userService.getInfo(43).subscribe(data => {
+  this.userID = +localStorage.getItem('userID');
+  this.userService.getInfo(this.userID).subscribe(data => {
     this.user = data;
   });
 }

@@ -1,46 +1,71 @@
-<div id="meetup-container">
-  <h1>Meetups</h1>
-  <div class="sort">
-    <button class="btn btn-lg btn-primary btn-block allBtn" (click)="sortRows('All')">All</button>
-    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Approved')">Approved</button>
-    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Denied')">Denied</button>
-    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Pending')">Pending</button>
-  </div>
-
-  <div id="meetup-forms">
-
-    <div class="table-responsive-lg table-striped">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Animal</th>
-            <th scope="col">Visitor</th>
-            <th scope="col">Status</th>
-            <th scope="col">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngFor="let application of meetupForms; let i = index">
-            <tr *ngIf="sortBy === application.meetupStatus || sortBy === 'All' || sortBy === ''">
-              <td>{{application.animal.name}}</td>
-              <td>{{application.user.name}}</td>
-              <td>{{application.meetupStatus}}</td>
-              <td id="time-col">{{application.meetupDate | date:'shortTime'}}</td>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
-    </div>
-    <div class="colm-2">
-      <h2>Resolve</h2>
-        <div *ngFor="let application of meetupForms">
-          <form (ngSubmit)="onSubmit(application)" class="approveDenyButtons" *ngIf="sortBy === application.meetupStatus || sortBy === 'All' || sortBy === ''">
-            <button (click)="approve(application)" class="btn btn-lg btn-primary btn-block form-control submit" type="submit" value="Approved">Approve</button>
-            <button (click)="deny(application)" class="btn btn-lg btn-primary btn-block form-control denied" type="submit" value="Denied">Deny</button>
-          </form>
-        </div>
-    </div>
-
-  </div>
-
+<br/><br/><br/>
+<div class="row">
+	<div class="alert alert-warning" style="width: 100%; text-align: center;">
+		<strong><h4> Date:  {{sDate}} </h4></strong>
+	</div>
 </div>
+<div class="row">
+	<div class="alert alert-primary" style="width: 100%; text-align: center;">
+		<strong><h4>Schedules on Pending</h4></strong>
+	</div>
+</div>
+ 
+<div class="row">
+	<table class="table table-bordered"  >
+	<thead>
+	<tr>
+		<th>Animal Name</th>
+		<th>User Name</th>
+		<th>Schedule Time</th>
+		<th>Approve</th>
+		<th>Deny</th>
+	</tr>
+	</thead>
+	<tbody>
+	    <ng-container *ngFor="let meetup of meetups">
+		    <ng-container *ngIf="meetup.meetupStatus == 'Pending'">
+		      <tr>
+		        <td  style="width: 20%;">{{meetup.animal.name}}</td>
+		        <td style="width: 20%;">{{meetup.user.name}}</td>
+		        <td style="width: 20%;">{{meetup.meetupDate | date:'shortTime'}}</td>
+		        <td style="width: 20%;"><button class="btn btn-dark btn-lg"  (click)="approve(meetup)"  type="submit" value="Approved">Accept</button></td>
+		        <td style="width: 20%;"><button class="btn btn-dark btn-lg" (click)="deny(meetup)"  type="submit" value="Denied">Deny</button></td>
+		      </tr>
+	    	</ng-container>
+	    </ng-container>
+	</tbody>
+	  </table>
+</div>
+ 
+<br/>
+<div class="row">
+	<div class="alert alert-primary" style="width: 100%; text-align: center;">
+		<strong><h4>Resolved Schedules</h4></strong>
+	</div>
+</div>
+
+<div class="row">
+	<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Animal</th>
+        <th>Visitor</th>
+        <th>Time</th>
+        <th >Reserve Status</th>
+      </tr>
+    </thead>
+    <tbody>
+     <ng-container *ngFor="let meetup of meetups">
+    <ng-container *ngIf="meetup.meetupStatus != 'Pending'">
+      <tr>
+        <td>{{meetup.animal.name}}</td>
+        <td>{{meetup.user.name}}</td>
+        <td>{{meetup.meetupDate | date:'shortTime'}}</td>
+        <td><button disabled class="btn btn-dark btn-lg">{{meetup.meetupStatus}}</button></td>
+      </tr>
+    </ng-container>
+    </ng-container>
+    </tbody>
+  </table>
+</div>
+ 

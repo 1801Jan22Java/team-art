@@ -44,6 +44,47 @@ export class MeetupService {
     );
   }
   // Gin
+  // get multiple visitor list by Day
+  private meetupsByDay : string = "http://localhost:8080/api/meetup/visitorsByDay.json";
+  getMeetupsByDay(sDate): Observable<MeetUp[]>{
+    return this.httpClient.get<MeetUp[]>(this.meetupsByDay+"?sDate="+sDate);
+  }
+  // get multiple visitor list 
+  private meetups : string = "http://localhost:8080/api/meetup/calendar.json";
+  getMeetupList(sDate): Observable<MeetUpByDay[]>{
+    return this.httpClient.get<MeetUpByDay[]>(this.meetups+"?sDate="+sDate );
+  }
+  
+  // send Meet up Form
+  sendMeetupForm(url, data){
+    return this.httpClient.post(url,  JSON.stringify(data), {headers: this.headers})
+  }
+  
+}
 
-
+export interface MeetUp {
+  meetupID:number;
+  meetupDate: string;
+  meetupStatus: string;
+  animal: Animal;
+  user: User;
+}
+export interface Animal {
+  animalID: number;
+  name: string;
+  maturity: string;
+  gender: string;
+  adoptStatus: string;
+  species: string;
+}
+export interface User {
+  userID: number;
+  usertype: number;
+  email: string;
+  password : string;
+  name: string;
+}
+export interface MeetUpByDay {
+  totalVisitor: string;
+  day: string;
 }

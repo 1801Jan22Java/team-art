@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 // Components
 import { CalendarComponent } from '../calendar/calendar.component';
 
@@ -23,7 +24,16 @@ export class ManageVisitorFormsComponent implements OnInit {
   selectedForm: Meetup;
   sortBy = '';
 
-  constructor(/*private calendar: CalendarComponent,*/ private meetupService: MeetupService, private http: HttpClient, private fb: FormBuilder) { }
+ public sDate: string;
+  public meetups = [];
+  public updateMeetup = {};
+  
+  constructor(
+  	private meetupService: MeetupService, 
+  	private activatedRoute: ActivatedRoute,
+  	private http: HttpClient, private fb: FormBuilder) { 
+  	this.sDate = activatedRoute.snapshot.params['sDate'];
+   }
 
   ngOnInit() {
     this.meetupService.getMeetups().subscribe(data => {
@@ -31,8 +41,17 @@ export class ManageVisitorFormsComponent implements OnInit {
       console.log(data);
       error => console.log("Error: "+error);
     });
+    
+    this.getVisitorsByDay();
   }
 
+	// Gin
+  getVisitorsByDay(){
+    this.meetupService.getMeetupsByDay(this.sDate).subscribe(
+      data => {this.meetups = data; console.log(this.meetups)}
+    
+    )}
+    // Eric
   sortRows(type) {
     this.sortBy = type;
   }
@@ -40,15 +59,18 @@ export class ManageVisitorFormsComponent implements OnInit {
   approve(form) {
     this.selectedForm = form;
     this.selectedForm.meetupStatus = 'Approved';
+    this.onSubmit(form);
   }
 
   deny(form) {
     this.selectedForm = form;
     this.selectedForm.meetupStatus = 'Denied';
+    this.onSubmit(form);
   }
 
   onSubmit(form) {
     this.selectedForm = form;
     this.meetupService.approveDenyMeetup(form);
+    alert('Status is changed to ' +  this.selectedForm.meetupStatus + ". ");
   }
 }

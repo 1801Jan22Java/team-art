@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {ManagelistOfAnimalsComponent } from '../managelist-of-animals/managelist-of-animals.component'
 import {File} from '../../models/file';
 import { AnimalService } from '../../service/animal.service';
+
 //James'!!!!!!! 
 @Component({
   selector: 'app-register-animal-form',
@@ -68,6 +69,10 @@ export class RegisterAnimalFormComponent implements OnInit {
     
   }
 
+  onFileSelected(event){
+    console.log(event);
+  }
+  
   addPost(post) {
     this.pname = post.pname;
     this.mat = post.mat;

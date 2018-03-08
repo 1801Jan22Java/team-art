@@ -4,12 +4,14 @@
 <div class="row">
 	<br />
 	<!--show only if registered user and animal is still available. -->
-	<a class="btn btn-primary" role="button" routerLink="/visitorForm">Schedule Meeting</a>&nbsp;
+	<a *ngIf="animal.adoptStatus == 'Available'   " class="btn btn-primary" role="button" 
+	routerLink="/visitorForm/{{animal.animalID}}/{{animal.name}}">Schedule Meeting</a>&nbsp;
 
 	<!-- show only one of them -->
-	<a class="btn btn-primary" role="button" routerLink="/adoptionForm">Adopt Me!</a>&nbsp;
-	<!-- <button type="button" class="btn btn-primary" disabled>Adopted</button>
-  <button type="button" class="btn btn-primary" disabled>Pending</button> -->
+	<a *ngIf="animal.adoptStatus == 'Available'  "  class="btn btn-primary" role="button" 
+	routerLink="/adoptionForm/{{animal.animalID}}/{{animal.name}}">Adopt Me!</a>&nbsp;
+	<button *ngIf="animal.adoptStatus == 'Adopted' " disabled type="button" class="btn btn-primary" disabled>Adopted</button>
+  <button *ngIf="animal.adoptStatus == 'Pending' " disabled type="button" class="btn btn-primary" disabled>Pending</button> 
 </div>
 
 <br />

@@ -1,3 +1,4 @@
+import { MeetupService } from '../../service/meetup.service';
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from '../../service/application.service';
 import { ApproveDenyAdoptionComponent } from '../approve-deny-adoption/approve-deny-adoption.component';

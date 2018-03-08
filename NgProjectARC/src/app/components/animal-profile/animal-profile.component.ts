@@ -26,16 +26,13 @@ export class AnimalProfileComponent implements OnInit {
     this.getAnimalProfile();
   }
   getAnimalProfile(){
-    console.log("animal Id? : "+ this.animalID);
     this.animalService.getAnimalWithImgs(this.animalID).subscribe(data => 
       {this.animal = data.animal;
       this.files = data.files;
       this.initFilename = data.files[0].filename;
       this.htmlText = "<img src='http://localhost:8080/resources/image/"+ this.initFilename 
         +"' height='80%' width='auto'>";
-      
-    //console.log("I got data:"+ JSON.stringify(data));
-      //console.log("files?"+data.files);
+      //console.log("animal status?" + data.animal.adoptStatus);
     });
   }
   
@@ -47,3 +44,4 @@ export class AnimalProfileComponent implements OnInit {
   }
 
 }
+

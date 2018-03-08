@@ -23,7 +23,6 @@ import { RegisterAnimalFormComponent } from './components/register-animal-form/r
 import { UpdateAnimalProfileComponent } from './components/update-animal-profile/update-animal-profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ApproveDenyAdoptionComponent } from './components/approve-deny-adoption/approve-deny-adoption.component';
-import { LoginGuard } from './components/login-form/login.guard';
 import {ApplicationService} from './service/application.service';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
@@ -64,7 +63,8 @@ import { ImageService } from './service/image.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ApplicationService, UserService, MeetupService, AnimalService, ImageService, LoginGuard,
+  providers: [ApplicationService, UserService, MeetupService, 
+    AnimalService, ImageService, 
   NavbarComponent],
   bootstrap: [AppComponent]
 })
