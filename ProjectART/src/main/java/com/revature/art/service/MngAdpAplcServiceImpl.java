@@ -10,10 +10,10 @@ import com.revature.art.dao.ApplicationDao;
 import com.revature.art.dao.FileDao;
 import com.revature.art.dao.MeetupDao;
 import com.revature.art.dao.UserDao;
-import com.revature.art.domain.Animal;
+import com.revature.art.domain.Application;
 
 @Service
-public class AnimalServiceImpl implements AnimalService {
+public class MngAdpAplcServiceImpl implements MngAdpAplcService {
 
 	@Autowired
 	private AnimalDao animalDao;
@@ -27,30 +27,10 @@ public class AnimalServiceImpl implements AnimalService {
 	private UserDao userDao;
 	
 	@Override
-	public void testMethod() {
-		
+	public List<Application> getAdpAplcList() {
+
+		List<Application> apps = applicationDao.getAll();
+		return apps;
 	}
 
-	@Override
-	public List<Animal> getAllAnimals() {
-		List<Animal> animals = animalDao.getAll();
-		return animals;
-	}
-
-	@Override
-	public int addAnimal(Animal animal) {
-		int animalID = animalDao.add(animal);
-		return animalID;
-	}
-	
-	@Override
-	public void updateAnimal(Animal animal) {
-		animalDao.saveOrUpdate(animal);
-	}
-
-	@Override
-	public Animal getAnimalByID(int animalID) {
-		Animal animal = animalDao.getById(animalID);
-		return animal;
-	}
 }

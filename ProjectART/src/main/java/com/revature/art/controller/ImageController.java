@@ -1,7 +1,6 @@
 package com.revature.art.controller;
 
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,10 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.revature.art.dao.AnimalDao;
 import com.revature.art.domain.Animal;
 //import com.revature.art.domain.File;
 import com.revature.art.service.AnimalService;
@@ -62,17 +62,16 @@ public class ImageController {
 	public @ResponseBody int addFile(@RequestBody com.revature.art.domain.File file){
 		int imageID =imageService.addFile(file);
 		logger.info(file.toString());
-		System.out.println(imageID);
 		return imageID;
 	}
 	//, headers = "'Content-Type': 'multipart/form-data'"
 	//@RequestParam (value="file") MultipartFile file
 	@PostMapping(value = "/physicalImage")
 	public @ResponseBody String physicalFile(@RequestParam (value="file") MultipartFile file, Model model) throws IOException {
-		String directory = "C:\\ART Project\\team-art\\ProjectART\\src\\main\\webapp\\WEB-INF\\images";
+		String directory = "C:\\ART Project\\ProjectART\\src\\main\\webapp\\WEB-INF\\images\\";
+		//String directory = "http://localhost:8080/resources/image/";
 		int maxSize = 1024 * 1024 * 20;
 		String encoding = "UTF-8";
-		//System.out.println(aniID);
 		//MultipartRequest multiRequest = new MultipartRequest(file, directory, maxSize, encoding);
 		if (!file.getOriginalFilename().isEmpty()) {
             BufferedOutputStream outputStream = new BufferedOutputStream(
@@ -84,6 +83,7 @@ public class ImageController {
             outputStream.close();
          } else {
             model.addAttribute("msg", "Please select at least one file..");
+            System.out.println("booboo");
             return "fileUploadForm";
          }
    

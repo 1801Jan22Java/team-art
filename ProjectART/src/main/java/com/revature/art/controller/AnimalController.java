@@ -53,10 +53,11 @@ public class AnimalController {
 	}
 	
 	@PostMapping("/addAnimal")
-	public @ResponseBody int addAnimal(@RequestBody Animal animal){
+	public @ResponseBody Animal addAnimal(@RequestBody Animal animal){
 		int animalID = animalService.addAnimal(animal);
 		logger.info(animal.toString());
-		return animalID;
+		Animal animalFinal = animalService.getAnimalByID(animalID);
+		return animalFinal;
 	}
 	
 	@PostMapping("/updateAnimal")
