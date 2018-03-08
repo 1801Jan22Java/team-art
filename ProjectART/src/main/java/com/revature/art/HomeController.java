@@ -93,7 +93,7 @@ Map<String, User> users = new HashMap<String, User>();
 		model.addAttribute("serverTime", formattedDate );
 		
 		
-		return "home";
+		return "index.html";
 		
 	}
 	

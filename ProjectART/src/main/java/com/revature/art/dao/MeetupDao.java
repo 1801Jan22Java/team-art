@@ -1,5 +1,6 @@
 package com.revature.art.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.revature.art.domain.Meetup;
@@ -11,4 +12,8 @@ public interface MeetupDao {
 	public void delete(Meetup m);
 	public void merge(Meetup m);
 	public void saveOrUpdate(Meetup m);
+	
+	// Gin
+	public List<HashMap<String,Object>>  getNumberOfVisitors(String sDate);
+	public List<Meetup>  getVisitorsByDay(String sDate);
 }
