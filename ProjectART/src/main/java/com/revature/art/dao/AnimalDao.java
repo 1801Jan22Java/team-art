@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.revature.art.domain.*;
 
-
-
 public interface AnimalDao {
 	public List<Animal> getAll();
 	public Animal getById(int id);

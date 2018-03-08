@@ -130,3 +130,6 @@ ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.prop
 *.MF
 *.properties
 *.xml
+ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
+ProjectART/src/main/java/com/revature/art/dao/AnimalDao.java
+ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
