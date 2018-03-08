@@ -8,8 +8,9 @@ import { AnimalList } from "../managelist-of-animals/managelist-of-animals.compo
 import { ManagelistOfAnimalsComponent } from "../managelist-of-animals/managelist-of-animals.component";
 import { AnimalService } from "../../service/animal.service";
 import { Animal } from "../../models/animal";
-
+import {File} from '../../models/file';
 //James'!!!!!!!
+
 @Component({
   selector: "app-update-animal-profile",
   templateUrl: "./update-animal-profile.component.html",
@@ -27,9 +28,6 @@ export class UpdateAnimalProfileComponent implements OnInit {
   pname: string = "";
   spec: string = "";
   image1: string = "";
-  image2: string = "";
-  image3: string = "";
-  image4: string = "";
   animal: AnimalList;
   headers: HttpHeaders;
 
@@ -41,10 +39,21 @@ export class UpdateAnimalProfileComponent implements OnInit {
   species: string;
   // Eric End
 
-  @ViewChild("image1") image: ElementRef;
+  aniData: number = 0;
+  fileName: string = "";
+  naming: any;
+  tempAnimal: AnimalList;
+  ourFile: File;
+  
+  @ViewChild('image1') im0: ElementRef;
+  @ViewChild('image2') im1: ElementRef;
+  @ViewChild('image3') im2: ElementRef;
+  @ViewChild('image4') im3: ElementRef;
+
   //animal: Observable<AnimalList>;
   private _url: string = "http://localhost:8080/api/animal/updateAnimal";
   private url_: string = "http://localhost:8080/api/image/physicalImage";
+  private _url_ : string = "http://localhost:8080/api/image/mapToAnimal";
 
   constructor(
     private fb: FormBuilder,
@@ -68,6 +77,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
     });
   }
   ngOnInit() {
+
     //console.log(this.image);
     this.animalService
       .getAnimalById(this.animalList.currentAnimal.animalID)
@@ -75,6 +85,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
         this.currentAnimal = data;
       });
     this.toggle = true;
+
   }
 
   addPost(post) {
@@ -108,6 +119,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
         console.log(err);
       }
     );
+
     //console.log(httpSend);
     this.hide();
   }
@@ -116,43 +128,74 @@ export class UpdateAnimalProfileComponent implements OnInit {
     //console.log("yay")
     this.router.navigate(["/animalList"]);
   }
+    /*
+      if (fileBrowser.files[1])
+        formData.append("File", fileBrowser.files[1]);
+        if (fileBrowser.files[2])
+        formData.append("File", fileBrowser.files[2]);
+        if (fileBrowser.files[3])
+        formData.append("File", fileBrowser.files[3]);
+        */
 
-  addImages(iPost) {
-    this.image1 = iPost.image1;
-    this.image2 = iPost.image2;
-    this.image3 = iPost.image3;
-    this.image4 = iPost.image4;
-    let fileBrowser = this.image.nativeElement;
-    console.log(fileBrowser.files[0]);
-    if (fileBrowser.files && fileBrowser.files[0]) {
+    addImages(iPost){
+     // this.image1 = iPost.image1;
       const formData = new FormData();
-      formData.append("file", fileBrowser.files[0]);
-
-      //formData.append("file"), fileBrowser.
-      /*this.headers = new HttpHeaders({
-        'Content-Type': 'multipart/form-data'
-       });*/
-      //'multipart/form-data'
-      /*
-     let fileList: FileList = iPost.target.files;
-      if(fileList.length > 0) {
-          let file: File = fileList[0];
-          let formData:FormData = new FormData();
-          formData.append('uploadFile', file, file.name); */
-      //{headers: this.headers}
-      let httpSend = this.http.post(this.url_, formData).subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log("Error occurred");
-          console.log(err);
-        }
-      );
-      console.log("cool");
+      let fileBrowser = [
+        this.im0.nativeElement,
+        this.im1.nativeElement,
+        this.im2.nativeElement,
+        this.im3.nativeElement
+      ]
+   
+      for (let i = 0; i < 4; i++){
+        if (fileBrowser[i].files && fileBrowser[i].files[0]) {
+          formData.append("file", fileBrowser[i].files[0]);
+           
+          let httpSend = this.http.post(this.url_, formData ).subscribe(
+            res => {
+              console.log(res);
+            },
+            err => {
+             console.log("Error occurred");
+              console.log(err);
+            }
+          );
+          console.log("cool");
+        
+        console.log(fileBrowser[i].files[0]);
+    
+        this.aniData = 63;
+        this.naming = fileBrowser[i].files[0].name;
+        this.tempAnimal = {
+          animalID: this.aniData,
+          name: null,
+          maturity: null,
+          gender: null,
+          adoptStatus: null,
+          species: null
+        };
+    
+        this.ourFile = {
+            fileID: null,
+            filename: this.naming,
+            animal: this.tempAnimal
+        };
+    
+        httpSend = this.http.post(this._url_, this.ourFile ).subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+           console.log("Error occurred");
+            console.log(err);
+          }
+        );
+      
+      }
+      }
+    
     }
-    console.log(fileBrowser.files[0]);
-    this.hide();
+  this.hide();
   }
 
   // Eric Begin
@@ -167,6 +210,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
       console.log(this.currentAnimal.name);
     }
   }
+
 
   //Eric End
 }

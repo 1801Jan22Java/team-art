@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class MeetupService {
+
+  constructor() { }
+
+   //Evan
+  
+  
+  // James
+  
+  
+  // Eric
+  
+  
+  // Gin
+  
+  
+}

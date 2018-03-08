@@ -1,0 +1,34 @@
+<div id="adoption-forms">
+  <h1>Adoption Forms</h1>
+  <div class="sort">
+      <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('All')">All</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Approved')">Approved</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Denied')">Denied</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Pending')">Pending</button>
+  </div>
+  <app-approve-deny-adoption></app-approve-deny-adoption>
+  <div class="table-responsive-xl">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Applicant</th>
+          <th scope="col">Animal</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+          <ng-container *ngFor="let application of applications; let i = index">
+          <tr *ngIf="show && (sortBy === form.status || sortBy === '' )">
+            <td><a (click)="showForm(form)" href="#adoptionForm-container">{{i+1}}</a></td>
+            <td>{{application.applicantName}}</td>
+            <td>{{application.animalName}}</td>
+            <td>{{application.status}}</td>
+            <td>{{application.date}}</td>
+          </tr>
+          </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
