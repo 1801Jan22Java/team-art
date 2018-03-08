@@ -31,7 +31,8 @@ const routes: Routes = [
   { path: 'updateAnimalProfile', component : UpdateAnimalProfileComponent},
   { path: 'updateUserProfile', component : UpdateUserProfileComponent},
   { path: 'registerAnimalForm', component : RegisterAnimalFormComponent},
-  { path: 'registerUserForm', component : RegisterUserFormComponent}
+  { path: 'registerUserForm', component : RegisterUserFormComponent},
+  { path: '**', redirectTo: '/homepage' }
 ];
 
 @NgModule({
