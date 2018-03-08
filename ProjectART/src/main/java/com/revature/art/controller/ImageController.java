@@ -57,11 +57,11 @@ public class ImageController {
 	// Evan
 	
 	// James
-	@PostMapping("/addImage")
-	public @ResponseBody int addFile(@RequestBody File file){
-		//int imageID =imageService.addFile(file);
+	@PostMapping("/mapToAnimal")
+	public @ResponseBody int addFile(@RequestBody com.revature.art.domain.File file){
+		int imageID =imageService.addFile(file);
 		logger.info(file.toString());
-		return 0;
+		return imageID;
 	}
 	//, headers = "'Content-Type': 'multipart/form-data'"
 	//@RequestParam (value="file") MultipartFile file
