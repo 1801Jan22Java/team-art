@@ -143,11 +143,11 @@ public class Application {
 		this.user = user;
 	}
 
-	public Timestamp appDate() {
+	public Timestamp getAppDate() {
 		return appDate;
 	}
 
-	public void setLocalDateTime(Timestamp appDate) {
+	public void setAppDate(Timestamp appDate) {
 		this.appDate = appDate;
 	}
 

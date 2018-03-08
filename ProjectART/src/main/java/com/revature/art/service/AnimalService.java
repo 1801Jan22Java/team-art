@@ -8,11 +8,14 @@ import com.revature.art.domain.File;
 public interface AnimalService {
 
 	// Eric
-
+	public Animal getAnimalByID(int animalID);
 	// Evan
 
 	// James
 	public List<Animal> getAllAnimals();
+	public int addAnimal(Animal animal);
+	public void updateAnimal(Animal animal);
+	
 	
 	// Gin
 	public List<File> getAnimalsWithFile();

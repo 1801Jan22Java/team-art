@@ -38,10 +38,27 @@ public class MeetupServiceImpl implements MeetupService {
 	private MeetupDao meetupDao;
 	@Autowired
 	private UserDao userDao;
+
 	// Eric
+	public List<Meetup> getMeetups() {
+		return meetupDao.getAll();
+	}
+
+	public Meetup approveDenyMeetup(Meetup m) {
+		Meetup meetup = meetupDao.getById(m.getMeetupID());
+		if (m.getMeetupStatus().equals("Approved") || m.getMeetupStatus().equals("Denied")) {
+			meetup.setMeetupStatus(m.getMeetupStatus());
+			meetupDao.saveOrUpdate(meetup);
+		}
+		return meetupDao.getById(meetup.getMeetupID());
+	}
 
 	// Evan
-
+	@Override
+	public List<Meetup> getMeetupListByUserId(int userId) {
+		List<Meetup> mtup = meetupDao.getByUserId(userId);
+		return mtup;
+	}
 	// James
 
 	// Gin
@@ -57,12 +74,12 @@ public class MeetupServiceImpl implements MeetupService {
 
 		String day = (String) visitorForm.get("meetupday");
 		String time = (String) visitorForm.get("meetuptime");
-		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd mm:ss");		// case sensitive!!
+		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd mm:ss"); // case sensitive!!
 		try {
 			Date parsedDate = sm.parse(day + " " + time);
 			Timestamp visitTime = new Timestamp(parsedDate.getTime());
 			System.out.println("what DATE???" + day + " " + time + " / " + visitTime);
-			
+
 			m.setMeetupDate(visitTime);
 			m.setMeetupStatus("Pending");
 			meetupDao.add(m);
@@ -77,16 +94,16 @@ public class MeetupServiceImpl implements MeetupService {
 	}
 
 	@Override
-	public List<HashMap<String,Object>> getVisitorsNumberByYearMonth(String sDate) {
-		//get year/month, then get number of visitors on day
-		 
-		List<HashMap<String,Object>> list = meetupDao.getNumberOfVisitors(sDate);
-		
+	public List<HashMap<String, Object>> getVisitorsNumberByYearMonth(String sDate) {
+		// get year/month, then get number of visitors on day
+
+		List<HashMap<String, Object>> list = meetupDao.getNumberOfVisitors(sDate);
+
 		return list;
 	}
 
 	@Override
-	public  List<Meetup>  getVisitorsByDay(String sDate) {
+	public List<Meetup> getVisitorsByDay(String sDate) {
 		List<Meetup> list = meetupDao.getVisitorsByDay(sDate);
 		return list;
 	}

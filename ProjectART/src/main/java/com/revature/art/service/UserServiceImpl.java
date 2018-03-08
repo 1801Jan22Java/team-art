@@ -31,6 +31,29 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 	
+	
+	// Eric
+	@Override
+	public void updateInfo(User user) {
+		User u = userDao.getById(user.getUserID());
+		if(!user.getEmail().equals("") && user.getEmail().length() < 50 && !u.getEmail().equals(user.getEmail().trim()))
+			u.setEmail(user.getEmail().trim());
+		if(!user.getName().equals("") && user.getName().length() < 35 && !u.getName().equals(user.getName().trim()))
+			u.setName(user.getName().trim());
+		if(!user.getPassword().equals("") && user.getPassword().length() < 25 && !u.getPassword().equals(user.getPassword().trim()))
+			u.setPassword(user.getPassword().trim());
+		userDao.saveOrUpdate(user);
+	}
+
+		
+	// Evan
+	@Override
+	public User getUserById(int userId) {
+		User user = userDao.getById(userId);
+		return user;
+	}
+	
+	// Gin
 	@Override
 	public int addUserInfo(User user) {
 		int userId = userDao.add(user);
@@ -39,19 +62,20 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User getUserInfo(User user) {
-		// 1. check if exist user Id
-		
-		// 2. check if it's right password.
 		List<User> user1= userDao.getUserByEmail(user.getEmail());
 		if (user1.size() == 0) {
 			logger.debug("user doesn't exist. wrong ID!");
+			user =new User();
 		} else {
 			 List<User> user2 = userDao.ifRightPassword(user);
 			 if (user2.size() > 0) {
 				 logger.debug("right password.");
 				 user = user2.get(0);
+			 } else {
+				 user = new User();
 			 }
 		}
 		return user;
 	}
+
 }

@@ -45,7 +45,14 @@ public class ApplicationController {
 	// Eric
 
 	// Evan
-
+	@RequestMapping(value="/applicationListById", method=RequestMethod.POST)
+	public @ResponseBody List<Application> getAdpAplcListById(@RequestBody int userId) {
+		logger.debug("getInfo: userId: " + userId);
+		List<Application> list = applicationService.getAdpAplcListByUserId(userId);
+		System.out.println(list);
+		logger.debug("application list: " + list.toString());
+		return list;
+	}
 	// James
 
 	// Gin
@@ -64,3 +71,4 @@ public class ApplicationController {
 	}
 
 }
+

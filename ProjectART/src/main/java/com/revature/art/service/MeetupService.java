@@ -8,9 +8,10 @@ import com.revature.art.domain.Meetup;
 public interface MeetupService {
 
 	// Eric
-
+	public List<Meetup> getMeetups();
+	public Meetup approveDenyMeetup(Meetup m);
 	// Evan
-
+	public List<Meetup> getMeetupListByUserId(int userId);
 	// James
 
 	// Gin

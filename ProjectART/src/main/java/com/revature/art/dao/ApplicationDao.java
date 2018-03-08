@@ -7,6 +7,7 @@ import com.revature.art.domain.*;
 public interface ApplicationDao {
 	public List<Application> getAll();
 	public Application getById(int id);
+	public List<Application> getByUserId(int userId);
 	public int add(Application a);
 	public void delete(Application a);
 	public void merge(Application a);

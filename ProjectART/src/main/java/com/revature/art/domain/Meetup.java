@@ -24,7 +24,7 @@ public class Meetup implements Serializable{
 		this.user = user;
 		this.meetupStatus = meetupStatus;
 	}
-	
+
 	public Meetup(int meetupID, Timestamp meetupDate, Animal animal, User user, String meetupStatus) {
 		super();
 		this.meetupID = meetupID;
@@ -99,6 +99,6 @@ public class Meetup implements Serializable{
 		return "Meetup [meetupID=" + meetupID + ", meetupDate=" + meetupDate + ", animal=" + animal + ", user=" + user
 				+ ", meetupStatus=" + meetupStatus + "]";
 	}
-	
-	
+
+		
 }

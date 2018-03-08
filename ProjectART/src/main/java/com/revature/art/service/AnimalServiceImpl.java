@@ -34,17 +34,30 @@ public class AnimalServiceImpl implements AnimalService {
 	@Autowired
 	private UserDao userDao;
 	
-	// Eric
 
-	// Evan
 
+	//Eric
+	@Override
+	public Animal getAnimalByID(int animalID) {
+		Animal animal = animalDao.getById(animalID);
+		return animal;
+	}
 	// James
 	@Override
 	public List<Animal> getAllAnimals() {
 		List<Animal> animals = animalDao.getAll();
 		return animals;
 	}
+	@Override
+	public int addAnimal(Animal animal) {
+		int animalID = animalDao.add(animal);
+		return animalID;
+	}
 	
+	@Override
+	public void updateAnimal(Animal animal) {
+		animalDao.saveOrUpdate(animal);
+	}
 	//Gin
 	// get multiple animals with a image 
 	@Override
@@ -60,6 +73,7 @@ public class AnimalServiceImpl implements AnimalService {
 		return list;
 	}
 	
+	
 	//get an animal with multiple images
 	@Override
 	public HashMap<String,Object> getAnimalWithFilesByAnimalID(int animalID) {
@@ -72,3 +86,4 @@ public class AnimalServiceImpl implements AnimalService {
 	}
 	 
 }
+
