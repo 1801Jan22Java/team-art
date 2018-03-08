@@ -84,6 +84,7 @@ public class ImageController {
             outputStream.close();
          } else {
             model.addAttribute("msg", "Please select at least one file..");
+<<<<<<< HEAD
             System.out.println("booboo");
             return "fileUploadForm";
          }
