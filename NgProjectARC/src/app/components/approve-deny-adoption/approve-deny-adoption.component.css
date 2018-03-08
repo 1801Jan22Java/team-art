@@ -1,15 +1,25 @@
+#adoptionForm-container{
+    margin-top: 35px;
+    margin-bottom: 25px;
+    min-width: 420px;
+}
+
 .form-manageAdoptionForm{
-    margin: 150px auto 0px auto;
+    margin: 0px auto;
     text-align: center;
     white-space: nowrap;
-    max-width: 400px;
+    max-width: 800px;
     width: 100%;
     min-width: 225px;
-    padding: 30px 50px;
+    padding: 30px 40px;
     border-style: solid;
     border-width: 5px;
 }
-
+#info{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 5px;
+}   
 h1{
     font-size: 2.5em;
     white-space: nowrap;
@@ -24,13 +34,19 @@ h1{
 }
 
 #housing-types-container{
-    margin: 5% 10px;
-    width: 50%;
+    margin: 5% auto;
+    margin-left: 20px;
+    width: auto;
 }
 legend{
     white-space: nowrap;
+    font-size: 25px;
 }
-
+/*
+.form-check-input{
+    color:green;
+}
+*/
 #adoptionForm-btns{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -44,19 +60,46 @@ legend{
     min-width: 90px;
     margin-top: 0px !important;
 }
+#inputs input{
+    width:100%;
+}
 
-@media(max-width: 370px){
+@media(max-width: 767px){
+    #info, #housing-types{
+        display:block;
+        margin:auto;
+    }
+    #housing-types{
+        width: 50%;
+    }
+}
+@media(max-width: 460px){
+    #adoptionForm-container{
+        width: 100%;
+        min-width: 300px;
+        margin: auto;
+    }
+    #adoptionForm-btns{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5px;
+        
+    }
     .form-manageAdoptionForm{
         margin: 75px auto;
         width: 275px;
         padding: 30px;
     }
     h1{
-        font-size: 1.25em !important;
+        font-size: 1.15em !important;
+    }
+    legend{
+        font-size: 1.5em;
     }
     .form-control{
         width: 100%;
     }
+    
     #housing-types-container{
         margin: 5% 0px;
         width: 50%;

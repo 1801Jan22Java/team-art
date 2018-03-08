@@ -36,6 +36,37 @@ export class AnimalService {
   }
   
   // Gin
+  // get multiple animals with an image
+  private animalWithImg : string = "http://localhost:8080/api/animal/animalsWithFile.json";
+  getAnimalsWithImg(): Observable<FileList[]>{
+    return this.http.get<FileList[]>(this.animalWithImg);
+  }
+  // get an animal with multiple images
+  private animalWithImgs : string = "http://localhost:8080/api/animal/animalWithFiles.json";
   
+  getAnimalWithImgs(animalID): Observable<AnimalWithImages>{
+    
+    let paramforID = new URLSearchParams();
+    paramforID.append("animalID", animalID);
+    return this.http.get<AnimalWithImages>("http://localhost:8080/api/animal/animalWithFiles.json?animalID="+ animalID);
+  }
   
+}
+ 
+export interface FileList {
+  filename: string;
+  animal: Animal;
+  filelID: number;
+}
+export interface Animal {
+  animalID: number;
+  name: string;
+  maturity: string;
+  gender: string;
+  adoptStatus: string;
+  species: string;
+}
+export interface AnimalWithImages {
+  animal: Animal;
+  files : FileList[];
 }
