@@ -39,7 +39,8 @@ export class UserProfileComponent implements OnInit {
     });
     console.log('does it reach here?');
     this.meetupService.getInfo(this.userID).subscribe(data => 
-      {this.meetups = data;  console.log(data)});
+      {this.meetups = data;  console.log(data);
+	  });
   }
 
   showUpdateForm(){
