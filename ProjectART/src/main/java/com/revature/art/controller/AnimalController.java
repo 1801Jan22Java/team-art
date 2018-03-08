@@ -64,7 +64,6 @@ public class AnimalController {
 	
 	@RequestMapping(value="/animalWithFiles", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String,Object> getAnimalWithFiles(@RequestParam("animalID") int animalID){
-		
 		HashMap<String,Object> map = animalService.getAnimalWithFilesByAnimalID(animalID);
 		return map;
 	}
