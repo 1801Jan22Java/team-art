@@ -9,7 +9,7 @@ public interface ApplicationService {
 
 	// Eric
 	Application updateApplication(Application a);
-	
+	Application approveDenyApplication(Application a);
  
 	// Evan
 	List<Application> getAdpAplcListByUserId(int userId);
@@ -19,4 +19,7 @@ public interface ApplicationService {
 	// Gin
 	List<Application> getAdpAplcList();
 	String addAdoptionApplication(HashMap<String, Object> application);
+
+
+	
 }

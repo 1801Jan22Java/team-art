@@ -69,7 +69,7 @@ public class ImageController {
 	*/
 
 	@PostMapping("/addImage")
-	public @ResponseBody int addFile(@RequestBody File file){
+	public @ResponseBody int addFile(@RequestBody com.revature.art.domain.File file){
 		int imageID =imageService.addFile(file);
 		logger.info(file.toString());
 		return 0;

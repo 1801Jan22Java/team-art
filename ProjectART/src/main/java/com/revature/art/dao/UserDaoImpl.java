@@ -88,22 +88,4 @@ public class UserDaoImpl implements UserDao{
 		s.close();
 		return list;
 	}
-	
-	@Override
-	public List<User>  getUserByEmail(String email) {
-		Session s = HibernateUtil.getSession();
-		List<User> list = (List<User>) s.createCriteria(User.class).add(Restrictions.eq("email", email)).list();
-		s.close();
-		return list;
-	}
-	
-	@Override
-	public List<User> ifRightPassword(User user) {
-		Session s = HibernateUtil.getSession();
-		List<User> list = s.createCriteria(User.class) 
-		.add(Restrictions.eq("email", user.getEmail()))
-		.add(Restrictions.eq("password", user.getPassword())).list();
-		s.close();
-		return list;
-	}
 }
