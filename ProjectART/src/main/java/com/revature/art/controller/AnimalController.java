@@ -48,7 +48,7 @@ public class AnimalController {
 	@RequestMapping(value="/getAnimalById", method=RequestMethod.POST)
 	public @ResponseBody Animal getAnimalById(@RequestBody int animalId) {
 		logger.debug("getAnimalById: animalId: 	" + animalId);
-		Animal animal = animalService.getAnimalById(animalId);
+		Animal animal = animalService.getAnimalByID(animalId);
 		logger.debug("Animal info:" + animal.toString());
 		return animal;
 	}

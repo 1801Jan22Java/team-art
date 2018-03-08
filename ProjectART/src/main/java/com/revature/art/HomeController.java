@@ -107,7 +107,4 @@ Map<String, User> users = new HashMap<String, User>();
 		tests.add( new Test("Test4", 40));
 		return tests;
 	}
-	
-	
 }
->>>>>>> origin/dev
