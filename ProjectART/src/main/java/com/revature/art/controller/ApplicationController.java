@@ -64,10 +64,12 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping("/adoptApplication")
-	public @ResponseBody String submitAdoptApplication(@RequestBody HashMap<String, Object> application) {
+	public @ResponseBody HashMap<String, String> submitAdoptApplication(@RequestBody HashMap<String, Object> application) {
 		System.out.println(application.toString());
 		String msg = applicationService.addAdoptionApplication(application);
-		return msg;
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("msg", msg);
+		return map;
 	}
 
 }

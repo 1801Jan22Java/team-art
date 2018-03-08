@@ -80,7 +80,11 @@ public class MeetupDaoImpl implements MeetupDao{
 
 	@Override
 	public void saveOrUpdate(Meetup m) {
-		HibernateUtil.getSession().saveOrUpdate(m);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		s.saveOrUpdate(m);
+		tx.commit();
+		s.close();
 	}
 	
 	// Gin

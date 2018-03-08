@@ -39,9 +39,20 @@ public class UserController {
 	UserService userService;
 
 	// Eric
-
+	@PostMapping("/updateInfo")
+	public @ResponseBody void updateInfo(@RequestBody User user){
+		userService.updateInfo(user);
+		logger.info(user.toString());
+	}
+	
 	// Evan
-
+	@RequestMapping(value="/getInfo", method=RequestMethod.POST)
+	public @ResponseBody User getInfo(@RequestBody int userId) {
+		logger.debug("getInfo: userId: 	" + userId);
+		User user = userService.getUserById(userId);
+		logger.debug("user info:" + user.toString());
+		return user;
+	}
 	// James
 
 	// Gin

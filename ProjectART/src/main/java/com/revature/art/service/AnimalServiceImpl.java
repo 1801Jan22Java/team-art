@@ -62,6 +62,8 @@ public class AnimalServiceImpl implements AnimalService {
 	// get multiple animals with a image 
 	@Override
 	public List<File> getAnimalsWithFile() {
+		
+		//cus I thought all animal absolutely exist...
 		List<Animal> animals = animalDao.getAll();
 		List<File> list = new ArrayList<File>();
 		for (Animal a : animals) {

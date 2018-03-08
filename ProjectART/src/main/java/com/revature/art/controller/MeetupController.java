@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,7 +48,7 @@ import com.revature.art.service.UserService;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/meetup") 		// can't change url 
+@RequestMapping("/api/meetup") // can't change url
 public class MeetupController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MeetupController.class);
@@ -62,20 +63,27 @@ public class MeetupController {
 	MeetupService meetupService;
 	@Autowired
 	UserService userService;
-	
+
 	// Eric
-	
+	@PostMapping("/approveDeny")
+	public @ResponseBody Meetup approveDenyMeetup(@RequestBody Meetup m) {
+		logger.debug("approveDenyMeetup: requestData: " + m.toString());
+		Meetup meetup = meetupService.approveDenyMeetup(m);
+		return meetup;
+	}
+
 	// Evan
-	@RequestMapping(value="/meetupListById", method=RequestMethod.POST)
+	@RequestMapping(value = "/meetupListById", method = RequestMethod.POST)
 	public ResponseEntity<List<Meetup>> postMeetupListById(@RequestBody int userId) {
 		logger.debug("getInfo: userId: " + userId);
 		List<Meetup> list = meetupService.getMeetupListByUserId(userId);
 		logger.debug("meetup list: " + list.toString());
 		return new ResponseEntity<List<Meetup>>(list, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/meetupListById", method=RequestMethod.GET)
-	public ResponseEntity<List<Meetup>> getMeetupListByIds(@RequestParam("userID") int userId, Model map) throws JsonGenerationException, JsonMappingException, IOException {
+
+	@RequestMapping(value = "/meetupListById", method = RequestMethod.GET)
+	public ResponseEntity<List<Meetup>> getMeetupListByIds(@RequestParam("userID") int userId, Model map)
+			throws JsonGenerationException, JsonMappingException, IOException {
 		logger.debug("getInfo: userId: " + userId);
 		List<Meetup> list = meetupService.getMeetupListByUserId(userId);
 		logger.debug("meetup list: " + list.toString());
@@ -84,27 +92,35 @@ public class MeetupController {
 		ObjectMapper mapper = new ObjectMapper();
 		return new ResponseEntity<List<Meetup>>(list, responseHeaders, HttpStatus.OK);
 	}
-	
+
 	// James
-	
-	//Gin 
-	@RequestMapping("/visitorForm")
-	public @ResponseBody String submitVisitorForm(@RequestBody HashMap<String, Object> visitorForm) {
-		// {meetuptime=13:00, meetupday=2018-01-03, animalID=2, userID=2}
-		String msg = meetupService.addVisitorForm(visitorForm);
-		System.out.println("msg" + msg);
-		return msg;
-	}
-	
-	@RequestMapping("/calendar")
-	public @ResponseBody List<HashMap<String,Object>> getVisitorCalendar(@RequestParam("sDate") String sDate){
-		List<HashMap<String,Object>> list =  meetupService.getVisitorsNumberByYearMonth(sDate);
+
+	// Gin
+
+	@RequestMapping("/meetupList")
+	public @ResponseBody List<Meetup> getMeetups() {
+		List<Meetup> list = meetupService.getMeetups();
 		return list;
 	}
-	
+
+	@RequestMapping("/visitorForm")
+	public @ResponseBody HashMap<String, Object> submitVisitorForm(@RequestBody HashMap<String, Object> visitorForm) {
+		// {meetuptime=13:00, meetupday=2018-01-03, animalID=2, userID=2}
+		String msg = meetupService.addVisitorForm(visitorForm);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", msg);
+		return map;
+	}
+
+	@RequestMapping("/calendar")
+	public @ResponseBody List<HashMap<String, Object>> getVisitorCalendar(@RequestParam("sDate") String sDate) {
+		List<HashMap<String, Object>> list = meetupService.getVisitorsNumberByYearMonth(sDate);
+		return list;
+	}
+
 	@RequestMapping("/visitorsByDay")
-	public @ResponseBody List<Meetup> getVisitorsByDay(@RequestParam("sDate") String sDate){
-		List<Meetup> list= meetupService.getVisitorsByDay(sDate);
+	public @ResponseBody List<Meetup> getVisitorsByDay(@RequestParam("sDate") String sDate) {
+		List<Meetup> list = meetupService.getVisitorsByDay(sDate);
 		return list;
 	}
 }
