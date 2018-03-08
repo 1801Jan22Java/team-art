@@ -4,10 +4,10 @@
         <br>
         <label for="animalName" class="sr-only">Name</label>
         <div class="form-group">
-            <input type="text" formControlName= "pname" name="name" id="name" class="form-control" value="{{this.currentAnimal.name}}" (keyup)="updateName($event)" autofocus>
+            <input type="text" formControlName= "pname" name="name" id="name" class="form-control" value="{{currentAnimal.name}}" (keyup)="updateName($event)" autofocus>
         </div>
         <div class="form-group">
-           <select class="form-control" formControlName = "mat" name="maturity" value="{{this.currentAnimal.maturity}}" [(ngModel)]="maturity">
+           <select class="form-control" formControlName = "mat" name="maturity" value="{{currentAnimal.maturity}}" [(ngModel)]="maturity">
                 <option value="Infant">Infant</option>
                 <option value="Young">Young</option>
                 <option value="Adult">Adult</option>                 
@@ -15,7 +15,7 @@
             </select>
         </div>
         <div class="form-group">
-            <select class="form-control" formControlName = "spec" name="pettype" value="{{this.currentAnimal.species}}" [(ngModel)]="species">
+            <select class="form-control" formControlName = "spec" name="pettype" value="{{currentAnimal.species}}" [(ngModel)]="species">
                 <option value="Dog">Dog</option>
                 <option value="Cat">Cat</option>
                 <option value="Octopus">Octopus</option>

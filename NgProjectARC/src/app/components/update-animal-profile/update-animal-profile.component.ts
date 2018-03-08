@@ -55,13 +55,8 @@ export class UpdateAnimalProfileComponent implements OnInit {
   private url_: string = "http://localhost:8080/api/image/physicalImage";
   private _url_ : string = "http://localhost:8080/api/image/mapToAnimal";
 
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router,
-    private animalList: ManagelistOfAnimalsComponent,
-    private animalService: AnimalService
-  ) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,
+    private animalList: ManagelistOfAnimalsComponent, private animalService: AnimalService) {
     this.rForm = fb.group({
       pname: [null, Validators.required],
       mat: [Validators.required],
@@ -79,10 +74,9 @@ export class UpdateAnimalProfileComponent implements OnInit {
   ngOnInit() {
 
     //console.log(this.image);
-    this.animalService
-      .getAnimalById(this.animalList.currentAnimal.animalID)
-      .subscribe(data => {
+    this.animalService.getAnimalById(this.animalList.currentAnimal.animalID).subscribe(data => {
         this.currentAnimal = data;
+        console.log(data);
       });
     this.toggle = true;
 
@@ -106,9 +100,12 @@ export class UpdateAnimalProfileComponent implements OnInit {
       species: this.spec
     };
 
-    this.currentAnimal.gender = this.gender;
-    this.currentAnimal.maturity = this.maturity;
-    this.currentAnimal.species = this.species;
+    if(this.gender !== undefined)
+      this.currentAnimal.gender = this.gender;
+    if(this.maturity !== undefined)
+      this.currentAnimal.maturity = this.maturity;
+    if(this.species !== undefined)
+      this.currentAnimal.species = this.species;
     //console.log(this.animal);
     let httpSend = this.http.post(this._url, this.currentAnimal).subscribe(
       res => {
@@ -119,7 +116,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
         console.log(err);
       }
     );
-
+    
     //console.log(httpSend);
     this.hide();
   }
@@ -164,7 +161,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
         
         console.log(fileBrowser[i].files[0]);
     
-        this.aniData = 63;
+        this.aniData = this.currentAnimal.animalID;
         this.naming = fileBrowser[i].files[0].name;
         this.tempAnimal = {
           animalID: this.aniData,
@@ -192,8 +189,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
         );
       
       }
-      }
-    
+      
     }
   this.hide();
   }

@@ -37,7 +37,7 @@ export class ManagelistOfAnimalsComponent implements OnInit{
     });
     //this.animalService.getApplication().subscribe(data )
     //console.log( this.animalService.getApplication().subscribe(data));
-    this.animals = this.animalService.getApplication().subscribe(data => {
+   /* this.animals = this.animalService.getApplication().subscribe(data => {
       this.animals = data;
       this.myData = data;
      // console.log(this.myData);
@@ -50,7 +50,7 @@ export class ManagelistOfAnimalsComponent implements OnInit{
    //console.log(this.hi);
     //this.animalService.getApplication().map((response) ⇒ response.json()).subscribe(data => this.animals = data);
     //console.log(this.animals[0].name);
-    
+    */
 
   //this.populateAnimals();
 

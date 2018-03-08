@@ -21,7 +21,7 @@ export class AnimalService {
   }
   
   addAnimal(animal): Observable<AnimalList[]>{
-    return this.http.post<AnimalList[]>('http://localhost:8080/api/image/mapToAnimal.json', animal);
+    return this.http.post<AnimalList[]>('http://localhost:8080/api/image/addAnimal.json', animal);
   }
   // Eric
   private ROOT_URL: string = "http://localhost:8080/api/animal";

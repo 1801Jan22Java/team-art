@@ -88,12 +88,18 @@ export class RegisterAnimalFormComponent implements OnInit {
    
     console.log(this.animal);
     
-    /*
-    this.animalService.addAnimal(this.animal).subscribe({
-      data => this.temp = data;
-    });
-*/
-    console.log(this.temp);
+    
+    let httpSend = this.http.post(this._url, this.animal).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+       console.log("Error occurred");
+        console.log(err);
+      }
+    );
+
+    console.log(httpSend);
     this.router.navigate(['/animalList']);
     
 
