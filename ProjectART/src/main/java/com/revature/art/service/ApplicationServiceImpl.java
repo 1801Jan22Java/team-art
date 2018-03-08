@@ -34,23 +34,49 @@ public class ApplicationServiceImpl implements ApplicationService {
  
 	// Eric
 	@Override
+	public Application approveDenyApplication(Application a) {
+		Application app = applicationDao.getById(a.getApplicationID());
+		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
+		{
+			List<Application> apps = applicationDao.getAll();
+			for(Application curr : apps)
+				if(curr.getAnimal().getAnimalID() == a.getAnimal().getAnimalID() && curr.getApplicationID() != app.getApplicationID()) {
+					curr.setAppStatus("Denied");
+					applicationDao.saveOrUpdate(curr);
+				}
+			// set the adoption status of the application's animal to 'adopted'
+			app.getAnimal().setAdoptStatus("Adopted");
+			// set the application status to approved or denied
+			app.setAppStatus(a.getAppStatus());
+			applicationDao.saveOrUpdate(app);
+		}
+		return applicationDao.getById(app.getApplicationID());
+	}
+	
+	@Override
 	public Application updateApplication(Application a) {
 		Application app = applicationDao.getById(a.getApplicationID());
 		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
 			app.setAppStatus(a.getAppStatus());
 		return app;
 	}
+	
+
+	// Evan
+	@Override
+	public List<Application> getAdpAplcListByUserId(int userId) {
+		List<Application> apps = applicationDao.getByUserId(userId);
+		return apps;
+	}
+	// James
+
+	// Gin
 	@Override
 	public List<Application> getAdpAplcList() {
 		List<Application> apps = applicationDao.getAll();
 		return apps;
 	}
-
-	// Evan
-
-	// James
-
-	// Gin
+	
 	@Override
 	public String addAdoptionApplication(HashMap<String, Object> application) {
 		Application ap = new Application();
