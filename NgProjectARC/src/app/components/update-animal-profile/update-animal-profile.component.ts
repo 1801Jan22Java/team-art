@@ -1,25 +1,27 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Router} from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {AnimalList} from '../managelist-of-animals/managelist-of-animals.component';
-import {ManagelistOfAnimalsComponent } from '../managelist-of-animals/managelist-of-animals.component'
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AnimalList } from "../managelist-of-animals/managelist-of-animals.component";
+import { ManagelistOfAnimalsComponent } from "../managelist-of-animals/managelist-of-animals.component";
+import { AnimalService } from "../../service/animal.service";
+import { Animal } from "../../models/animal";
 import {File} from '../../models/file';
-//James'!!!!!!! 
+//James'!!!!!!!
+
 @Component({
-  selector: 'app-update-animal-profile',
-  templateUrl: './update-animal-profile.component.html',
-  styleUrls: ['./update-animal-profile.component.css']
+  selector: "app-update-animal-profile",
+  templateUrl: "./update-animal-profile.component.html",
+  styleUrls: ["./update-animal-profile.component.css"]
 })
 export class UpdateAnimalProfileComponent implements OnInit {
-
   rForm: FormGroup;
   iForm: FormGroup;
-  post: any;                     // A property for our submitted form
+  post: any; // A property for our submitted form
   iPost: any;
-  aniID: number= 0;
+  aniID: number = 0;
   adoptstat: string = "";
   gend: string = "";
   mat: string = "";
@@ -28,6 +30,15 @@ export class UpdateAnimalProfileComponent implements OnInit {
   image1: string = "";
   animal: AnimalList;
   headers: HttpHeaders;
+
+  // Eric Begin
+  toggle;
+  currentAnimal: Animal;
+  gender: string;
+  maturity: string;
+  species: string;
+  // Eric End
+
   aniData: number = 0;
   fileName: string = "";
   naming: any;
@@ -38,31 +49,43 @@ export class UpdateAnimalProfileComponent implements OnInit {
   @ViewChild('image2') im1: ElementRef;
   @ViewChild('image3') im2: ElementRef;
   @ViewChild('image4') im3: ElementRef;
+
   //animal: Observable<AnimalList>;
   private _url: string = "http://localhost:8080/api/animal/updateAnimal";
   private url_: string = "http://localhost:8080/api/image/physicalImage";
   private _url_ : string = "http://localhost:8080/api/image/mapToAnimal";
 
-
-  constructor(private fb: FormBuilder, private http: HttpClient,
-  private router: Router) {
-
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private animalList: ManagelistOfAnimalsComponent,
+    private animalService: AnimalService
+  ) {
     this.rForm = fb.group({
-      'pname' : [null, Validators.required],
-      'mat' : [Validators.required],
-      'spec' : [Validators.required],
-      'gend' : [Validators.required],
+      pname: [null, Validators.required],
+      mat: [Validators.required],
+      spec: [Validators.required],
+      gend: [Validators.required]
     });
 
     this.iForm = fb.group({
-      'image1' : [null, Validators.required],
-      'image2' : [null],
-      'image3' : [null],
-      'image4' : [null]
+      image1: [null, Validators.required],
+      image2: [null],
+      image3: [null],
+      image4: [null]
     });
-   }
+  }
   ngOnInit() {
-  
+
+    //console.log(this.image);
+    this.animalService
+      .getAnimalById(this.animalList.currentAnimal.animalID)
+      .subscribe(data => {
+        this.currentAnimal = data;
+      });
+    this.toggle = true;
+
   }
 
   addPost(post) {
@@ -70,40 +93,41 @@ export class UpdateAnimalProfileComponent implements OnInit {
     this.mat = post.mat;
     this.spec = post.spec;
     this.gend = post.gend;
-    console.log(this.pname);
-    console.log(this.mat);
-    console.log(this.spec);
-    console.log(this.gend);
+    ///console.log(this.pname);
+    //console.log(this.mat);
+    //console.log(this.spec);
+    //console.log(this.gend);
     this.animal = {
-      animalID: 63,
-      name : this.pname,
-      maturity : this.mat,
-      gender : this.gend,
-      adoptStatus : "Available",
-      species : this.spec 
+      animalID: this.currentAnimal.animalID,
+      name: this.pname,
+      maturity: this.mat,
+      gender: this.gend,
+      adoptStatus: "Available",
+      species: this.spec
     };
 
-    console.log(this.animal);
-    let httpSend = this.http.post(this._url, this.animal).subscribe(
+    this.currentAnimal.gender = this.gender;
+    this.currentAnimal.maturity = this.maturity;
+    this.currentAnimal.species = this.species;
+    //console.log(this.animal);
+    let httpSend = this.http.post(this._url, this.currentAnimal).subscribe(
       res => {
         console.log(res);
       },
       err => {
-       console.log("Error occurred");
+        console.log("Error occurred");
         console.log(err);
       }
     );
-    console.log(httpSend);
 
-    this.router.navigate(['/animalList']);
+    //console.log(httpSend);
+    this.hide();
+  }
 
-    }
-
-    Cancel(){
-      console.log("yay")
-      this.router.navigate(['/animalList']);
-    }
-
+  Cancel() {
+    //console.log("yay")
+    this.router.navigate(["/animalList"]);
+  }
     /*
       if (fileBrowser.files[1])
         formData.append("File", fileBrowser.files[1]);
@@ -171,6 +195,22 @@ export class UpdateAnimalProfileComponent implements OnInit {
       }
     
     }
-  
+  this.hide();
+  }
 
+  // Eric Begin
+  hide() {
+    this.animalList.manageForm = false;
+    this.toggle = true;
+  }
+
+  updateName(event: any) {
+    if (event !== "") {
+      this.currentAnimal.name = event.target.value;
+      console.log(this.currentAnimal.name);
+    }
+  }
+
+
+  //Eric End
 }

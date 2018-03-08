@@ -1,16 +1,27 @@
 <div class="sort" id="animal-container">
-    <button class="btn btn-primary" (click)="ShowAll()">All</button>
-    <button class="btn btn-primary" (click)="ShowAvailable()">Available</button>
-    <button class="btn btn-primary" (click)="ShowAdopted()">Adopted</button>
-    <button class="btn btn-primary" (click)="ShowPending()">Pending Adoption</button>
-    <a role="button" routerLink="/registerAnimalForm" class="btn btn-primary float-right">Register New Animal</a>
+  <ng-container *ngIf="manageForm">
+    <app-update-animal-profile></app-update-animal-profile>
+  </ng-container>
+  <div id="container">
+    <div id="buttons">
+        <button class="btn btn-primary" (click)="sortRows('All')">All</button>
+        <button class="btn btn-primary" (click)="sortRows('Available')">Available</button>
+        <button class="btn btn-primary" (click)="sortRows('Adopted')">Adopted</button>
+        <button class="btn btn-primary" (click)="sortRows('Pending')">Pending Adoption</button>
+    </div>
+    <div id="registerAnimal">
+        <a role="button" routerLink="/registerAnimalForm" class="btn btn-primary float-right">Register New Animal</a>
+    </div>
+  </div>
   </div>
   <br>
+  
+  
   <div class="table-responsive-xl" id = "aniDiv">
     <table class="table" id = "aniTable">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">ID #</th>
           <th scope="col">Name</th>
           <th scope="col">Type</th>
           <th scope="col">Gender</th>
@@ -18,9 +29,25 @@
           <th scope="col">Status</th>
         </tr>
       </thead>
+      <!-- ERIC -->
+      <tbody>
+        <ng-container *ngFor="let animal of registeredAnimals; let i = index">
+        <tr *ngIf="show && (sortBy === animal.adoptStatus || sortBy === 'All' || sortBy === '' )">
+          <td><a (click)="showForm(animal)">{{animal.animalID}}</a></td>
+          <td>{{animal.name}}</td>
+          <td>{{animal.species}}</td>
+          <td>{{animal.gender}}</td>
+          <td>{{animal.maturity}}</td>
+          <td>{{animal.adoptStatus}}</td>
+        </tr>
+        </ng-container>
+    </tbody>
+
+    <!--JAMES -->
+    <!--
       <tbody id = "aniBody">
         
-        <!--
+        
         <tr>
           <th scope="row">1</th>
           <td><a routerLink="/updateAnimalProfile">Lucia</a></td>
@@ -54,8 +81,9 @@
             <td>Mature</td>
             <td>Pending</td>
           </tr>
-        -->
+        
       </tbody>
+      -->
     </table>
   </div>
    

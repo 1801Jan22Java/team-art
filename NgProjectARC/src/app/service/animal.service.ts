@@ -24,7 +24,16 @@ export class AnimalService {
     return this.http.post<AnimalList[]>('http://localhost:8080/api/image/mapToAnimal.json', animal);
   }
   // Eric
-  
+  private ROOT_URL: string = "http://localhost:8080/api/animal";
+  getAnimalById(animalID: number): Observable<Animal> {
+    return this.http.post<Animal>(this.ROOT_URL + '/getAnimalById', animalID);
+  }
+
+  getAnimals(): Observable<Animal[]>{
+    //console.log(this.http.get(this._url));
+    //console.log(this.http.get<AnimalList[]>(this._url));
+    return this.http.get<Animal[]>(this.ROOT_URL + '/animalList.json');
+  }
   
   // Gin
   
