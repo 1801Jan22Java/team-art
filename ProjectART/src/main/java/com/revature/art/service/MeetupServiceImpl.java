@@ -32,6 +32,22 @@ private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.cla
 	private UserDao userDao;
 	// Eric
 
+	public List<Meetup> getMeetups() 
+	{
+		return meetupDao.getAll();
+	}
+	
+	public Meetup approveDenyMeetup(Meetup m)
+	{
+		Meetup meetup = meetupDao.getById(m.getMeetupID());
+		if (m.getMeetupStatus().equals("Approved") || m.getMeetupStatus().equals("Denied"))
+		{
+			meetup.setMeetupStatus(m.getMeetupStatus());
+			meetupDao.saveOrUpdate(meetup);
+		}
+		return meetupDao.getById(meetup.getMeetupID());
+	}
+	
 	// Evan
 	@Override
 	public List<Meetup> getMeetupListByUserId(int userId) {
