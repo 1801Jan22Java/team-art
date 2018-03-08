@@ -2,6 +2,8 @@ package com.revature.art.dao;
 
 import java.util.List;
 
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,16 @@ public class MeetupDaoImpl implements MeetupDao{
 		List<Meetup> m = s.createQuery("from Meetup").list();
 		s.close();
 		return m;
+	}
+	
+
+	@Override
+	public List<Meetup> getByUserId(int userId) {
+		Session s = HibernateUtil.getSession();
+		Query q = s.createQuery("from Meetup meet where meet.user.userID = :userId");
+		q.setParameter("userId", userId);
+		List<Meetup> a = q.list();
+		return a;
 	}
 
 	@Override

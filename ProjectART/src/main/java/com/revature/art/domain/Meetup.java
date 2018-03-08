@@ -6,6 +6,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+/*
+********  Can't change!!! **********
+meetupDate -  MM/DD/YYYY
+meetupStatus -  Pending / Approved / Denied
+*/
+
 @Entity
 @Table(name="MEETUP")
 public class Meetup implements Serializable{
@@ -94,6 +100,4 @@ public class Meetup implements Serializable{
 	public void setMeetupStatus(String meetupStatus) {
 		this.meetupStatus = meetupStatus;
 	}
-	
-	
 }

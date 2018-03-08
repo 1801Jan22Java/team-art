@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+
+/*
+ ********  Can't change!!! **********
+usertype - 0 (normal registered user) /  1 (employee)
+*/
+
 @Entity
 @Table(name="USERS")
 public class User implements Serializable{
@@ -87,7 +93,8 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Users [userID=" + userID + ", usertype=" + usertype + ", email=" + email + ", password=" + password
+		return "Users [userID=" + userID + ", usertype=" + usertype + ", email=" + email + 
+", password=" + password
 				+ ", name=" + name + "]";
 	}
 	
