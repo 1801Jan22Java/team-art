@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AnimalProfileComponent implements OnInit {
 
-  public animal = {};
+  public animal: any = {};
   public files = [];
    htmlText: string;
 
