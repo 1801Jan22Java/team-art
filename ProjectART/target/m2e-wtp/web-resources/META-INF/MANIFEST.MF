@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Manifest-Version: 1.0
 
 Built-By: Lea
@@ -8,10 +8,4 @@ Built-By: James
 Build-Jdk: 1.8.0_162
 Created-By: Maven Integration for Eclipse
 
-=======
-Manifest-Version: 1.0
-Built-By: James
-Build-Jdk: 1.8.0_162
-Created-By: Maven Integration for Eclipse
 
->>>>>>> b1a2109f4548614f504a0cdaf8f26895a4954793

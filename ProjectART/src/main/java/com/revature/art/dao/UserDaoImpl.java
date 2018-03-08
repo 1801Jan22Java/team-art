@@ -80,7 +80,13 @@ public class UserDaoImpl implements UserDao{
 		s.close();
 		return list;
 	}
+	// Eric
+
+	// Evan
+
+	// James
 	
+	// Gin
 	@Override
 	public List<User> ifRightPassword(User user) {
 		Session s = HibernateUtil.getSession();
