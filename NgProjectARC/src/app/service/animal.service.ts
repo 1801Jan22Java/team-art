@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AnimalList } from '../components/managelist-of-animals/managelist-of-animals.component';
 import { Observable } from 'rxjs/Observable';
+import { Animal } from '../models/animal';
 @Injectable()
 export class AnimalService {
 
@@ -19,6 +20,9 @@ export class AnimalService {
     return this.http.get<AnimalList[]>(this._url);
   }
   
+  addAnimal(animal): Observable<AnimalList[]>{
+    return this.http.post<AnimalList[]>('http://localhost:8080/api/image/mapToAnimal.json', animal);
+  }
   // Eric
   
   

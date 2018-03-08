@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {ManagelistOfAnimalsComponent } from '../managelist-of-animals/managelist-of-animals.component'
 import {File} from '../../models/file';
+import { AnimalService } from '../../service/animal.service';
 //James'!!!!!!! 
 @Component({
   selector: 'app-register-animal-form',
@@ -34,7 +35,7 @@ export class RegisterAnimalFormComponent implements OnInit {
   ourFile: File;
   timerz :number = 0;
   loopz: any;
-
+  temp: AnimalList[];
   @ViewChild('image1') im0: ElementRef;
   @ViewChild('image2') im1: ElementRef;
   @ViewChild('image3') im2: ElementRef;
@@ -46,7 +47,7 @@ export class RegisterAnimalFormComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private http: HttpClient,
-    private router: Router) {
+    private router: Router, private animalService: AnimalService) {
 
     this.rForm = fb.group({
       'pname' : [null, Validators.required],
@@ -77,27 +78,24 @@ export class RegisterAnimalFormComponent implements OnInit {
     console.log(this.spec);
     console.log(this.gend);
     this.animal = {
-      animalID: null,
+      animalID: 1,
       name : this.pname,
       maturity : this.mat,
       gender : this.gend,
       adoptStatus : "Available",
       species : this.spec 
     };
-
+   
     console.log(this.animal);
-    let httpSend = this.http.post(this._url, this.animal).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-       console.log("Error occurred");
-        console.log(err);
-      }
-    );
-    console.log(httpSend);
-
+    
+    /*
+    this.animalService.addAnimal(this.animal).subscribe({
+      data => this.temp = data;
+    });
+*/
+    console.log(this.temp);
     this.router.navigate(['/animalList']);
+    
 
     }
     
