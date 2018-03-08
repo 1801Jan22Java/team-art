@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.art.dao.AnimalDao;
+import com.revature.art.dao.ApplicationDao;
+import com.revature.art.dao.FileDao;
+import com.revature.art.dao.MeetupDao;
+import com.revature.art.dao.UserDao;
+import com.revature.art.domain.Animal;
 import com.revature.art.domain.Test;
 import com.revature.art.domain.User;
 
@@ -31,7 +38,17 @@ import com.revature.art.domain.User;
  */
 @Controller
 public class HomeController {
-	
+
+	@Autowired
+	private AnimalDao animalDao;
+	@Autowired
+	private ApplicationDao applicationDao;
+	@Autowired
+	private FileDao fileDao;
+	@Autowired
+	private MeetupDao meetupDao;
+	@Autowired
+	private UserDao userDao;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 Map<String, User> users = new HashMap<String, User>();

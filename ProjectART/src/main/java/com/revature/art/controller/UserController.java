@@ -47,10 +47,10 @@ public class UserController {
 	// Gin
 	@PostMapping("/login")
 	public @ResponseBody User  login(@RequestBody User user) {
-		logger.debug("login: userInfo: " + user.toString());
+		logger.debug("login: userInfo : " + user.toString());
 		// check if exist email and right password
 		user = userService.getUserInfo(user);		// return empty User if not exist or wrong password.
-		logger.debug("user info:" + user.toString());
+		logger.debug("----------- what did I get?:" + user.toString());
 		return user;
 	}
 
@@ -61,5 +61,5 @@ public class UserController {
 		user.setUserID(userId);
 		return user;
 	}
-
+	
 }

@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/*
+********  Can't change!!! **********
+filename - aaa.jpg
+the path of the folder to save animal image!  >> webapp/resources/image 
+*/
 @Entity
 @Table(name="FILES")
 public class File implements Serializable{

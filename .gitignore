@@ -119,9 +119,18 @@ testem.log
 
 
 # End of https://www.gitignore.io/api/angular
-ProjectART/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-ProjectART/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+
+*.jpg
 ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
+ProjectART/src/main/webapp/WEB-INF/images/akira3.jpg
+*.jpg
+*.xml
+*.MF
+*.properties
+
+
+ProjectART/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+ProjectART/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 *.MF
 ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.xml
 *.xml
@@ -132,4 +141,4 @@ ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.prop
 *.xml
 ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
 ProjectART/src/main/java/com/revature/art/dao/AnimalDao.java
-ProjectART/target/m2e-wtp/web-resources/META-INF/maven/com.revature/art/pom.properties
+

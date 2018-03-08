@@ -2,8 +2,8 @@ package com.revature.art.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.revature.art.domain.Meetup;
@@ -18,6 +18,16 @@ public class MeetupDaoImpl implements MeetupDao{
 		s.close();
 		return m;
 	}
+	
+
+	@Override
+	public List<Meetup> getByUserId(int userId) {
+		Session s = HibernateUtil.getSession();
+		Query q = s.createQuery("from Meetup meet where meet.user.userID = :userId");
+		q.setParameter("userId", userId);
+		List<Meetup> a = q.list();
+		return a;
+	}
 
 	@Override
 	public Meetup getById(int id) {
@@ -28,56 +38,21 @@ public class MeetupDaoImpl implements MeetupDao{
 
 	@Override
 	public int add(Meetup m) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-		int id = (Integer) HibernateUtil.getSession().save(m);
-		tx.commit();
-		s.close();
-		return id;
+		return (Integer) HibernateUtil.getSession().save(m);
 	}
 
 	@Override
 	public void delete(Meetup m) {
-		Session s = HibernateUtil.getSession();
-		try
-		{
-			Transaction tx = s.beginTransaction();
-			HibernateUtil.getSession().delete(m);
-			tx.commit();
-		}
-		finally 
-		{
-			s.close();
-		}
+		HibernateUtil.getSession().delete(m);
 	}
 
 	@Override
 	public void merge(Meetup m) {
-		Session s = HibernateUtil.getSession();
-		try
-		{
-			Transaction tx = s.beginTransaction();
-			HibernateUtil.getSession().merge(m);
-			tx.commit();
-		}
-		finally 
-		{
-			s.close();
-		}
+		HibernateUtil.getSession().merge(m);
 	}
 
 	@Override
 	public void saveOrUpdate(Meetup m) {
-		Session s = HibernateUtil.getSession();
-		try
-		{
-			Transaction tx = s.beginTransaction();
-			s.saveOrUpdate(m);
-			tx.commit();
-		}
-		finally 
-		{
-			s.close();
-		}
+		HibernateUtil.getSession().saveOrUpdate(m);
 	}
 }
