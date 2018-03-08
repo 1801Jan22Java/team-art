@@ -1,0 +1,87 @@
+.form-updateAnimal{
+    margin: 150px auto;
+    padding: 30px 40px;
+    width: 410px;
+    white-space: nowrap;
+    border-style: solid;
+    border-width: 5px;
+}
+
+
+#updateAnimal-container{
+    margin-top: 100px;
+}
+h1{
+    font-size: 2em;
+    padding-bottom: 5px;
+}
+
+h1, p{
+    text-align: center;
+}
+
+.form-group{
+    margin-bottom: 10px;
+}
+#animal-pics label{
+    margin-bottom: 0px;
+}
+#animal-pics input{
+    margin: 10px auto;
+}
+#updateAnimal-btns{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+.btn{
+    font-size: 1em;
+    padding: 5px 0px;
+    width: 100%;
+    min-width: 90px;
+    margin-top: 0px !important;
+}
+
+@media(max-width: 410px){
+    #updateAnimal-container{
+        padding: 10px;
+    }
+    .form-updateAnimal{
+        margin: 100px auto;
+        width: 280px;
+        text-align: center;
+        padding: 25px;
+        border-style: solid;
+        border-width: 5px;
+    }
+    h1{
+        font-size: 1.75em !important;
+    }
+    p{
+        display: none;
+    }
+    .form-control{
+        width: 100%;
+        min-width: 175px;
+        margin: auto;
+    }
+    #animal-pics{
+        display:block;
+        width: 100%;
+        min-width: 175px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    small{
+        white-space: normal;
+    }
+    #updateAnimal-btns{
+        display: block;
+        width: 100%;
+        min-width: 175px;
+    }
+    .btn{
+        margin: 0px auto 8px auto !important;
+    }
+}
