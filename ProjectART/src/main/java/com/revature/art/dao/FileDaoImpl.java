@@ -8,7 +8,9 @@ import javax.servlet.annotation.MultipartConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+
 import org.hibernate.Session;
+
 
 import org.springframework.stereotype.Repository;
 
@@ -36,11 +38,15 @@ public class FileDaoImpl implements FileDao{
 	@Override
 	public int add(File file) {
 
+
+
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		s.save(file);
 		tx.commit();
 		s.close();
+
+
 
 		return (Integer) HibernateUtil.getSession().save(file);
 	}

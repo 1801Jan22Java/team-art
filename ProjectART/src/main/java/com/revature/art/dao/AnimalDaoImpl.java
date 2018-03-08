@@ -25,12 +25,19 @@ public class AnimalDaoImpl implements AnimalDao{
 	public Animal getById(int id) {
 		Session s = HibernateUtil.getSession();
 
+
 		Transaction tx = s.beginTransaction();
 		Animal animal = (Animal) s.get(Animal.class, id);
 		tx.commit();
 		s.close();
 
 		Animal animal = (Animal) s.get(Animal.class, id);
+
+
+		Transaction tx = s.beginTransaction();
+		Animal animal = (Animal) s.get(Animal.class, id);
+		tx.commit();
+		s.close();
 
 		return animal;
 	}
@@ -67,6 +74,7 @@ public class AnimalDaoImpl implements AnimalDao{
 		//s.flush();
 		s.close();
 		System.out.println(animal.toString());
+
 
 		HibernateUtil.getSession().saveOrUpdate(animal);
 
