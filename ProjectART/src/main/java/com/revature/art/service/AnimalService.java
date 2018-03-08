@@ -16,4 +16,5 @@ public interface AnimalService {
 	public Animal getAnimalByID(int animalID);
 	// Gin
 	void testMethod();
+	public Animal getAnimalById(int animalId);
 }
