@@ -10,6 +10,9 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import java.util.List;
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.art.domain.Test;
 import com.revature.art.domain.User;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+
 
 /**
  * Handles requests for the application home page.
@@ -61,6 +71,7 @@ Map<String, User> users = new HashMap<String, User>();
 		return "result";
 	}
 	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -90,6 +101,5 @@ Map<String, User> users = new HashMap<String, User>();
 		tests.add( new Test("Test4", 40));
 		return tests;
 	}
-	
 	
 }

@@ -3,8 +3,10 @@ package com.revature.art.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+
 import org.springframework.stereotype.Repository;
 
 import com.revature.art.domain.User;
@@ -24,18 +26,24 @@ public class UserDaoImpl implements UserDao{
 	public User getById(int id) {
 		Session s = HibernateUtil.getSession();
 		User u = (User) s.get(User.class, id);
+
 		s.close();
+
 		return u;
 	}
 
 	@Override
 	public int add(User u) {
+
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		int userId = (Integer) s.save(u);
 		tx.commit();
 		s.close();
 		return userId;
+
+		return (Integer) HibernateUtil.getSession().save(u);
+
 	}
 
 	@Override
@@ -52,6 +60,7 @@ public class UserDaoImpl implements UserDao{
 	public void saveOrUpdate(User u) {
 		HibernateUtil.getSession().saveOrUpdate(u);
 	}
+
 	
 	@Override
 	public List<User>  getUserByEmail(String email) {
@@ -72,4 +81,5 @@ public class UserDaoImpl implements UserDao{
 	}
 }
 	
+
 

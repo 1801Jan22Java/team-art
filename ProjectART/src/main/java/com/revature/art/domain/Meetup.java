@@ -55,6 +55,7 @@ public class Meetup implements Serializable{
 				+ ", meetupStatus=" + meetupStatus + "]";
 	}
 
+
 	public int getMeetupID() {
 		return meetupID;
 	}
@@ -94,6 +95,7 @@ public class Meetup implements Serializable{
 	public void setMeetupStatus(String meetupStatus) {
 		this.meetupStatus = meetupStatus;
 	}
+
 	
 	
 }

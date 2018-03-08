@@ -21,3 +21,4 @@
         <mapping class="com.revature.art.domain.User"/>
     </session-factory>
 </hibernate-configuration>
+
