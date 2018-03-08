@@ -2,6 +2,7 @@ package com.revature.art.dao;
 
 import java.util.List;
 
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,24 +29,20 @@ public class AnimalDaoImpl implements AnimalDao{
 	public Animal getById(int id) {
 		Session s = HibernateUtil.getSession();
 
-
 		Transaction tx = s.beginTransaction();
 		Animal animal = (Animal) s.get(Animal.class, id);
 		tx.commit();
 		s.close();
-
 		return animal;
 	}
 
 	@Override
 	public int add(Animal animal) {
-
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		s.save(animal);
 		tx.commit();
 		s.close();
-
 		return (Integer) HibernateUtil.getSession().save(animal);
 	}
 
@@ -61,18 +58,13 @@ public class AnimalDaoImpl implements AnimalDao{
 
 	@Override
 	public void saveOrUpdate(Animal animal) {
-
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		s.saveOrUpdate(animal);
 		tx.commit();
 		//s.flush();
 		s.close();
-		System.out.println(animal.toString());
-
-
 		HibernateUtil.getSession().saveOrUpdate(animal);
-
 	}
 	
 	// Eric

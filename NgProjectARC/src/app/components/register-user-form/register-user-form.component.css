@@ -1,0 +1,55 @@
+.form-registerUser {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-registerUser .checkbox {
+    font-weight: 400;
+}
+
+.form-registerUser .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-registerUser .form-control:focus {
+    z-index: 2;
+}
+
+.form-registerUser input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-registerUser input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-registerUser h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px !important;
+}
+
+/*#######Changing button styles#######*/
+#register-buttons{
+    display:grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5%;
+}
+
+.button{
+    border-radius: 0px;
+}
+
+#cancel-button{
+    margin-top: 0px;
+}

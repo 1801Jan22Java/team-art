@@ -16,5 +16,3 @@ public interface UserDao {
 	public List<User>  getUserByEmail(String email);
 	public List<User> ifRightPassword(User user);
 }
-
-

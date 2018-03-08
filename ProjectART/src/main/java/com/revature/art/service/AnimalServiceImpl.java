@@ -34,7 +34,7 @@ public class AnimalServiceImpl implements AnimalService {
 	@Autowired
 	private UserDao userDao;
 	
-
+	
 
 	//Eric
 	@Override
@@ -48,6 +48,7 @@ public class AnimalServiceImpl implements AnimalService {
 		List<Animal> animals = animalDao.getAll();
 		return animals;
 	}
+
 	@Override
 	public int addAnimal(Animal animal) {
 		int animalID = animalDao.add(animal);
@@ -57,6 +58,7 @@ public class AnimalServiceImpl implements AnimalService {
 	@Override
 	public void updateAnimal(Animal animal) {
 		animalDao.saveOrUpdate(animal);
+
 	}
 	//Gin
 	// get multiple animals with a image 
@@ -85,5 +87,8 @@ public class AnimalServiceImpl implements AnimalService {
 		return map;
 	}
 	 
+	 @Override
+	public void testMethod() {
+		
+	}
 }
-

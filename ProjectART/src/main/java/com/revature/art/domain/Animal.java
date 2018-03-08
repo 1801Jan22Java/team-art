@@ -1,9 +1,9 @@
-
 package com.revature.art.domain;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
+
 /* 
 can't change !!! 
  maturity -  Infant / Young / Adult / Mature /
@@ -11,6 +11,7 @@ can't change !!!
  adoptStatus -   Pending  /  Adopted /  Available   
  species -  Dog / Cat / Fish / Rabbit / Octopus /  Lizard  / Turtle  / Horse / Other
 */
+
 @Entity
 @Table(name="ANIMALS")
 public class Animal implements Serializable{

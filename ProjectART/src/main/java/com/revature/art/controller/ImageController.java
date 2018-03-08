@@ -27,7 +27,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.revature.art.dao.AnimalDao;
-
 import com.revature.art.domain.Animal;
 //import com.revature.art.domain.File;
 import com.revature.art.service.AnimalService;
@@ -60,14 +59,20 @@ public class ImageController {
 	// Evan
 	
 	// James
-
+	/*
+	@PostMapping("/mapToAnimal")
+	public @ResponseBody int addFile(@RequestBody com.revature.art.domain.File file){
+		int imageID =imageService.addFile(file);
+		logger.info(file.toString());
+		return imageID;
+	}
+	*/
 
 	@PostMapping("/addImage")
 	public @ResponseBody int addFile(@RequestBody File file){
-		//int imageID =imageService.addFile(file);
+		int imageID =imageService.addFile(file);
 		logger.info(file.toString());
 		return 0;
-
 	}
 	//, headers = "'Content-Type': 'multipart/form-data'"
 	//@RequestParam (value="file") MultipartFile file

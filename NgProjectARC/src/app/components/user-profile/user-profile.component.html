@@ -1,0 +1,68 @@
+<div id="user-profile-container">
+  <div class="row" *ngIf="!show">
+      <div class="row spacer">
+          <a role="button" (click)="showUpdateForm()" id="update-button" class="btn btn-primary">Update Profile Info</a>
+        </div>
+    <div class="alert alert-primary" style="width:100%;">
+      <strong>User Information </strong>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{userInfo.name}}</th>
+          <th>{{userInfo.email}}</th>
+          <th>{{userInfo.password}}</th>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <app-update-user-profile></app-update-user-profile>
+  <br/>
+  <div class="row">
+    <div class="alert alert-primary" style="width:100%;">
+      <strong> Your Adoption History </strong>
+    </div>
+    <table class="table">
+      <thead>
+        <th style="width:30%;">Animal Name</th>
+        <th style="width:40%;">Date</th>
+        <th style="width:30%;">Status </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of applications">
+          <td>{{application.animal.name}}</td>
+          <td>{{application.appDate | date:'MM/dd/yyyy'}}</td>
+          <td>{{application.appStatus}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="alert alert-primary" style="width:100%;">
+      <strong> Shelter Meetup Schedule </strong>
+    </div>
+    <table class="table">
+      <thead>
+        <th style="width:30%;">Animal Name</th>
+        <th style="width:40%;">Date</th>
+        <th style="width:30%;">Status </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meetup of meetups">
+          <td>{{meetup.animal.name}}</td>
+          <td>{{meetup.meetupDate | date:'short'}}</td>
+          <td>{{meetup.meetupStatus}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

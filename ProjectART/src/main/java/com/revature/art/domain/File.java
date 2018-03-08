@@ -9,6 +9,7 @@ import javax.persistence.*;
 filename - aaa.jpg
 the path of the folder to save animal image!  >> webapp/resources/image 
 */
+
 @Entity
 @Table(name="FILES")
 public class File implements Serializable{

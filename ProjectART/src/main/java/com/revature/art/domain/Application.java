@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+
 /*
 ********  Can't change!!! **********
 address - Reston, VA (city, state only!)
@@ -13,6 +14,7 @@ phone -  123-123-1234  (format)
 appDate - MM/DD/YYYY
 housetype - singlehome, apartment, condo, townhome 
  */
+
 @Entity
 @Table(name="APPLICATION")
 public class Application {
@@ -143,6 +145,13 @@ public class Application {
 		this.user = user;
 	}
 
+	public Timestamp appDate() {
+		return appDate;
+	}
+
+	public void setLocalDateTime(Timestamp appDate) {
+		this.appDate = appDate;
+	}
 	public Timestamp getAppDate() {
 		return appDate;
 	}

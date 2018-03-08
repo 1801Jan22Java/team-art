@@ -1,14 +1,5 @@
 package com.revature.art.controller;
 
-<<<<<<< HEAD
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-=======
 import java.io.IOException;
 import java.util.List;
 
@@ -34,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.art.domain.Meetup;
->>>>>>> b1a2109f4548614f504a0cdaf8f26895a4954793
 import com.revature.art.service.AnimalService;
 import com.revature.art.service.ApplicationService;
 import com.revature.art.service.ImageService;
@@ -62,9 +52,6 @@ public class MeetupController {
 	// Eric
 	
 	// Evan
-<<<<<<< HEAD
-	
-=======
 	@RequestMapping(value="/meetupListById", method=RequestMethod.POST)
 	public ResponseEntity<List<Meetup>> postMeetupListById(@RequestBody int userId) {
 		logger.debug("getInfo: userId: " + userId);
@@ -83,7 +70,6 @@ public class MeetupController {
 		ObjectMapper mapper = new ObjectMapper();
 		return new ResponseEntity<List<Meetup>>(list, responseHeaders, HttpStatus.OK);
 	}
->>>>>>> b1a2109f4548614f504a0cdaf8f26895a4954793
 	// James
 	
 	//Gin 

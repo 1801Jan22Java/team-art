@@ -1,8 +1,6 @@
 package com.revature.art.dao;
 
 import java.util.List;
-
-
 import javax.servlet.annotation.MultipartConfig;
 
 import org.hibernate.Session;
@@ -41,17 +39,11 @@ public class FileDaoImpl implements FileDao{
 
 	@Override
 	public int add(File file) {
-
-
-
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		s.save(file);
 		tx.commit();
 		s.close();
-
-
-
 		return (Integer) HibernateUtil.getSession().save(file);
 	}
 

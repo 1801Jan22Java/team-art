@@ -27,6 +27,7 @@ public class ApplicationDaoImpl implements ApplicationDao{
 		s.close();
 		return a;
 	}
+
 	
 	@Override
 	public List<Application> getByUserId(int userId){
@@ -36,6 +37,7 @@ public class ApplicationDaoImpl implements ApplicationDao{
 		List<Application> a = q.list();
 		return a;
 	}
+
 
 	@Override
 	public Application getById(int id) {
@@ -63,6 +65,7 @@ public class ApplicationDaoImpl implements ApplicationDao{
 	public void saveOrUpdate(Application a) {
 		HibernateUtil.getSession().saveOrUpdate(a);
 	}
+
 	
 	// Eric
 
@@ -89,4 +92,5 @@ public class ApplicationDaoImpl implements ApplicationDao{
 		s.close();
 		return applCnt;
 	}
+
 }

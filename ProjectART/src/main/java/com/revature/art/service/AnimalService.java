@@ -20,4 +20,5 @@ public interface AnimalService {
 	// Gin
 	public List<File> getAnimalsWithFile();
 	public HashMap<String,Object> getAnimalWithFilesByAnimalID(int animalID);
+	void testMethod();
 }

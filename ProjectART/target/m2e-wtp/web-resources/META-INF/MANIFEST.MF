@@ -1,11 +1,4 @@
-
 Manifest-Version: 1.0
-
-Built-By: Lea
-Build-Jdk: 1.8.0_161
-
 Built-By: James
 Build-Jdk: 1.8.0_162
 Created-By: Maven Integration for Eclipse
-
-

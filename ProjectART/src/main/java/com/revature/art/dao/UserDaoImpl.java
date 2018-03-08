@@ -26,26 +26,18 @@ public class UserDaoImpl implements UserDao{
 		Session s = HibernateUtil.getSession();
 		User u = (User) s.get(User.class, id);
 
-
 		s.close();
-
 		return u;
 	}
 
 	@Override
 	public int add(User u) {
-
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		int userId = (Integer) s.save(u);
 		tx.commit();
 		s.close();
 		return userId;
-
-
-		return (Integer) HibernateUtil.getSession().save(u);
-
-
 	}
 
 	@Override
@@ -96,7 +88,6 @@ public class UserDaoImpl implements UserDao{
 		s.close();
 		return list;
 	}
-
 	
 	@Override
 	public List<User>  getUserByEmail(String email) {
@@ -116,6 +107,3 @@ public class UserDaoImpl implements UserDao{
 		return list;
 	}
 }
-	
-
-

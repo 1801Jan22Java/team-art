@@ -20,5 +20,3 @@ public interface ApplicationService {
 	List<Application> getAdpAplcList();
 	String addAdoptionApplication(HashMap<String, Object> application);
 }
-
-

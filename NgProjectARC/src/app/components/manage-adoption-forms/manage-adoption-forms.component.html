@@ -1,0 +1,37 @@
+<div id="adoption-forms">
+  <h1>Adoption Forms</h1>
+  <div class="sort">
+      <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('All')">All</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Approved')">Approved</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Denied')">Denied</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="sortRows('Pending')">Pending</button>
+  </div>
+  <ng-container *ngIf="manageForm">
+    <app-approve-deny-adoption></app-approve-deny-adoption>
+  </ng-container>
+  
+  <div class="table-responsive-xl">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Applicant</th>
+          <th scope="col">Animal</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+          <ng-container *ngFor="let application of adoptionForms; let i = index">
+          <tr *ngIf="show && (sortBy === application.appStatus || sortBy === 'All' || sortBy === '')">
+            <td><a (click)="showForm(application)" class="rowNum">{{i+1}}</a></td>
+            <td>{{application.user.name}}</td>
+            <td>{{application.animal.name}}</td>
+            <td>{{application.appStatus}}</td>
+            <td>{{application.appDate | date:'MM/dd/yyyy'}}</td>
+          </tr>
+          </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

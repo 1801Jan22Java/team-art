@@ -1,0 +1,48 @@
+<!-- Animal Status -->
+<br />
+<br />
+<br />
+<div class="row">
+	<div class="alert alert-success">
+		<strong>Status</strong>
+		<div class="form-check form-check-inline">
+			<label class="form-check-label"> <input type="checkbox" class="form-check-input" value="" checked>Available
+			</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<label class="form-check-label"> <input type="checkbox" class="form-check-input" value="">Adopted
+			</label>
+		</div>
+		<div class="form-check form-check-inline disabled">
+			<label class="form-check-label"> <input type="checkbox" class="form-check-input" value="">Pending
+			</label>
+		</div>
+	</div>
+</div>
+
+
+<!-- Pet List Gallery -->
+<div class="row">
+	<div class="gallery" *ngFor="let animal of animalWithImgs">
+		<a routerLink="/animalProfile/{{animal.animal.animalID}}">
+			<img src="http://localhost:8080/resources/image/{{animal.filename}}">
+		</a>
+		<div class="desc">
+			[{{animal.animal.adoptStatus}}] {{animal.animal.name}} / 
+			<br /> {{animal.animal.maturity}} / {{animal.animal.gender}}
+		</div>
+	</div>
+</div>
+
+<br />
+<!-- pagination -->
+<div class="row">
+	<ul class="pagination">
+		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		<li class="page-item"><a class="page-link" href="#">1</a></li>
+		<li class="page-item"><a class="page-link" href="#">2</a></li>
+		<li class="page-item"><a class="page-link" href="#">3</a></li>
+		<li class="page-item"><a class="page-link" href="#">Next</a></li>
+	</ul>
+</div>
+<br />
