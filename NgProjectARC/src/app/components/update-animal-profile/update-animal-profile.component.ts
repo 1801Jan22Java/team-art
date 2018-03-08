@@ -34,7 +34,10 @@ export class UpdateAnimalProfileComponent implements OnInit {
   tempAnimal: AnimalList;
   ourFile: File;
   
-  @ViewChild('image1') image: ElementRef;
+  @ViewChild('image1') im0: ElementRef;
+  @ViewChild('image2') im1: ElementRef;
+  @ViewChild('image3') im2: ElementRef;
+  @ViewChild('image4') im3: ElementRef;
   //animal: Observable<AnimalList>;
   private _url: string = "http://localhost:8080/api/animal/updateAnimal";
   private url_: string = "http://localhost:8080/api/image/physicalImage";
@@ -92,6 +95,8 @@ export class UpdateAnimalProfileComponent implements OnInit {
     );
     console.log(httpSend);
 
+    this.router.navigate(['/animalList']);
+
     }
 
     Cancel(){
@@ -99,14 +104,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
       this.router.navigate(['/animalList']);
     }
 
-  
-    addImages(iPost){
-      this.image1 = iPost.image1;
-      const formData = new FormData();
-      let fileBrowser = this.image.nativeElement;
-    if (fileBrowser.files && fileBrowser.files[0]) {
-      formData.append("file", fileBrowser.files[0]);
-      /*
+    /*
       if (fileBrowser.files[1])
         formData.append("File", fileBrowser.files[1]);
         if (fileBrowser.files[2])
@@ -114,50 +112,65 @@ export class UpdateAnimalProfileComponent implements OnInit {
         if (fileBrowser.files[3])
         formData.append("File", fileBrowser.files[3]);
         */
-     // formData.append("aniID", "63");
+
+    addImages(iPost){
+     // this.image1 = iPost.image1;
+      const formData = new FormData();
+      let fileBrowser = [
+        this.im0.nativeElement,
+        this.im1.nativeElement,
+        this.im2.nativeElement,
+        this.im3.nativeElement
+      ]
+   
+      for (let i = 0; i < 4; i++){
+        if (fileBrowser[i].files && fileBrowser[i].files[0]) {
+          formData.append("file", fileBrowser[i].files[0]);
+           
+          let httpSend = this.http.post(this.url_, formData ).subscribe(
+            res => {
+              console.log(res);
+            },
+            err => {
+             console.log("Error occurred");
+              console.log(err);
+            }
+          );
+          console.log("cool");
+        
+        console.log(fileBrowser[i].files[0]);
+    
+        this.aniData = 63;
+        this.naming = fileBrowser[i].files[0].name;
+        this.tempAnimal = {
+          animalID: this.aniData,
+          name: null,
+          maturity: null,
+          gender: null,
+          adoptStatus: null,
+          species: null
+        };
+    
+        this.ourFile = {
+            fileID: null,
+            filename: this.naming,
+            animal: this.tempAnimal
+        };
+    
+        httpSend = this.http.post(this._url_, this.ourFile ).subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+           console.log("Error occurred");
+            console.log(err);
+          }
+        );
       
-     
-      let httpSend = this.http.post(this.url_, formData ).subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-         console.log("Error occurred");
-          console.log(err);
-        }
-      );
-      console.log("cool");
-    }
-    console.log(fileBrowser.files[0]);
-
-    this.aniData = 63;
-    this.naming = fileBrowser.files[0].name;
-    this.tempAnimal = {
-      animalID: this.aniData,
-      name: null,
-      maturity: null,
-      gender: null,
-      adoptStatus: null,
-      species: null
-    };
-    //this.naming = document.getElementById("image1");
-    //console.log(this.naming);
-    this.ourFile = {
-        fileID: null,
-        filename: this.naming,
-        animal: this.tempAnimal
-    };
-
-    let httpSend = this.http.post(this._url_, this.ourFile ).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-       console.log("Error occurred");
-        console.log(err);
       }
-    );
+      }
+    
+    }
   
-  }
 
 }
