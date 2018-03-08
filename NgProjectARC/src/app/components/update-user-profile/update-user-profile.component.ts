@@ -17,7 +17,7 @@ export class UpdateUserProfileComponent implements OnInit {
 }
 
 ngOnInit() {
-  this.userService.getInfo(43).subscribe(data => {
+  this.userService.getInfo(+localStorage.getItem('userID')).subscribe(data => {
     this.user = data;
   });
 }

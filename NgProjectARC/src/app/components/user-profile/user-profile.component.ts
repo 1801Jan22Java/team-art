@@ -24,11 +24,11 @@ export class UserProfileComponent implements OnInit {
 
   //+localStorage.getItem('userID')
   ngOnInit() {
-    this.userService.getInfo(43).subscribe(data => {
+    this.userService.getInfo(+localStorage.getItem('userID')).subscribe(data => {
       this.userInfo = data;
     });
-    this.applicationService.getInfo(43).subscribe(data => this.applications = data);
-    this.meetupService.getInfo(43).subscribe(data => this.meetups = data);
+    this.applicationService.getInfo(+localStorage.getItem('userID')).subscribe(data => this.applications = data);
+    this.meetupService.getInfo(+localStorage.getItem('userID')).subscribe(data => this.meetups = data);
   }
 
   showUpdateForm(){
