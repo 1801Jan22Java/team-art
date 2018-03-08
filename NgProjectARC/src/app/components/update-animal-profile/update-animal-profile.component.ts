@@ -26,9 +26,6 @@ export class UpdateAnimalProfileComponent implements OnInit {
   pname: string = "";
   spec: string = "";
   image1: string = "";
-  image2: string = "";
-  image3: string = "";
-  image4: string = "";
   animal: AnimalList;
   headers: HttpHeaders;
   aniData: number = 0;
@@ -62,7 +59,7 @@ export class UpdateAnimalProfileComponent implements OnInit {
     });
    }
   ngOnInit() {
-    console.log(this.image);
+  
   }
 
   addPost(post) {
