@@ -70,6 +70,7 @@ public class ImageController {
 	public @ResponseBody String physicalFile(@RequestParam (value="file") MultipartFile file, Model model) throws IOException {
 		String directory = "C:\\ART Project\\ProjectART\\src\\main\\webapp\\WEB-INF\\images\\";
 		//String directory = "http://localhost:8080/resources/image/";
+		String directory = "C:\\ART Project\\team-art\\ProjectART\\src\\main\\webapp\\WEB-INF\\images";
 		int maxSize = 1024 * 1024 * 20;
 		String encoding = "UTF-8";
 		//MultipartRequest multiRequest = new MultipartRequest(file, directory, maxSize, encoding);
