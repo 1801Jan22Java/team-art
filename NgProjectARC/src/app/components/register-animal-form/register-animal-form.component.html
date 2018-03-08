@@ -1,56 +1,69 @@
-<div>
-    <form class="form-registerAnimal" action="registerAnimal" method="post">
-        <h1 class="h1 mb-1 font-weight-bold">Register Animal</h1>
+<div id="reganimalcontainer">
+    <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+                <h1 class="h1 mb-1 font-weight-bold">Register Animal</h1>
         <label for="animalName" class="sr-only">Name</label>
         <div class="form-group">
-            <input type="text" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
+            <input type="text" formControlName= "pname" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
         </div>
         <div class="form-group">
-           <select class="form-control" name="maturity"  >
+           <select class="form-control" formControlName = "mat" name="maturity"  >
                 <option>Infant</option>
                 <option>Young</option>
                 <option>Adult</option>                 
-                <option>Old</option>
+                <option>Mature</option>
             </select>
         </div>
         <div class="form-group">
-            <select class="form-control" name="pettype"  >
+            <select class="form-control" formControlName = "spec" name="pettype"  >
                 <option>Dog</option>
                 <option>Cat</option>
                 <option>Octopus</option>
-                <option>Guinea Pigs</option>
                 <option>Rabbit</option>
-                <option>Ferrets</option>
-                <option>Birds</option>
                 <option>Fish</option>
                 <option>Horse</option>
+                <option>Lizard</option>
+                <option>Turtle</option>
+                <option>Other</option>
               </select>
             <br>  
         </div>
+         <!-- formControlName="gend" -->
         <fieldset class="form-group">
             <legend>Gender</legend>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"> Male
+                    <input type="radio" class="form-check-input" formControlName="gend" name="gend" id="optionsRadios1" value="Male"> Male
                 </label>
             </div>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> Female
+                    <input type="radio" class="form-check-input" formControlName="gend" name="gend" id="optionsRadios2" value="Female"> Female
                 </label>
             </div>
         </fieldset>
-        <div class="form-group" id="animal-pics">
-            <legend>Profile Images</legend>
-            <input type="file" class="form-control-file" id="animalPicture1" aria-describedby="fileHelp">
-            <input type="file" class="form-control-file" id="animalPicture2" aria-describedby="fileHelp">
-            <input type="file" class="form-control-file" id="animalPicture3" aria-describedby="fileHelp">
-            <input type="file" class="form-control-file" id="animalPicture4" aria-describedby="fileHelp">
-            <small id="fileHelp" class="form-text text-muted">These images will be displayed on the animal's profile.</small>
-        </div>
         <div id="registerAnimal-btns">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Cancel</button>
+            <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" [disabled]="!rForm.valid">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block" type="button" id="cancel" (click)="Cancel()">Cancel</button>
         </div>
     </form>
+    <form [formGroup]="iForm" (ngSubmit)="addImages(iForm.value)" enctype="multipart/form-data" name="file" >
+        <div class="form-group">
+                <legend>Profile Images</legend>
+                <span class="input-group-addon" id="im1">
+                <input type="file" class="form-control-file" #image1 placeholder="image1" name="file" id="image1" accept="image/*">
+                </span>
+                <span class="input-group-addon">
+                <input type="file" class="form-control-file" #image2 placeholder="image2" name="file" id="image2" accept="image/*">
+                </span>
+                <span class="input-group-addon">
+                <input type="file" class="form-control-file" #image3 name="file" placeholder="image3" id="image3" accept="image/*">
+                </span>
+                <span class="input-group-addon">
+                <input type="file" class="form-control-file" #image4 name="file" placeholder="image4" id="image4" accept="image/*">
+                </span>
+                <!-- <input type="file" class="form-control-file"> -->
+                <small class="form-text text-muted">These images will be displayed on the animals profile.</small>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" >Add Images</button>
+        </form>
 </div>
