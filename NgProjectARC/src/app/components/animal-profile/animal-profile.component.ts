@@ -13,7 +13,7 @@ export class AnimalProfileComponent implements OnInit {
   public animal: any = {};
   public files = [];
    htmlText: string;
-
+userID:string;
   public initFilename:string;
   animalID : string;
   constructor(
@@ -24,6 +24,7 @@ export class AnimalProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getAnimalProfile();
+    this.userID = localStorage.getItem('userID');
   }
   getAnimalProfile(){
     this.animalService.getAnimalWithImgs(this.animalID).subscribe(data => 

@@ -12,8 +12,9 @@ import {UserService} from '../../service/user.service';
 })
 export class RegisterUserFormComponent implements OnInit {
 
-  private API_URL: string = "http://localhost:8080/api/user";
 
+  private API_URL: string = "http://localhost:8080/api/user";
+  filter: boolean= false;
   constructor(
     private userService: UserService,
     private router: Router) {}
@@ -22,6 +23,14 @@ export class RegisterUserFormComponent implements OnInit {
   }
 
   registerUser(data) {
+   
+   
+    console.log(data);
+    if (this.filter){       // if checked, Employee - usertype 0, else 1
+      data.usertype = 0;
+    } else {
+      data.usertype = 1;
+    }
     this.userService.sendUserInfo(this.API_URL + "/register", data).subscribe();
     alert("congratulation! Now you are registered. please log in.");
     this.router.navigate(['/login']);

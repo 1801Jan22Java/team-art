@@ -37,7 +37,7 @@ export class AdoptionFormComponent implements OnInit {
 
    applyAdoption(data){
       // check if the form data includes necessary information.
-     console.log("am i using data"+ JSON.stringify(data));
+     //console.log("am i using data"+ JSON.stringify(data));
      if (this.address == null){
        alert('address is mandatory information.');
        return;
@@ -54,14 +54,11 @@ export class AdoptionFormComponent implements OnInit {
        alert('housetype is mandatory information.');
        return;
      }
-    console.log(this.animalID);
      this.applicationService.sendAdoptApplication(this.API_URL +"/adoptApplication.json", data)
-     .subscribe(data =>     {
-       this.msg = data;
-       alert('success!');
-       this.router.navigate(['/homepage']);
-     }
-     );
+     .subscribe();
+     alert('Your adoption application on ' +this.animalName + ' is submitted!');
+     this.router.navigate(['/homepage']);
+     
    }
   
   

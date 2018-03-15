@@ -10,16 +10,22 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HomepageComponent implements OnInit {
 
   public animalWithImgs = [];
+  adoptStatus: string = 'All';
   constructor(
     private animalService: AnimalService) { }
      
   ngOnInit() {
-    this.getAnimals();
+    
+    this.getAnimals(this.adoptStatus);
   }
 
-  getAnimals(){
-    this.animalService.getAnimalsWithImg().subscribe(data => this.animalWithImgs = data);
+  
+  getAnimals(adoptStatus){
+    this.adoptStatus = adoptStatus;
+    this.animalService.getAnimalsWithImg(adoptStatus).subscribe(data => this.animalWithImgs = data);
   }
+  
+  
 }
 
 export interface FileList {

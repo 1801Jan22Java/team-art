@@ -49,6 +49,7 @@ export class ApproveDenyAdoptionComponent implements OnInit {
 
   onSubmit() {
     this.applicationService.approveDenyApplication(this.currApplication);
+    alert('Update Success!!');
      this.hide();
   }
 

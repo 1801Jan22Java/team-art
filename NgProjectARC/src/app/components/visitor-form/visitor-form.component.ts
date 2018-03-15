@@ -47,7 +47,7 @@ export class VisitorFormComponent implements OnInit {
    this.meetupService.sendMeetupForm(this.API_URL+ "/visitorForm.json", data)
       .subscribe();
       alert("Success!!");
-      this.router.navigate(['/homepage']);
+      //this.router.navigate(['/homepage']);
   }
   
   

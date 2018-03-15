@@ -5,6 +5,7 @@
         <div class="form-group">
             <input type="text" formControlName= "pname" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
         </div>
+        Maturity:
         <div class="form-group">
            <select class="form-control" formControlName = "mat" name="maturity"  >
                 <option selected="selected">Infant</option>
@@ -13,6 +14,7 @@
                 <option>Mature</option>
             </select>
         </div>
+        Species:
         <div class="form-group">
             <select class="form-control" formControlName = "spec" name="pettype"  >
                 <option selected="selected">Dog</option>
@@ -46,7 +48,7 @@
             <button class="btn btn-lg btn-primary btn-block" type="button" id="cancel" (click)="Cancel()">Cancel</button>
         </div>
     </form>
-    <form [formGroup]="iForm" (ngSubmit)="addImages(iForm.value)" enctype="multipart/form-data" name="file" >
+    <form [formGroup]="iForm" (ngSubmit)="addImages(iForm.value)"  #imgForm="ngForm" enctype="multipart/form-data" name="file" >
         <div class="form-group">
                 <legend>Profile Images</legend>
                 <span class="input-group-addon" id="im1">
@@ -56,10 +58,10 @@
                 <input type="file" class="form-control-file" #image2 placeholder="image2" name="file" id="image2" accept="image/*">
                 </span>
                 <span class="input-group-addon">
-                <input type="file" class="form-control-file" #image3 name="file" placeholder="image3" id="image3" accept="image/*">
+                <input type="file" class="form-control-file" #image3 placeholder="image3" name="file"id="image3" accept="image/*">
                 </span>
                 <span class="input-group-addon">
-                <input type="file" class="form-control-file" #image4 name="file" placeholder="image4" id="image4" accept="image/*">
+                <input type="file" class="form-control-file" #image4 placeholder="image4" name="file" id="image4" accept="image/*">
                 </span>
                 <!-- <input type="file" class="form-control-file"> -->
                 <small class="form-text text-muted">These images will be displayed on the animals profile.</small>
@@ -67,6 +69,4 @@
             <button class="btn btn-lg btn-primary btn-block" input type="submit" value="Submit Form" >Add Images</button>
         </form>
         
-        <input type="file" (change)="onFileSelected($event)">
-        <button type="button" >upload</button>
 </div>

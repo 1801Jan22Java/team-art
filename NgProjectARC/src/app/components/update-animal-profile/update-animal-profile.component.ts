@@ -118,7 +118,8 @@ export class UpdateAnimalProfileComponent implements OnInit {
     );
     
     //console.log(httpSend);
-    this.hide();
+     this.router.navigate(["/animalList"]);
+    location.reload();
   }
 
   Cancel() {

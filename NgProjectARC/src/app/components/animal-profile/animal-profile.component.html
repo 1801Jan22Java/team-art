@@ -4,14 +4,19 @@
 <div class="row">
 	<br />
 	<!--show only if registered user and animal is still available. -->
-	<a *ngIf="animal.adoptStatus == 'Available'   " class="btn btn-primary" role="button" 
+	<a *ngIf="animal.adoptStatus == 'Available'  && userID != null  " class="btn btn-primary" role="button" 
 	routerLink="/visitorForm/{{animal.animalID}}/{{animal.name}}">Schedule Meeting</a>&nbsp;
 
 	<!-- show only one of them -->
-	<a *ngIf="animal.adoptStatus == 'Available'  "  class="btn btn-primary" role="button" 
+	<a *ngIf="animal.adoptStatus == 'Available'   && userID != null"  class="btn btn-primary" role="button" 
 	routerLink="/adoptionForm/{{animal.animalID}}/{{animal.name}}">Adopt Me!</a>&nbsp;
-	<button *ngIf="animal.adoptStatus == 'Adopted' " disabled type="button" class="btn btn-primary" disabled>Adopted</button>
-  <button *ngIf="animal.adoptStatus == 'Pending' " disabled type="button" class="btn btn-primary" disabled>Pending</button> 
+	
+	<div *ngIf="animal.adoptStatus == 'Adopted' " class="alert alert-primary" style="width:100%;">
+	  <strong>{{animal.name}} is Adopted!</strong>  
+	</div>
+	<div *ngIf="animal.adoptStatus == 'Pending' "  class="alert alert-primary" style="width:100%;">
+	  <strong>{{animal.name}} is on Adoption progress! [Pending Status]</strong> 
+	</div>
 </div>
 
 <br />
@@ -28,7 +33,7 @@
 </div>
 <br>
 <div class="row">
-	<table class="table-dark table-striped" style="width:50%;" >
+	<table class="table table-dark" style="width:50%;" >
 		<tbody>
 			<tr>
 				<td style="width:30%;">Name</td>

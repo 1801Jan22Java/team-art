@@ -33,9 +33,9 @@ export class AnimalService {
   
   // Gin
   // get multiple animals with an image
-  private animalWithImg : string = "http://localhost:8080/api/animal/animalsWithFile.json";
-  getAnimalsWithImg(): Observable<FileList[]>{
-    return this.http.get<FileList[]>(this.animalWithImg);
+  private animalWithImg : string = "http://localhost:8080/api/animal/animalsWithFile.json?adoptStatus=";
+  getAnimalsWithImg(adoptStatus): Observable<FileList[]>{
+    return this.http.get<FileList[]>(this.animalWithImg+ adoptStatus);
   }
   // get an animal with multiple images
   private animalWithImgs : string = "http://localhost:8080/api/animal/animalWithFiles.json";

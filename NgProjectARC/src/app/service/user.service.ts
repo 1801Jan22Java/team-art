@@ -40,6 +40,10 @@ export class UserService {
     return this.http.post(url, JSON.stringify(data), {headers: this.headers})
   }
  
+ 
+ public getLocalInfo(id: string): string {
+    return localStorage.getItem(id);
+}
 //  private messageSource = new BehaviorSubject<number>(this.userID);
 //  currentMessage = this.messageSource.asObservable();
 

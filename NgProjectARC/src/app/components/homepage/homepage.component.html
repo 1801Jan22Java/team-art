@@ -2,7 +2,7 @@
 <br />
 <br />
 <br />
-<div class="row">
+<!-- <div class="row">
 	<div class="alert alert-success">
 		<strong>Status</strong>
 		<div class="form-check form-check-inline">
@@ -18,17 +18,24 @@
 			</label>
 		</div>
 	</div>
+</div> -->
+
+<div class="row">
+<button class="btn btn-warning" (click)="getAnimals('All')">All Animal </button>&nbsp;
+<button class="btn btn-warning" (click)="getAnimals('Available')">Adoptable Animal </button>&nbsp;
+<button class="btn btn-warning" (click)="getAnimals('Adopted')">Adopted Animal </button>&nbsp;
+<button class="btn btn-warning" (click)="getAnimals('Pending')">Pending on Adoption </button>&nbsp;
 </div>
-
-
+<br/>
 <!-- Pet List Gallery -->
 <div class="row">
 	<div class="gallery" *ngFor="let animal of animalWithImgs">
-		<a routerLink="/animalProfile/{{animal.animal.animalID}}">
-			
-			<img *ngIf="animal.filename != null" src="http://localhost:8080/resources/image/{{animal.filename}}">
-			<img *ngIf="animal.filename == null" src="http://localhost:8080/resources/image/default.jpg">
-		</a>
+			<div>
+				<a routerLink="/animalProfile/{{animal.animal.animalID}}">
+					<img *ngIf="animal.filename != null" src="http://localhost:8080/resources/image/{{animal.filename}}">
+					<img *ngIf="animal.filename == null" src="http://localhost:8080/resources/image/default.jpg">
+				</a>
+			</div>
 		<div class="desc">
 			[{{animal.animal.adoptStatus}}] {{animal.animal.name}} / 
 			<br /> {{animal.animal.maturity}} / {{animal.animal.gender}}
@@ -38,7 +45,7 @@
 
 <br />
 <!-- pagination -->
-<div class="row">
+<!-- <div class="row">
 	<ul class="pagination">
 		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
 		<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -46,5 +53,5 @@
 		<li class="page-item"><a class="page-link" href="#">3</a></li>
 		<li class="page-item"><a class="page-link" href="#">Next</a></li>
 	</ul>
-</div>
+</div> -->
 <br />

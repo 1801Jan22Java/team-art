@@ -8,13 +8,13 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/homepage">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li  class="nav-item active">
+      <li  *ngIf="userApp.getLocalInfo('userID') != null && userApp.getLocalInfo('usertype') == '0'"    class="nav-item active">
           <a  class="nav-link" routerLink="/adoptionForms">Adoption Forms</a>
       </li>
-      <li  class="nav-item active">
+      <li  *ngIf="userApp.getLocalInfo('userID') != null && userApp.getLocalInfo('usertype') == '0'"    class="nav-item active">
           <a class="nav-link" routerLink="/calendar">Visitor's Schedule</a>
       </li>
-      <li  class="nav-item active">
+      <li  *ngIf="userApp.getLocalInfo('userID') != null && userApp.getLocalInfo('usertype') == '0'"   class="nav-item active">
           <a class="nav-link" routerLink="/animalList">Manage Animals</a>
       </li>
       <!--
@@ -34,13 +34,13 @@
           </button>
         -->
       <ul class="navbar-nav mr-auto">
-        <li *ngIf= "isLogin" class="nav-item active">
+        <li *ngIf="userApp.getLocalInfo('userID') != null" class="nav-item active">
             <a  class="nav-link" routerLink="/userProfile">My Account</a>
         </li>
-        <li *ngIf= "!isLogin" class="nav-item">
+        <li *ngIf="userApp.getLocalInfo('userID') == null" class="nav-item">
             <a class="nav-link" routerLink="/login">Login</a>
         </li>
-        <li  *ngIf= "isLogin"  class="nav-item">
+        <li  *ngIf="userApp.getLocalInfo('userID') != null"  class="nav-item">
             <a (click)="logout()" class="nav-link" routerLink="/">Logout</a>
         </li>
       </ul>

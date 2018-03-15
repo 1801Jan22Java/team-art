@@ -1,13 +1,16 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import {Router} from "@angular/router";
 import { AnimalList } from '../managelist-of-animals/managelist-of-animals.component';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+
 import {ManagelistOfAnimalsComponent } from '../managelist-of-animals/managelist-of-animals.component'
 import {File} from '../../models/file';
 import { AnimalService } from '../../service/animal.service';
+import { ImageService } from '../../service/image.service';
+import {Http, Response} from '@angular/http';
 
 //James'!!!!!!! 
 @Component({
@@ -36,20 +39,27 @@ export class RegisterAnimalFormComponent implements OnInit {
   ourFile: File;
   timerz :number = 0;
   loopz: any;
+  animalID:number;
   temp: AnimalList[];
   @ViewChild('image1') im0: ElementRef;
   @ViewChild('image2') im1: ElementRef;
   @ViewChild('image3') im2: ElementRef;
   @ViewChild('image4') im3: ElementRef;
+
+@ViewChild('mgForm') form: NgForm;
+  
   //animal: Observable<AnimalList>;
   private _url: string = "http://localhost:8080/api/animal/addAnimal";
   private url_: string = "http://localhost:8080/api/image/physicalImage";
   private _url_ : string = "http://localhost:8080/api/image/mapToAnimal";
 
-
+  
   constructor(private fb: FormBuilder, private http: HttpClient,
-    private router: Router, private animalService: AnimalService) {
+    private router: Router, private animalService: AnimalService,
+    private imageService : ImageService,
+    private http2: Http) {
 
+    
     this.rForm = fb.group({
       'pname' : [null, Validators.required],
       'mat' : [Validators.required],
@@ -64,24 +74,40 @@ export class RegisterAnimalFormComponent implements OnInit {
     'image4' : [null]
   });
  }
-
+  
   ngOnInit() {
     
   }
-
-  onFileSelected(event){
-    console.log(event);
+ file = null;
+ successMsg= null;
+ errorMsg= null;
+ getFiles(files: any) {
+  let empDataFiles: FileList = files.files;
+  this.file = empDataFiles[0];
+}
+ 
+postfile() {
+  if (this.file !== undefined) {
+    this.imageService.postFormData(this.file).map(responce => {
+    }).catch(error => this.imageService = error);
+    setTimeout(() => {
+      this.successMsg = "Successfully uploaded !!";
+    }, 10000);
+  } else {
+    //show error
   }
+}
   
   addPost(post) {
     this.pname = post.pname;
     this.mat = post.mat;
     this.spec = post.spec;
     this.gend = post.gend;
-    console.log(this.pname);
-    console.log(this.mat);
-    console.log(this.spec);
-    console.log(this.gend);
+//    console.log(this.pname);
+//    console.log(this.mat);
+//    
+//    console.log(this.spec);
+//    console.log(this.gend);
     this.animal = {
       animalID: 1,
       name : this.pname,
@@ -91,30 +117,21 @@ export class RegisterAnimalFormComponent implements OnInit {
       species : this.spec 
     };
    
-    console.log(this.animal);
-    
-    
-    let httpSend = this.http.post(this._url, this.animal).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-       console.log("Error occurred");
-        console.log(err);
-      }
-    );
-
-    console.log(httpSend);
-    this.router.navigate(['/animalList']);
-    
-
+   
+    // add animal text info
+    let httpSend = this.http2.post(this._url, this.animal).subscribe(res => {
+      this.animalID = +JSON.parse(res.text()).animalID;
+      alert('The animal information is successfully submitted! Please save the images.');
+    });
+   // this.router.navigate(['/animalList']);
     }
     
   Cancel(){
     console.log("yay")
     this.router.navigate(['/animalList']);
   }
-
+  
+  
   addImages(iPost){
     const formData = new FormData();
     let fileBrowser = [
@@ -128,7 +145,7 @@ export class RegisterAnimalFormComponent implements OnInit {
       if (fileBrowser[i].files && fileBrowser[i].files[0]) {
         formData.append("file", fileBrowser[i].files[0]);
          
-        let httpSend = this.http.post(this.url_, formData ).subscribe(
+        let httpSend = this.http.post(this.url_+ "?animalID="+ this.animalID, formData ).subscribe(
           res => {
             console.log(res);
           },
