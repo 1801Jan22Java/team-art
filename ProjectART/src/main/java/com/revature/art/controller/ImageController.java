@@ -4,7 +4,11 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import com.revature.art.dao.AnimalDao;
 
@@ -71,34 +74,46 @@ public class ImageController {
 	//, headers = "'Content-Type': 'multipart/form-data'"
 	//@RequestParam (value="file") MultipartFile file
 	@PostMapping(value = "/physicalImage")
-	public @ResponseBody String physicalFile(@RequestParam (value="file") MultipartFile file, Model model) throws IOException {
+	public @ResponseBody String physicalFile(final HttpServletRequest request,
+			@RequestParam (value="file") List<MultipartFile> files, 
+			Model model) throws IOException {
 
+		 String animalID = request.getParameter("animalID");
+		int aID=   Integer.parseInt(animalID);
+		Animal a = animalService.getAnimalByID(aID);
+		System.out.println("am I getting animalID?  "+animalID);
 		//String directory = "C:\\ART Project\\ProjectART\\src\\main\\webapp\\WEB-INF\\images\\";
-		String directory = "http://localhost:8080/resources/image/";
-
-		//String directory = "C:\\ART Project\\team-art\\ProjectART\\src\\main\\webapp\\WEB-INF\\images";
+		String directory = "C:\\GitRepos\\1801-Jan22-java\\team-art\\team-art\\ProjectART\\src\\main\\webapp\\resources\\image"; //Gin!
 
 		int maxSize = 1024 * 1024 * 20;
 		String encoding = "UTF-8";
 		//MultipartRequest multiRequest = new MultipartRequest(file, directory, maxSize, encoding);
-		if (!file.getOriginalFilename().isEmpty()) {
-            BufferedOutputStream outputStream = new BufferedOutputStream(
-                  new FileOutputStream(
-                        new File(directory, file.getOriginalFilename())));
-            
-
-            outputStream.write(file.getBytes());
-            outputStream.flush();
-            outputStream.close();
-         } else {
-            model.addAttribute("msg", "Please select at least one file..");
-            return "fileUploadForm";
-         }
-   
+		Iterator<MultipartFile> itr = files.iterator();
+		while(itr.hasNext()) {
+			MultipartFile file = (MultipartFile)itr.next();
+		/*	if (!file.getOriginalFilename().isEmpty()) {*/
+	            BufferedOutputStream outputStream = new BufferedOutputStream(
+	                  new FileOutputStream(
+	                        new File(directory, file.getOriginalFilename())));
+	            
+	            com.revature.art.domain.File f = new com.revature.art.domain.File();
+	            System.out.println(model.toString());
+	            String filename = file.getOriginalFilename();
+	            
+	            f.setAnimal(a);
+	            f.setFilename(filename);
+	            imageService.addFile(f);
+	            
+	            outputStream.write(file.getBytes());
+	            outputStream.flush();
+	            outputStream.close();
+	        /* } else {
+	            model.addAttribute("msg", "Please select at least one file..");
+	            return "fileUploadForm";
+	         }*/
+		}
 		System.out.println("wootwoot");
 		return "";
 	}
-
-	//Gin 
 
 }

@@ -18,6 +18,6 @@ public interface AnimalService {
 	
 	
 	// Gin
-	public List<File> getAnimalsWithFile();
+	public List<File> getAnimalsWithFile(String adoptStatus);
 	public HashMap<String,Object> getAnimalWithFilesByAnimalID(int animalID);
 }

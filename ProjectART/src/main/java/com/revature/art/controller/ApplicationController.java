@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +45,14 @@ public class ApplicationController {
 
 	// Eric
 
+	@PostMapping("/approveDeny")
+	public @ResponseBody Application approveDenyApplication(@RequestBody Application a) 
+	{
+		logger.debug("approveDenyApplication: requestData: " + a.toString());
+		Application app = applicationService.approveDenyApplication(a);
+		return app;
+	}
+	
 	// Evan
 	@RequestMapping(value="/applicationListById", method=RequestMethod.POST)
 	public @ResponseBody List<Application> getAdpAplcListById(@RequestBody int userId) {

@@ -31,28 +31,46 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private MeetupDao meetupDao;
 	@Autowired
 	private UserDao userDao;
- 
+
 	// Eric
 	@Override
 	public Application approveDenyApplication(Application a) {
 		Application app = applicationDao.getById(a.getApplicationID());
-		if (a.getAppStatus().equals("Approved") || a.getAppStatus().equals("Denied"))
-		{
+		if (a.getAppStatus().equals("Approved")) {
 			List<Application> apps = applicationDao.getAll();
-			for(Application curr : apps)
-				if(curr.getAnimal().getAnimalID() == a.getAnimal().getAnimalID() && curr.getApplicationID() != app.getApplicationID()) {
+			for (Application curr : apps) {
+				if (curr.getAnimal().getAnimalID() == a.getAnimal().getAnimalID()
+						&& curr.getApplicationID() != app.getApplicationID()) {
 					curr.setAppStatus("Denied");
+					curr.getAnimal().setAdoptStatus("Adopted");
 					applicationDao.saveOrUpdate(curr);
+					animalDao.saveOrUpdate(curr.getAnimal());
 				}
+			}
 			// set the adoption status of the application's animal to 'adopted'
 			app.getAnimal().setAdoptStatus("Adopted");
 			// set the application status to approved or denied
-			app.setAppStatus(a.getAppStatus());
-			applicationDao.saveOrUpdate(app);
+			
+		} else if (a.getAppStatus().equals("Denied")) {
+			List<Application> apps = applicationDao.getAll();
+			for (Application curr : apps) {
+				if (curr.getAnimal().getAnimalID() == a.getAnimal().getAnimalID()
+						&& curr.getApplicationID() != app.getApplicationID()) {
+					curr.setAppStatus("Pending");
+					curr.getAnimal().setAdoptStatus("Available");
+					applicationDao.saveOrUpdate(curr);
+					animalDao.saveOrUpdate(curr.getAnimal());
+				}
+			}
+			// set the adoption status of the application's animal to 'adopted'
+			app.getAnimal().setAdoptStatus("Available");
+			// set the application status to approved or denied
 		}
+		app.setAppStatus(a.getAppStatus());
+		applicationDao.saveOrUpdate(app);
 		return applicationDao.getById(app.getApplicationID());
 	}
-	
+
 	@Override
 	public Application updateApplication(Application a) {
 		Application app = applicationDao.getById(a.getApplicationID());
@@ -60,6 +78,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 			app.setAppStatus(a.getAppStatus());
 		return app;
 	}
+
 	@Override
 	public List<Application> getAdpAplcList() {
 		List<Application> apps = applicationDao.getAll();
@@ -78,16 +97,16 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public String addAdoptionApplication(HashMap<String, Object> application) {
 		Application ap = new Application();
-		ap.setProfession((String)application.get("profession"));
-		ap.setHousetype((String)application.get("housetype"));
-		ap.setAddress((String)application.get("address"));
-		ap.setPhone((String)application.get("phone"));
-		ap.setAppStatus("Pending");  			// default value when application is submitted.
+		ap.setProfession((String) application.get("profession"));
+		ap.setHousetype((String) application.get("housetype"));
+		ap.setAddress((String) application.get("address"));
+		ap.setPhone((String) application.get("phone"));
+		ap.setAppStatus("Pending"); // default value when application is submitted.
 		ap.setAppDate(new Timestamp(System.currentTimeMillis()));
-		 
-		Animal a = animalDao.getById(Integer.parseInt((String)application.get("animalID")));
+
+		Animal a = animalDao.getById(Integer.parseInt((String) application.get("animalID")));
 		ap.setAnimal(a);
-		User u = userDao.getById((Integer)application.get("userID"));
+		User u = userDao.getById((Integer) application.get("userID"));
 		ap.setUser(u);
 		try {
 			applicationDao.addApplication(ap);

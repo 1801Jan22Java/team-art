@@ -4,10 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.connection.username">c##rev</property>
+<!--     <property name="hibernate.connection.username">c##rev</property>
 		<property name="hibernate.connection.password">1234</property>
-		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:ORCL</property>
-
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:ORCL</property>    -->
+  	<property name="hibernate.connection.username">jameswhitten</property>
+		<property name="hibernate.connection.password">adopthibernate</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@adopthibernate.cmiqismyaow0.us-east-2.rds.amazonaws.com:1521:ORCL</property>
+ 
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<!-- This can be noisy in the console (can be useful but also can be annoying) -->
 		<property name="hibernate.show_sql">true</property>

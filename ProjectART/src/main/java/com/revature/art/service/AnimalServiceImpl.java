@@ -39,7 +39,8 @@ public class AnimalServiceImpl implements AnimalService {
 	//Eric
 	@Override
 	public Animal getAnimalByID(int animalID) {
-		Animal animal = animalDao.getById(animalID);
+		Animal animal = animalDao.getAnimalByAnimalID(animalID);
+		System.out.println("am i getiing animal?:" + animal.toString());
 		return animal;
 	}
 	// James
@@ -50,7 +51,7 @@ public class AnimalServiceImpl implements AnimalService {
 	}
 	@Override
 	public int addAnimal(Animal animal) {
-		int animalID = animalDao.add(animal);
+		int animalID = animalDao.addAnimal(animal);
 		return animalID;
 	}
 	
@@ -61,16 +62,28 @@ public class AnimalServiceImpl implements AnimalService {
 	//Gin
 	// get multiple animals with a image 
 	@Override
-	public List<File> getAnimalsWithFile() {
+	public List<File> getAnimalsWithFile(String adoptStatus) {
 		
-		//cus I thought all animal absolutely exist...
-		List<Animal> animals = animalDao.getAll();
+		List<Animal> animals = new ArrayList<Animal>();
+		if (adoptStatus.equals("All")) {
+			animals = animalDao.getAll();
+		} else {
+			animals = animalDao.getAnimalsByStatus(adoptStatus);
+		}
 		List<File> list = new ArrayList<File>();
+		
 		for (Animal a : animals) {
 			List<File> imgFiles = fileDao.getFileByAnimalId(a);
-			File imgFile = imgFiles.get(0);
-			imgFile.setAnimal(a);
-			list.add(imgFile);
+			if (imgFiles.size() > 0) {
+				File imgFile = imgFiles.get(0);
+				imgFile.setAnimal(a);
+				list.add(imgFile);
+			} else {
+				File f = new File();
+				f.setAnimal(a);
+				f.setFilename("default.jpg");
+				list.add(f);
+			}
 		}	
 		return list;
 	}

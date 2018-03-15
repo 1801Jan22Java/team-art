@@ -33,23 +33,18 @@ public class FileDaoImpl implements FileDao{
 	public File getById(int id) {
 		Session s = HibernateUtil.getSession();
 		File animalFile = (File) s.get(File.class, id);
+		s.close();
 		return animalFile;
 	}
 
 	@Override
 	public int add(File file) {
-
-
-
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		s.save(file);
+		int fileID = (Integer)s.save(file);
 		tx.commit();
 		s.close();
-
-
-
-		return (Integer) HibernateUtil.getSession().save(file);
+		return fileID ;
 	}
 
 	@Override
@@ -64,7 +59,9 @@ public class FileDaoImpl implements FileDao{
 
 	@Override
 	public void saveOrUpdate(File file) {
-		HibernateUtil.getSession().saveOrUpdate(file);
+		Session s = HibernateUtil.getSession();
+		s.saveOrUpdate(file);
+		s.close();
 	}
 	
 	// Gin
@@ -83,6 +80,13 @@ public class FileDaoImpl implements FileDao{
 		Session s = HibernateUtil.getSession();
 		List<File> list = (List<File>) s.createCriteria(File.class)
 				.add(Restrictions.eq("animal", a)).list();
+		if (list.size() == 0) {
+			File f = new File();
+			f.setAnimal(a);
+			f.setFilename("default.jpg");
+			list.add(f);
+		}
+		s.close();
 		return list;
 	}
 }

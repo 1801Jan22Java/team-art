@@ -67,7 +67,7 @@ public class UserController {
 
 	@PostMapping("/register")
 	public @ResponseBody User registerUser(@RequestBody User user) {
-		logger.debug("registerUser: userInfo: " + user.toString());
+		System.out.println("??? registerUser: userInfo: " + user.toString());
 		int userId = userService.addUserInfo(user);
 		user.setUserID(userId);
 		return user;

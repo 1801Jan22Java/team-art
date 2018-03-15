@@ -27,11 +27,7 @@ public class AnimalDaoImpl implements AnimalDao{
 	@Override
 	public Animal getById(int id) {
 		Session s = HibernateUtil.getSession();
-
-
-		Transaction tx = s.beginTransaction();
 		Animal animal = (Animal) s.get(Animal.class, id);
-		tx.commit();
 		s.close();
 
 		return animal;
@@ -42,11 +38,11 @@ public class AnimalDaoImpl implements AnimalDao{
 
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		s.save(animal);
+		int animaiID = (Integer)s.save(animal);
 		tx.commit();
 		s.close();
 
-		return (Integer) HibernateUtil.getSession().save(animal);
+		return animaiID;
 	}
 
 	@Override
@@ -63,15 +59,22 @@ public class AnimalDaoImpl implements AnimalDao{
 	public void saveOrUpdate(Animal animal) {
 
 		Session s = HibernateUtil.getSession();
+		try
+		{
 		Transaction tx = s.beginTransaction();
+		//s.saveOrUpdate(animal);
 		s.saveOrUpdate(animal);
 		tx.commit();
+		}
+		finally
+		{
 		//s.flush();
 		s.close();
+		}
 		System.out.println(animal.toString());
 
 
-		HibernateUtil.getSession().saveOrUpdate(animal);
+		//HibernateUtil.getSession().saveOrUpdate(animal);
 
 	}
 	
@@ -99,5 +102,14 @@ public class AnimalDaoImpl implements AnimalDao{
 		Animal a = (Animal )c.uniqueResult();
 		s.close();
 		return a;
+	}
+	
+	@Override
+	public List<Animal> getAnimalsByStatus(String adoptStatus) {
+		Session s = HibernateUtil.getSession();
+		Criteria c = s.createCriteria(Animal.class).add(Restrictions.eq("adoptStatus", adoptStatus));
+		List<Animal> list = c.list();
+		s.close();
+		return list;
 	}
 }

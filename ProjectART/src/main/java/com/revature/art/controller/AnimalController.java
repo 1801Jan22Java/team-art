@@ -1,12 +1,19 @@
 package com.revature.art.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,10 +71,12 @@ public class AnimalController {
 	}
 	
 	@PostMapping("/addAnimal")
-	public @ResponseBody Animal addAnimal(@RequestBody Animal animal){
+	@ResponseBody
+	public Animal addAnimal(@RequestBody Animal animal){
 		int animalID = animalService.addAnimal(animal);
 		logger.info(animal.toString());
 		Animal animalFinal = animalService.getAnimalByID(animalID);
+	 System.out.println(animalFinal.toString());
 		return animalFinal;
 	}
 	
@@ -79,8 +88,8 @@ public class AnimalController {
 	
 	// Gin
 	@RequestMapping(value="/animalsWithFile", method=RequestMethod.GET)
-	public @ResponseBody List<File> getAnimalsWithFile(){
-		List<File> list = animalService.getAnimalsWithFile();
+	public @ResponseBody List<File> getAnimalsWithFile(@RequestParam("adoptStatus") String adoptStatus){
+		List<File> list = animalService.getAnimalsWithFile(adoptStatus);
 		return list;
 	}
 	
