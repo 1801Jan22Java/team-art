@@ -24,8 +24,9 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public User getById(int id) {
 		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
 		User u = (User) s.get(User.class, id);
-
+		tx.commit();
 		s.close();
 		return u;
 	}
